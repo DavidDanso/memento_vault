@@ -1,0 +1,52 @@
+{% load static %}
+<aside class="sidebar">
+  <nav id="nav_">
+    <ul>
+      <li>
+        <a href="#"
+          ><img
+            src="{% static 'images/home.svg'%}"
+            class="img-fluid"
+            id="icon_"
+            alt="home"
+        /></a>
+      </li>
+      <li>
+        <a href="#"
+          ><img
+            src="{% static 'images/vaults.svg'%}"
+            class="img-fluid"
+            id="icon_v"
+            alt="all_vaults"
+        /></a>
+      </li>
+      <li>
+        <a href="#"
+          ><img
+            src="{% static 'images/everything.svg'%}"
+            class="img-fluid"
+            id="icon_"
+            alt="everything"
+        /></a>
+      </li>
+    </ul>
+  </nav>
+  <div class="bottom-icons">
+    <a href="#">
+      <img
+        src="{% static 'images/whats-new.svg' %}"
+        class="img-fluid"
+        id="notification_icon"
+        alt="notification_icon"
+      />
+    </a>
+    <a href="#">
+      <img
+        src="{% static 'images/default-avatar.png' %}"
+        class="img-fluid rounded-circle"
+        id="user_avatar"
+        alt="user_avatar"
+      />
+    </a>
+  </div>
+</aside>
