@@ -36,14 +36,15 @@ a:hover {
 @font-face {
   font-weight: normal;
   font-style: normal;
-  font-family: "Medium-Light";
-  src: url("../fonts/medium.woff2");
+  font-family: "Regular-Light";
+  src: url("../fonts/regular.woff2");
 }
 .page-content {
   --main-color: #333333;
   --text-color: #eeeeee;
+  --nav-links-color: #9b9b9b;
   --header-font: "Bold-Wof";
-  --text-font: "Medium-Light";
+  --text-font: "Regular-Light";
 }
 a {
   text-decoration: none;
@@ -79,7 +80,7 @@ a:hover {
   margin-top: 13rem;
 }
 .sidebar {
-  width: 52px;
+  width: 50px;
   height: 100vh;
   background-color: var(--main-color);
   position: fixed;
@@ -89,7 +90,7 @@ a:hover {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border-right: 1px solid var(--text-color);
+  border-right: 1px solid #707070;
 }
 .sidebar nav ul {
   list-style-type: none;
@@ -97,17 +98,30 @@ a:hover {
 .sidebar nav ul li {
   margin-bottom: 20px;
 }
-#icon_ {
+.icon_ {
   width: 22px;
-  margin-left: -55%;
+  margin-left: -40%;
+  color: #9b9b9b;
+  transition: all 0.4s ease-in-out;
 }
-#icon_v {
+.icon_v {
   width: 33px;
   margin-left: -55%;
+  color: #9b9b9b;
+  transition: all 0.4s ease-in-out;
 }
-#notification_icon {
-  width: 28px;
+.notification_icon {
+  width: 33px;
   margin-left: 15%;
+  color: #9b9b9b;
+  transition: all 0.4s ease-in-out;
+}
+/* hover */
+.icon_:hover,
+.icon_v:hover,
+.notification_icon:hover {
+  color: #ff5924;
+  transition: all 0.4s ease-in-out;
 }
 #user_avatar {
   width: 35px;
@@ -119,8 +133,99 @@ a:hover {
   margin-left: 15%;
 }
 
+/* top nav */
+#mainNav {
+  transform: translateY(0);
+  transition: padding-top 0.3s, padding-bottom 0.3s;
+  padding-top: 3px;
+  padding-bottom: 0px;
+  background: var(--main-color);
+  transform: translateY(0);
+  opacity: 1;
+  z-index: 9;
+  width: 100vw;
+  border-bottom: 1px solid #707070;
+}
+.navbar-toggler {
+  position: absolute;
+  width: 40px;
+  top: 27px;
+  right: 18px;
+  padding: 1px;
+  cursor: pointer;
+  border: 0;
+  z-index: 1;
+}
+.navbar-toggler span {
+  display: block;
+  background: var(--text-color);
+  width: 30px;
+  height: 1px;
+  transition: 300ms linear all;
+}
+.navbar-toggler span:nth-child(1),
+.navbar-toggler span:nth-child(3) {
+  width: 15px;
+}
+.navbar-toggler span:nth-child(2) {
+  width: 37px;
+  margin: 5px 0;
+}
+.navbar-toggler span:nth-child(3) {
+  float: right;
+}
+.navbar-toggler:hover span:nth-child(1),
+.navbar-toggler:hover span:nth-child(3) {
+  width: 35px;
+}
+#mainNav a {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  line-height: normal;
+  transition: all 0.4s ease-in-out;
+}
+#mainNav a:hover {
+  color: #ff5924;
+  transition: all 0.4s ease-in-out;
+}
+
+/* header */
+header {
+  margin-bottom: 20px;
+}
+header nav {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+header nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 20px;
+}
+header nav ul li a {
+  color: #999;
+  text-decoration: none;
+  white-space: nowrap;
+}
+header #active {
+  color: #ff5924;
+}
+
+/****************************************** Main-Content ************************************/
+main {
+  margin-left: 60px;
+  padding: 20px;
+  width: calc(100% - 60px);
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
+  header {
+    display: none;
+  }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -144,17 +249,20 @@ a:hover {
 /************************ Extra large devices (large desktops, 1200px and up) ********************************/
 @media (min-width: 1200px) {
   /* sidebar */
-  .sidebar {
-    width: 57px;
+  #nav_ {
+    margin-top: 15rem;
   }
-  #icon_ {
+  .sidebar {
+    width: 58px;
+  }
+  .icon_ {
     width: 22px;
     margin-left: -50%;
   }
-  #icon_v {
+  .icon_v {
     width: 30px;
   }
-  #notification_icon {
+  .notification_icon {
     width: 28px;
   }
   #user_avatar {
@@ -164,5 +272,13 @@ a:hover {
   }
   .sidebar .bottom-icons {
     margin-bottom: 35%;
+  }
+
+  /* top nav */
+  #logo {
+    width: 40px;
+    height: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
   }
 }

@@ -15,7 +15,7 @@
     />
 
     <meta name="author" content="the_desiinger" />
-    <link rel="icon" href="{% static '/images/favicon.svg' %}" />
+    <link rel="icon" href="{% static '/images/logo.svg' %}" />
     <title>Memento Vault | Profile Page</title>
 
     <!-- Preload CSS -->
@@ -56,6 +56,16 @@
   >
     <!--======================== Nav-Section ================================-->
     {% include 'sidebar.html' %}
+
+    <!--======================== Main-Section ================================-->
+    <main>
+      <div class="container-fluidd">
+        <header>{% include 'top_nav.html' %}</header>
+        <!-- end header -->
+      </div>
+      <!-- end container-fluid -->
+    </main>
+    <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
     <script
