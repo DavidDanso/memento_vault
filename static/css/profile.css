@@ -40,7 +40,7 @@ a:hover {
   src: url("../fonts/regular.woff2");
 }
 .page-content {
-  --main-color: #333333;
+  --main-color: #222222;
   --text-color: #eeeeee;
   --nav-links-color: #9b9b9b;
   --header-font: "Bold-Wof";
@@ -190,6 +190,13 @@ a:hover {
   color: #ff5924;
   transition: all 0.4s ease-in-out;
 }
+#mainNav .nav-item span {
+  color: #707070;
+  font-size: 1.7em;
+}
+#logout_txt {
+  color: var(--text-color) !important;
+}
 
 /* header */
 header {
@@ -220,10 +227,207 @@ main {
   padding: 20px;
   width: calc(100% - 60px);
 }
+/* settings */
+#settings {
+  margin-top: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers child elements horizontally */
+  justify-content: center; /* Centers child elements vertically */
+}
+#settings #profile_img {
+  width: 60px;
+}
+#settings p {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  text-align: center;
+  line-height: 1.1;
+  margin-top: 3%;
+}
+#settings p span {
+  color: #9b9b9b;
+}
+#settings button {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  vertical-align: middle;
+  width: 58%;
+  padding: 5px 15px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+#settings button:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
+}
+#settings #edit_pen {
+  vertical-align: middle;
+  margin-right: 5%;
+}
+
+/* settings-card */
+#settings-card {
+  margin-top: 8%;
+}
+#settings-card .card {
+  background: transparent;
+  border: 1px solid var(--nav-links-color);
+}
+#settings-card h5 {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+}
+#settings-card h5 span {
+  float: right;
+  color: #ff5924;
+  font-family: var(--header-font);
+}
+#card_line {
+  color: var(--text-color);
+}
+#settings-card h6 {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+}
+
+/* whats_new_banner */
+#whats_new_banner {
+  background-image: url(../images/p_background.webp);
+  background-size: cover;
+  background-position: center center;
+  height: 13vh; /* Set height for the banner */
+  border-radius: 5px;
+  display: flex; /* Use flexbox */
+  justify-content: center; /* Horizontally center the button */
+  align-items: center; /* Vertically center the button */
+  margin-top: 5%;
+}
+#whats_new_banner a {
+  font-size: 1.2rem;
+  width: 53%;
+  padding: 5px 15px;
+  text-align: center;
+  background-color: #eae4dd;
+  color: var(--main-color);
+  border-radius: 25px;
+}
+#whats_new_banner a:hover {
+  background-color: #eae4ddcf;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid var(--text-color);
+}
+
+/* delete_account_card */
+#delete_account_card {
+  margin-top: 8%;
+}
+#delete_account_card .card {
+  background: #eae4dd;
+}
+#delete_account_card h2 {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+}
+#delete_account_card h2 span {
+  color: var(--main-color);
+}
+#delete_account_card #volunteer_img {
+  width: 60%;
+  margin-top: 5%;
+}
+#delete_account_card h2 {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  margin-top: 4%;
+}
+#delete_account_card h2 a {
+  color: #951c2f;
+  font-size: 1.3rem;
+  cursor: pointer !important;
+}
+
+/* delete-modal */
+#delete-account-modal .modal-dialog {
+  max-width: 600px;
+}
+#delete-account-modal .modal-content {
+  background-color: #222222;
+  border: 1px solid #707070;
+}
+#delete-account-modal .modal-header {
+  border-bottom: transparent;
+  margin-bottom: -2%;
+}
+#delete-account-modal #warning {
+  background: #282218;
+  border: 1px solid #574017;
+  margin-bottom: 3%;
+}
+#delete-account-modal h3 {
+  color: var(--text-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.9vh;
+  text-align: center;
+  padding: 3%;
+}
+#delete-account-modal h4 {
+  color: var(--text-color);
+  font-family: var(--header-font);
+  letter-spacing: 1px;
+  font-size: 2.1vh;
+  margin-bottom: 6%;
+  text-align: center;
+  line-height: 1.1;
+}
+#delete-account-modal h6 {
+  color: var(--text-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.8vh;
+  text-align: center;
+}
+#delete-account-modal h6 span {
+  border-bottom: 1px solid #707070;
+}
+#delete_account {
+  color: var(--text-color);
+  background: #951c2f;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 2vh;
+  transition: all 0.5s ease-in-out;
+  margin-left: 10px;
+}
+#delete_account:hover {
+  color: var(--text-color);
+  background: #951c2eac;
+  transition: all 0.5s ease-in-out;
+}
+#delete-account-modal .modal-footer {
+  margin-bottom: -2%;
+}
 
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
-  header {
+  header,
+  #volunteer_img {
     display: none;
   }
 }
@@ -274,11 +478,116 @@ main {
     margin-bottom: 35%;
   }
 
+  #logout_img {
+    width: 18px;
+  }
+
   /* top nav */
   #logo {
     width: 40px;
     height: auto;
     margin-top: 10%;
     margin-bottom: 10%;
+  }
+
+  /* settings */
+  #settings {
+    margin-top: 6%;
+  }
+  #settings #profile_img {
+    width: 70px;
+  }
+  #settings p {
+    font-size: 1.4rem;
+    margin-top: 2px;
+  }
+  #settings button {
+    font-size: 1.2rem;
+    width: 11%;
+    padding: 5px 15px;
+  }
+  #settings #edit_pen {
+    margin-right: 3%;
+  }
+
+  /* settings-card */
+  #settings-card {
+    margin-top: 2%;
+  }
+  #settings-card .card {
+    width: 50rem;
+  }
+  #settings-card h5 {
+    font-size: 1.2rem;
+  }
+  #settings-card h6 {
+    font-size: 1.1rem;
+    text-align: right;
+  }
+
+  /* whats_new_banner */
+  #whats_new_banner {
+    height: 13vh; /* Set height for the banner */
+    margin-top: 2%;
+  }
+  #whats_new_banner a {
+    font-size: 1.1rem;
+    width: 23%; /* Set button width */
+    padding: 5px 15px;
+  }
+
+  /* delete_account_card */
+  #delete_account_card {
+    margin-top: 1%;
+    width: 55%;
+  }
+  #delete_account_card h2 {
+    font-size: 1.2rem;
+  }
+  #delete_account_card #volunteer_img {
+    width: 80%;
+    margin-top: 1%;
+    float: right;
+  }
+  #delete_account_card h2 {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin-top: 2%;
+  }
+  #delete_account_card h2 a {
+    font-size: 1.3rem;
+  }
+
+  /* delete-modal */
+  #delete-account-modal .modal-dialog {
+    max-width: 600px;
+  }
+  #delete-account-modal .modal-header {
+    margin-bottom: -2%;
+  }
+  #delete-account-modal #warning {
+    margin-bottom: 3%;
+  }
+  #delete-account-modal h3 {
+    letter-spacing: 1px;
+    font-size: 1.9vh;
+    padding: 3%;
+  }
+  #delete-account-modal h4 {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin-bottom: 6%;
+  }
+  #delete-account-modal h6 {
+    letter-spacing: 1px;
+    font-size: 1.8vh;
+  }
+  #delete_account {
+    letter-spacing: 1px;
+    font-size: 2vh;
+    margin-left: 10px;
+  }
+  #delete-account-modal .modal-footer {
+    margin-bottom: -2%;
   }
 }
