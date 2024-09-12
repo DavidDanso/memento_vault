@@ -72,7 +72,12 @@
             alt="profile_img"
           />
           <p>You have a treasure trove of memories, <span>DavidDanso</span></p>
-          <button type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-bs-toggle="modal"
+            data-bs-target="#editProfileModal"
+          >
             <img
               src="{% static 'images/edit-pen.svg'%}"
               class="img-fluid"
@@ -130,7 +135,7 @@
 
               <div class="col-md-6">
                 <img
-                  src="{% static 'images/teams.svg'%}"
+                  src="{% static 'images/volunteer.svg'%}"
                   class="img-fluid"
                   id="volunteer_img"
                   alt="volunteer_img"
@@ -145,6 +150,10 @@
         <!-- end profile settings -->
       </div>
       <!-- end container-fluid -->
+
+      <!--=========================================== Profile-Settings-Modal ===============================-->
+      {% include 'users/edit-profile-modal.html' %}
+      <!-- End edit_profile-modal-->
 
       <!--=========================================== Delete-account-Modal ===============================-->
       {% include 'users/delete-account-modal.html' %}

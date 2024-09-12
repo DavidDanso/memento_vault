@@ -1,0 +1,107 @@
+{% load static %}
+<!--=========================================== profile_settings--layout ===============================-->
+<div id="profile_settings">
+  <div
+    class="modal fade"
+    id="editProfileModal"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="modal-wrapper">
+            <!--  -->
+            <img
+              src="{% static 'images/default-avatar.png' %}"
+              class="img-fluid d-flex mx-auto rounded-circle"
+              id="profile_avatar"
+              alt="profile_avatar"
+            />
+            <!--  -->
+
+            <h6 id="full_name">DavidDanso</h6>
+
+            <form
+              action=""
+              method="POST"
+              enctype="multipart/form-data"
+              class="row g-3"
+            >
+              {% csrf_token%}
+              <div class="input-group mb-3" id="img_field">
+                <input type="file" class="form-control" id="inputGroupFile02" />
+              </div>
+              <!--  -->
+
+              <div class="col-md-6">
+                <label for="inputfullName" class="form-label">Name</label>
+                <input
+                  type="text"
+                  class="form-control input"
+                  id="inputfullName"
+                />
+              </div>
+              <!-- end fullName -->
+
+              <div class="col-md-6">
+                <label for="inputuserName" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control input"
+                  id="inputuserName"
+                />
+              </div>
+              <!-- end userName -->
+
+              <div class="col-md-12">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input
+                  type="email"
+                  class="form-control input"
+                  id="inputEmail"
+                />
+              </div>
+              <!-- end Email -->
+
+              <div class="col-md-12">
+                <label for="inputLocation" class="form-label">Location</label>
+                <input
+                  type="text"
+                  class="form-control input"
+                  id="inputLocation"
+                />
+              </div>
+              <!-- end Location -->
+
+              <div class="modal-footer">
+                <a href="#" data-bs-dismiss="modal" aria-label="Close">
+                  <h6>
+                    <span>Cancel, keep this settings</span>
+                  </h6>
+                </a>
+                <input
+                  type="submit"
+                  class="btn"
+                  name="update"
+                  id="update_profile"
+                  value="update profile"
+                />
+              </div>
+              <!-- End modal-footer-->
+            </form>
+            <!-- End form-->
+          </div>
+          <!-- End modal-wrapper-->
+        </div>
+        <!-- End modal-body-->
+      </div>
+      <!-- End modal-content-->
+    </div>
+  </div>
+  <!-- End modal-->
+</div>
+<!-- End profile_settings-->

@@ -1,0 +1,223 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--main-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/* Fonts */
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "NeueHaasGrotesk-55Roman";
+  src: url("../fonts/NeueHaasGroteskText-55Roman-Web.woff2");
+}
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "NeueHaasGroteskText-65Regular";
+  src: url("../fonts/regular.woff2");
+}
+.page-content {
+  --main-color: #222222;
+  --text-color: #eeeeee;
+  --nav-links-color: #9b9b9b;
+  --header-font: "NeueHaasGrotesk-55Roman";
+  --text-font: "NeueHaasGroteskText-65Regular";
+}
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+/*change color of text highlight*/
+::-moz-selection {
+  color: var(--main-color);
+  background: var(--text-color);
+}
+
+::selection {
+  color: var(--main-color);
+  background: var(--text-color);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 6px;
+}
+
+/****************************************** thankY-section ************************************/
+#thankY {
+  margin-top: 35%;
+}
+.thankY-intro {
+  margin: 3%;
+}
+.thankY-intro #main_card,
+#msg {
+  background: transparent;
+  border: 1px solid #707070;
+}
+#exhibition_img {
+  width: 60%;
+}
+.thankY-intro h2 {
+  font-family: var(--header-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.4rem;
+  text-align: center;
+  margin-top: 1px;
+}
+.thankY-intro p {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-top: 3%;
+  line-height: 1.1;
+}
+.thankY-intro h6 {
+  font-family: var(--header-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  text-align: center;
+}
+/* action btns */
+#action_btns {
+  margin-top: 6%;
+}
+#create_acc_btn {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+#create_acc_btn:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
+}
+#back_home_btn {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  background-color: transparent;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  float: right;
+}
+#home_svg {
+  width: 20px;
+}
+#back_home_btn span {
+  border-bottom: 1px solid var(--nav-links-color);
+}
+#back_home_btn:hover span {
+  border-bottom: 1px solid #ff5924;
+  transition: all 0.4s ease-in-out;
+}
+/********************** Extra small devices (portrait phones, less than 576px) ****************************/
+@media (max-width: 575.98px) {
+}
+/************************ Small devices (landscape phones, 576px and up) *****************************/
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body {
+    display: none;
+  }
+}
+/***************************** Medium devices (tablets, 768px and up) ********************************/
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+/********************************** Large devices (desktops, 992px and up) *********************************/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* body {
+    display: none;
+  } */
+}
+/************************ Extra large devices (large desktops, 1200px and up) ********************************/
+@media (min-width: 1200px) {
+  /* thankY */
+  #thankY {
+    margin-top: 11%;
+  }
+  .thankY-intro {
+    margin: 3%;
+  }
+  #main_card {
+    max-width: 50%;
+  }
+  #exhibition_img {
+    width: 35%;
+  }
+  .thankY-intro h2 {
+    letter-spacing: 1px;
+    font-size: 1.6rem;
+    margin-top: 1px;
+  }
+  .thankY-intro p {
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    margin-top: 2%;
+  }
+  .thankY-intro h6 {
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+  }
+
+  /* action btns */
+  #action_btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3%;
+  }
+  #create_acc_btn {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+  }
+  #back_home_btn {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    float: none;
+    margin-left: 2%;
+  }
+  #home_svg {
+    width: 20px;
+  }
+}
