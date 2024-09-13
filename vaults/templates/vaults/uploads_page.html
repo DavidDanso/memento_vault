@@ -1,0 +1,229 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="js has-scroll-init has-scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
+    />
+
+    <meta
+      name="keywords"
+      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
+    />
+
+    <meta name="author" content="the_desiinger" />
+    <link rel="icon" href="{% static '/images/logo.svg' %}" />
+    <title>Memento Vault | Uploads Page</title>
+
+    <!-- Preload CSS -->
+    <link href="{% static '/css/normalize.css' %}" />
+    <link
+      rel="preload"
+      as="style"
+      href="{% static '/css/uploads_page.css' %}"
+    />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/uploads_page.css' %}" />
+
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this work in a modern browser that supports CSS Variables."
+        );
+    </script>
+  </head>
+  <body
+    id="pageTop"
+    class="page-content"
+    data-spy="scroll"
+    data-target="#mainNav"
+  >
+    <!--======================== Main-Section ================================-->
+    <main>
+      <div id="uploads_page">
+        <div class="container-fluid">
+          <div class="uploads_page-intro">
+            <h2>Otto’s Wedding - upload files</h2>
+            <p>
+              For optimal results, upload videos in at least 780p or 1080p MP4
+              format. <span></span> Images should be up to 5MB each and can be
+              in PNG, JPEG, or JPG formats.
+            </p>
+
+            <!--  -->
+            <div class="card d-flex mx-auto" id="main_card">
+              <div class="card-body">
+                <!--  -->
+                <div id="upload_div">
+                  <div class="card" id="uploads_card">
+                    <div class="card-body">
+                      <img
+                        src="{% static 'images/upload.png' %}"
+                        class="img-fluid d-flex mx-auto"
+                        id="uploads_img"
+                        alt="uploads_img"
+                      />
+
+                      <!--  -->
+                      <div class="input-group mb-3" id="upload_field">
+                        <input
+                          type="file"
+                          class="form-control input"
+                          id="inputGroupFile02"
+                        />
+                        <label class="input-group-text" for="inputGroupFile02"
+                          ><img
+                            src="{% static 'images/pic.svg' %}"
+                            class="img-fluid"
+                            id="pic_svg"
+                            alt="pic_svg"
+                          />
+                          Upload</label
+                        >
+                      </div>
+                      <!-- end upload_field -->
+                    </div>
+                    <!-- end card-body -->
+                  </div>
+                  <!-- end uploads_card -->
+                </div>
+                <!-- end upload_div -->
+                <!--  -->
+                <h6>
+                  Just a heads-up:
+                  <span>you can only make 6 uploads to this vault.</span>
+                </h6>
+                <!--  -->
+              </div>
+              <!-- end card-body -->
+            </div>
+            <!-- end card -->
+            <!--  -->
+          </div>
+          <!-- end uploads_page-intro -->
+        </div>
+        <!-- end container-fluid -->
+      </div>
+      <!-- end uploads_page -->
+
+      <!--======================== Upload-Contents ================================-->
+      <div id="upload_content">
+        <div class="container">
+          <div class="upload_content-intro">
+            <div id="div_header">
+              <h3><span>your uploads</span></h3>
+
+              <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn"
+                >finished uploading? click me</a
+              >
+            </div>
+            <!-- end div_header -->
+
+            <div id="masonry-container">
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8738.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8783.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8770.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8803.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_0210.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8856.jpg' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8857.jpg' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/IMG_8761.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+            </div>
+            <!-- end masonry-container -->
+          </div>
+          <!-- end upload_content-intro -->
+        </div>
+      </div>
+      <!-- end upload_content -->
+    </main>
+    <!-- end main -->
+
+    <!--=============================================== JavaScript ===================================-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom Links -->
+    <script src="{% static '/js/jquery-min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/uploads_page.js' %}"></script>
+  </body>
+</html>

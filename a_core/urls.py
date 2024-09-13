@@ -7,6 +7,7 @@ from vaults.views import thankY_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', include('users.urls')),
+    path('vaults/', include('vaults.urls')),
     path('thank_u/', thankY_view, name='thank_u'),
 ]
 

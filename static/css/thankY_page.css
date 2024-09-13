@@ -104,7 +104,7 @@ a:hover {
   font-size: 1.3rem;
   text-align: center;
   margin-top: 3%;
-  line-height: 1.1;
+  line-height: 1.2;
 }
 .thankY-intro h6 {
   font-family: var(--header-font);
@@ -148,8 +148,8 @@ a:hover {
 #back_home_btn span {
   border-bottom: 1px solid var(--nav-links-color);
 }
-#back_home_btn:hover span {
-  border-bottom: 1px solid #ff5924;
+#back_home_btn:hover {
+  color: var(--nav-links-color);
   transition: all 0.4s ease-in-out;
 }
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
