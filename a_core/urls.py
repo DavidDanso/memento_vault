@@ -2,13 +2,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-from vaults.views import thankY_view
+from vaults.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', include('users.urls')),
     path('vaults/', include('vaults.urls')),
     path('thank_u/', thankY_view, name='thank_u'),
+    path('everything/', everything_view, name='everything'),
 ]
 
 # Only used when DEBUG=True, whitenoise can serve files when DEBUG=False

@@ -30,6 +30,9 @@ INSTALLED_APPS = [
     # my_apps
     'users.apps.UsersConfig',
     'vaults.apps.VaultsConfig',
+
+    # instlled apps
+    'active_link',
 ]
 
 MIDDLEWARE = [
