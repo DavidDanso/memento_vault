@@ -59,13 +59,205 @@
 
     <!--======================== Main-Section ================================-->
     <main>
-      <div class="container-fluidd">
+      <div class="container-fluid">
         <header>{% include 'top_nav.html' %}</header>
         <!-- end header -->
 
-        <!--  -->
+        <!-- hero -->
+        <div id="hero">
+          <div class="row" id="cards_row">
+            <div class="col-6 col-md-2">
+              <a href="#">
+                <div class="card">
+                  <div class="card-body">
+                    <h6>
+                      <img
+                        id="_img"
+                        src="{% static 'images/smile.png' %}"
+                        class="img-fluid"
+                        alt="_img"
+                      />
+                      MoodLens
+                    </h6>
+                    <div class="img-container">
+                      <img
+                        id="card_img"
+                        class="img-fluid"
+                        src="{% static 'images/00000000BzV0NZyCrsKsc4.jpeg' %}"
+                        alt="card_img"
+                      />
+                    </div>
+                    <!-- end img-container -->
+                  </div>
+                  <!-- End card-body-->
+                </div>
+                <!-- End card-->
+              </a>
+            </div>
+            <!-- end col -->
 
-        <!--  -->
+            <div class="col-6 col-md-2 align-self-center">
+              <a href="#">
+                <div class="card">
+                  <div class="card-body">
+                    <h6>
+                      <img
+                        id="_img"
+                        src="{% static 'images/star.png' %}"
+                        class="img-fluid"
+                        alt="_img"
+                      />
+                      Favorites
+                    </h6>
+                    <div class="img-container">
+                      <img
+                        id="card_img"
+                        class="img-fluid"
+                        src="{% static 'images/00000000BzV0NZsMoFQ1ru.jpeg' %}"
+                        alt="card_img"
+                      />
+                    </div>
+                    <!-- end img-container -->
+                  </div>
+                  <!-- End card-body-->
+                </div>
+                <!-- End card-->
+              </a>
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-6 align-self-center">
+              <div class="card" id="form_card">
+                <div class="card-body">
+                  <h5>create new vault</h5>
+                  <div class="input-group mb-3" id="vault_form">
+                    <input
+                      type="text"
+                      class="form-control input"
+                      placeholder="name your new vault..."
+                    />
+                    <button type="submit" name="createVault">
+                      <img
+                        src="{% static 'images/up-arrow.png' %}"
+                        class="img-fluid"
+                        id="submit--img"
+                        alt="submit--img"
+                      />
+                    </button>
+                  </div>
+                  <!-- end vault_form -->
+                </div>
+                <!-- End card-body-->
+              </div>
+              <!-- End card-->
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+
+          <!-- mobile form -->
+          <div class="card" id="mob_form_card">
+            <div class="card-body">
+              <h5>create new vault</h5>
+              <div class="input-group mb-3" id="vault_form">
+                <input
+                  type="text"
+                  class="form-control input"
+                  placeholder="name your new vault..."
+                />
+                <button type="submit" name="createVault">
+                  <img
+                    src="{% static 'images/up-arrow.png' %}"
+                    class="img-fluid"
+                    id="submit--img"
+                    alt="submit--img"
+                  />
+                </button>
+              </div>
+              <!-- end vault_form -->
+            </div>
+            <!-- End card-body-->
+          </div>
+          <!-- End card-->
+          <!--  -->
+
+          <hr class="d-flex mx-auto" id="page_line" />
+
+          <center>
+            <div id="search">
+              <input
+                id="input"
+                class="form-control live-search-box"
+                placeholder="search by 'mood' or vault name..."
+              />
+              <button id="button">
+                <img
+                  src="{% static 'images/photo.png' %}"
+                  class="img-fluid"
+                  id="search_icon"
+                  alt="search_icon"
+                />
+              </button>
+            </div>
+          </center>
+          <!-- End center search -->
+        </div>
+        <!-- end hero -->
+
+        <!-- images & videos -->
+        <div id="vault_objs">
+          <h2><span>vault images & videos</span></h2>
+
+          <div id="masonry-container">
+            <div class="masonry-item">
+              <a href="#">
+                <img
+                  src="{% static 'images/IMG_8856.jpg' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </a>
+            </div>
+            <!-- end masonry-item -->
+            <div class="masonry-item">
+              <a href="#">
+                <img
+                  src="{% static 'images/IMG_8783.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </a>
+            </div>
+            <!-- end masonry-item -->
+
+            <div class="masonry-item">
+              <a href="#">
+                <img
+                  src="{% static 'images/IMG_8770.JPG' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </a>
+            </div>
+            <!-- end masonry-item -->
+
+            <div id="mansonry--card">
+              <div class="masonry-item">
+                <a href="#">
+                  <img
+                    src="{% static 'images/IMG_8803.JPG' %}"
+                    class="img-fluid"
+                    alt="upload-img"
+                  />
+                </a>
+              </div>
+              <!-- end masonry-item -->
+            </div>
+            <!-- mansonry--card -->
+          </div>
+          <!-- end masonry-container -->
+        </div>
+        <!-- end images & videos -->
       </div>
       <!-- end container-fluid -->
     </main>

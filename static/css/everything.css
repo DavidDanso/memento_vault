@@ -218,22 +218,210 @@ header nav ul li a {
   white-space: nowrap;
 }
 /*  */
-header .active {
+header #active {
   color: #ff5924;
 }
 
 /****************************************** Main-Content ************************************/
 main {
-  margin-left: 60px;
+  margin-left: 52px;
   padding: 20px;
   width: calc(100% - 60px);
 }
-/* settings */
+/* hero */
+#hero .card {
+  background: #333333;
+  margin-bottom: 3%;
+}
+#hero #_img {
+  width: 30px;
+}
+#hero h6 {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  text-align: left;
+}
+.img-container {
+  position: relative;
+  overflow: hidden;
+}
+.img-container #card_img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  transition: all 1.9s ease;
+}
+.card:hover #card_img {
+  transform: scale(1.2);
+}
+
+/* form_card */
+#hero #form_card {
+  background: #0a0b0e;
+}
+#hero h5 {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  text-align: left;
+  margin-top: 3%;
+}
+#hero .input {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+  border: 1px solid #707070;
+  background: transparent;
+}
+#hero .input:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+#hero .input::placeholder {
+  color: var(--nav-links-color);
+  font-size: 1rem;
+}
+#submit--img {
+  width: 27px;
+  margin-top: 4%;
+}
+#hero button {
+  background: transparent;
+  border: none;
+  margin-left: 3%;
+}
+
+/*  */
+#page_line {
+  color: var(--text-color);
+  width: 100%;
+}
+#search {
+  align-items: center;
+  background: transparent;
+  border-radius: 100px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5em 0;
+  transition: all 0.5s;
+  border: 1px solid #ff5924;
+  margin-top: 6%;
+  font-size: 1.1rem;
+}
+#search:hover,
+#search:focus {
+  border: 1px solid #ff9874;
+  color: var(--text-color);
+}
+#search input:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+  border: transparent;
+  color: var(--text-color);
+}
+#search input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--text-color);
+  font: var(--text-font);
+  outline: 0;
+}
+#search button {
+  background: transparent;
+  margin-right: 4%;
+}
+#search input {
+  flex: 1;
+}
+#search input::-moz-placeholder,
+#search input:-ms-input-placeholder {
+  color: var(--text-color);
+}
+#search input::placeholder {
+  color: var(--nav-links-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1rem;
+}
+#search_icon {
+  width: 25px;
+}
+
+/* vault_objs */
+#vault_objs {
+  margin-top: 11%;
+}
+#vault_objs h2 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--header-font);
+  font-size: 1.4rem;
+}
+#vault_objs h2 span {
+  position: relative;
+  display: inline-block;
+}
+#vault_objs h2 span::after {
+  content: "";
+  width: 55%;
+  height: 3px;
+  background-color: var(--nav-links-color);
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+}
+
+/* masonry-layout */
+#masonry-container {
+  column-count: 2;
+  column-gap: 12px;
+  margin-top: 8%;
+}
+#masonry-container .masonry-item {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  position: relative;
+  overflow: hidden;
+}
+#masonry-container .masonry-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--nav-links-color);
+  border-radius: 5px;
+  transition: all 1.9s ease;
+}
+.masonry-item img:hover {
+  transform: scale(1.2);
+  border-radius: 5px;
+}
+#masonry-container p {
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.4rem;
+}
 
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
-  header {
+  header,
+  #cards_row .col-md-6,
+  .masonry-item p {
     display: none;
+  }
+  #hero #mob_form_card {
+    background: #0a0b0e;
+    margin-top: 3%;
+    width: 100%;
   }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
@@ -295,5 +483,103 @@ main {
     margin-bottom: 10%;
   }
 
-  /* settings */
+  /* main */
+  main {
+    margin-left: 75px;
+    padding: 20px;
+    width: calc(100% - 60px);
+  }
+  /* hero */
+  #hero {
+    margin-top: 6%;
+  }
+  #cards_row {
+    margin: 0%;
+    margin-left: 10%;
+  }
+  #hero .card {
+    margin-bottom: 3%;
+  }
+  #hero #_img {
+    width: 30px;
+  }
+  #hero h6 {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 4%;
+  }
+
+  /*  */
+  #mob_form_card {
+    display: none;
+  }
+  #hero h5 {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 2%;
+    margin-bottom: 2%;
+  }
+  #hero .input {
+    font-size: 1.1rem;
+    margin-bottom: 1%;
+  }
+  #hero .input::placeholder {
+    font-size: 1rem;
+  }
+  #submit--img {
+    width: 27px;
+    margin-top: 0%;
+  }
+  #hero button {
+    margin-left: 3%;
+  }
+  /*  */
+  #page_line {
+    width: 90%;
+  }
+  #search {
+    padding: 0.1em 0.1em 0.1em 1em;
+    width: 650px;
+    margin-top: 1%;
+    font-size: 1.2rem;
+  }
+  #search input::placeholder {
+    font-size: 1.1rem;
+  }
+  #search button {
+    margin-right: 2%;
+    cursor: default;
+  }
+  #search_icon {
+    width: 23px;
+  }
+
+  /* vault_objs */
+  #vault_objs {
+    margin-top: 7%;
+  }
+  #vault_objs h2 {
+    font-size: 1.4rem;
+  }
+  #vault_objs h2 span::after {
+    width: 55%;
+    height: 3px;
+    left: 0;
+    bottom: -5px;
+  }
+
+  /*  masonry-container */
+  #masonry-container {
+    column-count: 4;
+    column-gap: 14px;
+    margin-top: 2%;
+  }
+  #masonry-container .masonry-item {
+    break-inside: avoid;
+    margin-bottom: 14px;
+  }
+  #masonry-container .masonry-item img {
+    width: 100%;
+    height: auto;
+  }
 }
