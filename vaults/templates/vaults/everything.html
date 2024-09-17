@@ -73,17 +73,17 @@
                     <h6>
                       <img
                         id="_img"
-                        src="{% static 'images/smile.png' %}"
+                        src="{% static 'images/star.png' %}"
                         class="img-fluid"
                         alt="_img"
                       />
-                      MoodLens
+                      Favorites
                     </h6>
                     <div class="img-container">
                       <img
                         id="card_img"
                         class="img-fluid"
-                        src="{% static 'images/00000000BzV0NZyCrsKsc4.jpeg' %}"
+                        src="{% static 'images/photo-1636189239307-9f3a701f30a8.avif' %}"
                         alt="card_img"
                       />
                     </div>
@@ -103,17 +103,17 @@
                     <h6>
                       <img
                         id="_img"
-                        src="{% static 'images/star.png' %}"
+                        src="{% static 'images/smile.png' %}"
                         class="img-fluid"
                         alt="_img"
                       />
-                      Favorites
+                      MoodLens
                     </h6>
                     <div class="img-container">
                       <img
                         id="card_img"
                         class="img-fluid"
-                        src="{% static 'images/00000000BzV0NZsMoFQ1ru.jpeg' %}"
+                        src="{% static 'images/andrew-seaman-4Fi_4Q6_eFM-unsplash.jpg' %}"
                         alt="card_img"
                       />
                     </div>
@@ -209,57 +209,39 @@
           <h2><span>vault images & videos</span></h2>
 
           <div id="masonry-container">
-            <div class="masonry-item">
-              <a href="#">
-                <img
-                  src="{% static 'images/IMG_8856.jpg' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
-              </a>
-            </div>
-            <!-- end masonry-item -->
-            <div class="masonry-item">
-              <a href="#">
-                <img
-                  src="{% static 'images/IMG_8783.JPG' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
-              </a>
+            <div
+              class="masonry-item"
+              data-bs-toggle="modal"
+              data-bs-target="#staticBackdrop"
+            >
+              <img
+                src="{% static 'images/photo-1634152962476-4b8a00e1915c.avif' %}"
+                class="img-fluid"
+                alt="upload-img"
+              />
             </div>
             <!-- end masonry-item -->
 
             <div class="masonry-item">
               <a href="#">
                 <img
-                  src="{% static 'images/IMG_8770.JPG' %}"
+                  src="{% static 'images/photo-1698570493404-ee2c4f1fc498.avif' %}"
                   class="img-fluid"
                   alt="upload-img"
                 />
               </a>
             </div>
             <!-- end masonry-item -->
-
-            <div id="mansonry--card">
-              <div class="masonry-item">
-                <a href="#">
-                  <img
-                    src="{% static 'images/IMG_8803.JPG' %}"
-                    class="img-fluid"
-                    alt="upload-img"
-                  />
-                </a>
-              </div>
-              <!-- end masonry-item -->
-            </div>
-            <!-- mansonry--card -->
           </div>
           <!-- end masonry-container -->
         </div>
         <!-- end images & videos -->
       </div>
       <!-- end container-fluid -->
+
+      <!--=========================================== Profile-Settings-Modal ===============================-->
+      {% include 'vaults/view_image_modal.html' %}
+      <!-- End edit_profile-modal-->
     </main>
     <!-- end main -->
 
