@@ -1,0 +1,90 @@
+{% load static %}
+<!--=========================================== uploadImageModal--layout ===============================-->
+<div id="uploadImageModal">
+  <div
+    class="modal fade"
+    id="staticBackdrop"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1>Otto’s Wedding - Vault</h1>
+          <img
+            src="{% static 'images/close-icon.png' %}"
+            class="img-fluid btn-close"
+            id="close_svg"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            alt="close_svg"
+          />
+        </div>
+        <!-- end modal-header -->
+        <div class="modal-body">
+          <p>
+            For optimal results, upload videos in at least 780p or 1080p MP4
+            format. Images should be up to 5MB each and can be in PNG, JPEG, or
+            JPG formats.
+          </p>
+
+          <!--  -->
+          <div class="card d-flex mx-auto" id="main_card">
+            <div class="card-body">
+              <!--  -->
+              <div id="upload_div">
+                <div class="card" id="uploads_card">
+                  <div class="card-body">
+                    <img
+                      src="{% static 'images/upload.png' %}"
+                      class="img-fluid d-flex mx-auto"
+                      id="uploads_img"
+                      alt="uploads_img"
+                    />
+
+                    <!--  -->
+                    <div class="input-group mb-3" id="upload_field">
+                      <input
+                        type="file"
+                        class="form-control input"
+                        id="inputGroupFile02"
+                      />
+                      <label class="input-group-text" for="inputGroupFile02"
+                        ><img
+                          src="{% static 'images/pic.svg' %}"
+                          class="img-fluid"
+                          id="pic_svg"
+                          alt="pic_svg"
+                        />
+                        Upload</label
+                      >
+                    </div>
+                    <!-- end upload_field -->
+                  </div>
+                  <!-- end card-body -->
+                </div>
+                <!-- end uploads_card -->
+              </div>
+              <!-- end upload_div -->
+              <!--  -->
+              <h6>
+                Just a heads-up:
+                <span>you can only have 20 objects in this vault.</span>
+              </h6>
+              <!--  -->
+            </div>
+            <!-- end card-body -->
+          </div>
+          <!-- end card -->
+          <!--  -->
+        </div>
+        <!-- end modal-body -->
+      </div>
+    </div>
+  </div>
+  <!-- end viewImageModal -->
+</div>
+<!-- end uploadImageModal -->
