@@ -69,20 +69,20 @@
 
         <!-- hero -->
         <div id="hero">
-          <div id="empty_vault">
-            <div id="header_">
-              <a href="#">
-                <img
-                  src="{% static 'images/arrow.png'%}"
-                  class="img-fluid"
-                  id="arrow_img"
-                  alt="arrow_img"
-                />
-              </a>
-              <h2><span>Otoo's Wedding</span></h2>
-            </div>
-            <!-- end header_ -->
+          <div id="header_">
+            <a href="#">
+              <img
+                src="{% static 'images/arrow.png'%}"
+                class="img-fluid"
+                id="arrow_img"
+                alt="arrow_img"
+              />
+            </a>
+            <h2><span>Otoo's Wedding</span></h2>
+          </div>
+          <!-- end header_ -->
 
+          <div id="empty_vault">
             <!--  -->
             <h1>This vault is empty.</h1>
             <img
@@ -125,6 +125,62 @@
             <!--  -->
           </div>
           <!-- end empty_vault -->
+
+          <div id="notEmpty_vault">
+            <div id="sub_header_">
+              <img
+                src="{% static 'images/qr-code-grey.png'%}"
+                class="img-fluid"
+                id="qrCode_grey"
+                alt="qrCode_grey"
+              />
+
+              <button
+                class="btn"
+                id="upload_"
+                data-bs-toggle="modal"
+                data-bs-target="#uploadImg"
+              >
+                <img
+                  src="{% static 'images/upload_img.png'%}"
+                  class="img-fluid"
+                  id="upload_img"
+                  alt="upload_img"
+                />
+                direct uploads to vault
+              </button>
+            </div>
+            <!-- end sub_header_ -->
+            <button class="btn" id="qrCode_">download qr-code</button>
+            <hr id="page_divider" />
+
+            <!--  -->
+            <div id="masonry-container">
+              <div
+                class="masonry-item"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
+                <img
+                  src="{% static 'images/photo-1634152962476-4b8a00e1915c.avif' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+
+              <div class="masonry-item">
+                <img
+                  src="{% static 'images/photo-1698570493404-ee2c4f1fc498.avif' %}"
+                  class="img-fluid"
+                  alt="upload-img"
+                />
+              </div>
+              <!-- end masonry-item -->
+            </div>
+            <!--  -->
+          </div>
+          <!-- end notEmpty_vault -->
         </div>
         <!-- end hero -->
       </div>
@@ -133,6 +189,10 @@
       <!--=========================================== upload_img-Modal ===============================-->
       {% include 'vaults/upload_img-modal.html' %}
       <!-- End upload_img-modal-->
+
+      <!--=========================================== view_image-Modal ===============================-->
+      {% include 'vaults/view_image_modal.html' %}
+      <!-- End view_image-modal-->
     </main>
     <!-- end main -->
 
