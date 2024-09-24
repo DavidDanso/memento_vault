@@ -1,5 +1,12 @@
 from django.shortcuts import render
 
+
+# 
+def dashboard_view(request):
+    context = {}
+    return render(request, 'dashboard.html', context)
+
+
 # 
 def vault_view(request):
     context = {}

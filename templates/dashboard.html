@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="js has-scroll-init has-scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
+    />
+
+    <meta
+      name="keywords"
+      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
+    />
+
+    <meta name="author" content="the_desiinger" />
+    <link rel="icon" href="{% static '/images/logo.svg' %}" />
+    <title>Memento Vault | Dashboard Page</title>
+
+    <!-- Preload CSS -->
+    <link href="{% static '/css/normalize.css' %}" />
+    <link rel="preload" as="style" href="{% static '/css/dashboard.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/dashboard.css' %}" />
+
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this work in a modern browser that supports CSS Variables."
+        );
+    </script>
+  </head>
+  <body
+    id="pageTop"
+    class="page-content"
+    data-spy="scroll"
+    data-target="#mainNav"
+  >
+    <!--======================== Nav-Section ================================-->
+    {% include 'sidebar.html' %}
+
+    <!--======================== Main-Section ================================-->
+    <main>
+      <div class="container-fluid">
+        <header>{% include 'top_nav.html' %}</header>
+        <!-- end header -->
+
+        <!-- dashboard -->
+        <div id="dashboard">
+          <div class="card" id="card_">
+            <div class="card-body">
+              <div id="dashboard_card">
+                <div id="div">
+                  <h6>Welcome back, <span>DavidDanso</span>👋</h6>
+                  <p>
+                    psum quia dolor sit psum quia dolor sitpsum quia dolor sit
+                    psum quia dolor
+                  </p>
+                </div>
+                <!-- end div -->
+
+                <div id="div">
+                  <button class="btn">
+                    <img
+                      src="{% static 'images/marker.png'%}"
+                      class="img-fluid"
+                      id="create_img"
+                      alt="create_img"
+                    />
+                    create new vault
+                  </button>
+                </div>
+                <!-- end div -->
+              </div>
+              <!-- end dashboard_card -->
+            </div>
+            <!-- end card-body -->
+          </div>
+          <!-- end card -->
+
+          <!--  -->
+          <div class="row d-flex justify-content-center" id="row_cards">
+            <div class="col-md-4" id="main__card">
+              <div class="card">
+                <div class="card-body">
+                  <img
+                    src="{% static 'images/user.svg' %}"
+                    class="img-fluid d-flex mx-auto"
+                    id="user_img"
+                    alt="user_img"
+                  />
+                  <h5>@desiinger</h5>
+                  <center><small>basic plan</small></center>
+
+                  <div id="div_pills">
+                    <span class="badge badge-pill">
+                      <img
+                        src="{% static 'images/photo.png' %}"
+                        class="img-fluid"
+                        id="pill_img"
+                        alt="pill_img"
+                      />
+                      12
+                    </span>
+                    <span class="badge badge-pill">
+                      <img
+                        src="{% static 'images/video-camera.png' %}"
+                        class="img-fluid"
+                        id="pill_img"
+                        alt="pill_img"
+                      />
+                      8
+                    </span>
+                  </div>
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end card -->
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-4 align-self-end">
+              <div class="card">
+                <div class="card-body">
+                  <div id="card_header">
+                    <h4>active qr-code for <span>mimi's vault</span></h4>
+                    <img
+                      src="{% static 'images/icon-1.png' %}"
+                      class="img-fluid"
+                      id="icon_img"
+                      alt="icon_img"
+                    />
+                  </div>
+                  <!-- end card_header -->
+
+                  <img
+                    src="{% static 'images/qr-code-grey.png' %}"
+                    class="img-fluid"
+                    id="default_img"
+                    alt="default_img"
+                  />
+                  <br />
+                  <a href="#"><span>download qr-code</span></a>
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end card -->
+            </div>
+            <!-- end col -->
+
+            <div class="col-md-4 align-self-end">
+              <div class="card">
+                <div class="card-body">
+                  <div id="card_header">
+                    <h4>nō of created <span>vaults</span></h4>
+                    <img
+                      src="{% static 'images/vault.png' %}"
+                      class="img-fluid"
+                      id="icon_img"
+                      alt="icon_img"
+                    />
+                  </div>
+                  <!-- end card_header -->
+
+                  <h1>4</h1>
+                  <a href="#"><span>view all vaults</span></a>
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end card -->
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row_cards -->
+
+          <!--  -->
+          <hr class="d-flex mx-auto" id="line_divider" />
+          <!--  -->
+        </div>
+        <!-- end dashboard -->
+      </div>
+      <!-- end container-fluid -->
+    </main>
+    <!-- end main -->
+
+    <!--=============================================== JavaScript ===================================-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom Links -->
+    <script src="{% static '/js/jquery-min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/dasboard.js' %}"></script>
+  </body>
+</html>

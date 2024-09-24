@@ -220,6 +220,9 @@ header nav ul li a {
 header #active {
   color: #ff5924;
 }
+#active_svg {
+  color: #ff5924;
+}
 
 /****************************************** Main-Content ************************************/
 main {

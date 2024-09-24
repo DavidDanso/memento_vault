@@ -8,6 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('profile/', include('users.urls')),
     path('vaults/', include('vaults.urls')),
+    path('dashboard/', dashboard_view, name='dashboard'),
     path('user-uploads/911/', uploads_view, name='uploads'),
     path('thank_u/', thankY_view, name='thank_u'),
     path('everything/', everything_view, name='everything'),
