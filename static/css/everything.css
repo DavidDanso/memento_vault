@@ -223,6 +223,7 @@ header nav ul li a {
 }
 /* Add an active state for the SVG icon */
 #nav_ li.active a .icon_ {
+  color: #ff5924 !important;
   fill: #ff5924 !important; /* Change SVG icon color when active */
 }
 
