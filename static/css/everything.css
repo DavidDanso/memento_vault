@@ -218,11 +218,12 @@ header nav ul li a {
   white-space: nowrap;
 }
 /*  */
-header #active {
-  color: #ff5924;
+.nav-item.active a {
+  color: #ff5924 !important;
 }
-#active_svg {
-  color: #ff5924;
+/* Add an active state for the SVG icon */
+#nav_ li.active a .icon_ {
+  fill: #ff5924 !important; /* Change SVG icon color when active */
 }
 
 /****************************************** Main-Content ************************************/
@@ -515,6 +516,7 @@ main {
   margin: 3%;
   margin-bottom: -4px;
 }
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,

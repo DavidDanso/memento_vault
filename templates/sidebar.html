@@ -1,15 +1,16 @@
 {% load static %}
+<!--  -->
+{% load active_link_tags %}
 <aside class="sidebar">
   <nav id="nav_">
     <ul>
-      <li>
+      <li class="{% active_link 'dashboard' %}">
         <a href="{% url 'dashboard' %}"
           ><svg
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 14 14"
             class="icon_"
-            id="active_svg"
             style="width: 25px; height: 25px; fill: currentColor"
           >
             <path
@@ -17,7 +18,7 @@
             /></svg
         ></a>
       </li>
-      <li>
+      <li class="{% active_link 'vault-details' %}">
         <a href="{% url 'vault-details' %}"
           ><svg
             xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +44,7 @@
             </g></svg
         ></a>
       </li>
-      <li>
+      <li class="{% active_link 'everything' %}">
         <a href="{% url 'everything' %}"
           ><svg
             viewBox="0 0 16 16"
