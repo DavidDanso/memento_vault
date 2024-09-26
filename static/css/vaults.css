@@ -235,6 +235,9 @@ main {
 #hero {
   margin-top: 10%;
 }
+#hero .col-md-3 {
+  margin-bottom: 5%;
+}
 #hero h1 {
   font-family: var(--header-font);
   color: var(--text-color);
@@ -277,6 +280,15 @@ main {
 /* main_card */
 #main_card {
   background: #656565;
+  box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.35);
+  transition: 1s;
+}
+#hero #main_card:hover {
+  -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.35);
+  -moz-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.35);
+  box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.35);
+  /* transform: scale(1.1); */
+  transform: translateY(8px);
 }
 #hero h2 {
   font-family: var(--header-font);
@@ -288,14 +300,18 @@ main {
   font-weight: bold;
   font-style: italic;
 }
+#photo_ {
+  width: 55px;
+  margin-top: 10%;
+}
 #vault_count {
   float: right;
   background: #282828;
   padding: 2%;
   border-radius: 6px;
   margin-top: 30%;
-  padding-top: 1%;
-  padding-bottom: 1%;
+  padding-top: 1px;
+  padding-bottom: 1px;
 }
 #count_icon {
   width: 36px;
@@ -304,7 +320,7 @@ main {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: bold;
   vertical-align: middle;
 }
@@ -312,18 +328,16 @@ main {
 /* sub_card */
 #sub_card {
   background: #333;
-  position: absolute;
-  top: 28%;
-  left: 24%;
   z-index: -1;
-  width: 70%;
+  width: 98%;
+  margin-top: -70%;
+  margin-left: 7%;
+  transition: all 0.4s ease-in-out;
 }
 #vault_info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 0;
   margin-top: 76%;
+  margin-bottom: -3%;
 }
 #hero h3 {
   font-family: var(--header-font);
@@ -340,9 +354,6 @@ main {
   font-size: 1.2rem;
   margin-top: -4px;
   margin-bottom: 0;
-}
-#view_icon {
-  width: 32px;
 }
 /********************** Mobile Devices Portrait and less ****************************/
 @media (max-width: 380px) {
@@ -464,7 +475,7 @@ main {
 
   /* main */
   main {
-    margin-left: 82px;
+    margin-left: 52px;
     padding: 20px;
     width: calc(100% - 60px);
   }
@@ -477,6 +488,9 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  #hero .col-md-3 {
+    margin-bottom: 1%;
   }
   #hero h1 {
     font-size: 2.7rem;
@@ -501,28 +515,35 @@ main {
     font-size: 2.2rem;
     margin-top: 10%;
   }
+  #photo_ {
+    width: 55px;
+    margin-top: 7%;
+  }
   #vault_count {
-    padding: 2%;
+    padding: 1%;
     margin-top: 25%;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding-top: 1px;
+    padding-bottom: 1px;
   }
   #count_icon {
-    width: 33px;
+    width: 27px;
   }
   #vault_count span {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   /* sub_card */
   #sub_card {
-    top: 37%;
-    left: 8%;
-    width: 22%;
+    width: 98%;
+    margin-top: -56%;
+    margin-left: 6%;
   }
   #vault_info {
-    margin-bottom: 0;
+    margin-bottom: -3%;
     margin-top: 61%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   #hero h3 {
     font-size: 1.2rem;
@@ -530,11 +551,8 @@ main {
   }
   #hero p {
     font-size: 1.1rem;
-    margin-top: -4px;
+    margin-top: 0;
     margin-bottom: 0;
-  }
-  #view_icon {
-    width: 32px;
   }
 }
 
