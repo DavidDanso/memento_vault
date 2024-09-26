@@ -10,6 +10,12 @@ def dashboard_view(request):
 # 
 def vault_view(request):
     context = {}
+    return render(request, 'vaults/vaults.html', context)
+
+
+# 
+def vault_details_view(request):
+    context = {}
     return render(request, 'vaults/vault_details.html', context)
 
 

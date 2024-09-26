@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="js has-scroll-init has-scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
+    />
+
+    <meta
+      name="keywords"
+      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
+    />
+
+    <meta name="author" content="the_desiinger" />
+    <link rel="icon" href="{% static '/images/logo.svg' %}" />
+    <title>Memento Vault | Vaults Page</title>
+
+    <!-- Preload CSS -->
+    <link href="{% static '/css/normalize.css' %}" />
+    <link rel="preload" as="style" href="{% static '/css/vaults.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/vaults.css' %}" />
+
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this work in a modern browser that supports CSS Variables."
+        );
+    </script>
+  </head>
+  <body
+    id="pageTop"
+    class="page-content"
+    data-spy="scroll"
+    data-target="#mainNav"
+  >
+    <!--======================== Nav-Section ================================-->
+    {% include 'sidebar.html' %}
+
+    <!--======================== Main-Section ================================-->
+    <main>
+      <div class="container-fluid">
+        <header>{% include 'top_nav.html' %}</header>
+        <!-- end header -->
+
+        <!-- hero -->
+        <div id="hero">
+          <div class="hero-intro">
+            <h1>All Vaults</h1>
+            <button class="btn">
+              <img
+                src="{% static 'images/marker.png'%}"
+                class="img-fluid"
+                id="create_img"
+                alt="create_img"
+              />
+              create new vault
+            </button>
+          </div>
+          <!-- end hero-intro -->
+
+          <hr id="line_divider" />
+
+          <h6>June, 2024</h6>
+
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card" id="main_card">
+                <div class="card-body">
+                  <h2>Empty</h2>
+
+                  <div id="vault_count">
+                    <img
+                      src="{% static 'images/count_icon.png'%}"
+                      class="img-fluid"
+                      id="count_icon"
+                      alt="count_icon"
+                    />
+                    <span>0</span>
+                  </div>
+                  <!-- end vault_count -->
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end main_card -->
+
+              <div class="card" id="sub_card">
+                <div class="card-body">
+                  <div id="vault_info">
+                    <div id="div_">
+                      <h3>Mimi’s Wedding</h3>
+                      <p>3 minutes ago</p>
+                    </div>
+                    <!-- end div_ -->
+
+                    <div id="action_btn">
+                      <img
+                        src="{% static 'images/view_icon.svg'%}"
+                        class="img-fluid"
+                        id="view_icon"
+                        alt="view_icon"
+                      />
+                    </div>
+                    <!-- end action_btn -->
+                  </div>
+                  <!-- end vault_info -->
+                </div>
+                <!-- end card-body -->
+              </div>
+              <!-- end sub_card -->
+            </div>
+            <!-- end col -->
+          </div>
+          <!-- end row -->
+        </div>
+        <!-- end hero -->
+      </div>
+      <!-- end container-fluid -->
+    </main>
+    <!-- end main -->
+
+    <!--=============================================== JavaScript ===================================-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom Links -->
+    <script src="{% static '/js/jquery-min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/vaults.js' %}"></script>
+  </body>
+</html>
