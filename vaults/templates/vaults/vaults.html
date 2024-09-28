@@ -67,7 +67,11 @@
         <div id="hero">
           <div class="hero-intro">
             <h1>All Vaults</h1>
-            <button class="btn">
+            <button
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#createVault"
+            >
               <img
                 src="{% static 'images/marker.png'%}"
                 class="img-fluid"
@@ -170,6 +174,10 @@
         <!-- end hero -->
       </div>
       <!-- end container-fluid -->
+
+      <!--=========================================== create_vault-Modal ===============================-->
+      {% include 'vaults/create_vault-modal.html' %}
+      <!-- End create_vault-modal-->
     </main>
     <!-- end main -->
 

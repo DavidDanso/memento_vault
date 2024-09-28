@@ -1,0 +1,66 @@
+{% load static %}
+<!--=========================================== createVaultModal--layout ===============================-->
+<div id="createVaultModal">
+  <div
+    class="modal fade"
+    id="createVault"
+    data-bs-backdrop="static"
+    data-bs-keyboard="false"
+    tabindex="-1"
+    aria-labelledby="staticBackdropLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <img
+            src="{% static 'images/close-icon.png' %}"
+            class="img-fluid btn-close"
+            id="close_svg"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            alt="close_svg"
+          />
+        </div>
+        <!-- end modal-header -->
+        <div class="modal-body">
+          <img
+            src="{% static 'images/marker.png' %}"
+            class="img-fluid d-flex mx-auto"
+            id="marker_img"
+            alt="marker_img"
+          />
+          <h1>Create new Vault</h1>
+          <p>
+            A Vault securely stores and organizes your shared memories. Easily
+            upload photos and videos directly, or invite others to contribute
+            using a unique QR code, building a collaborative archive of your
+            special moments.
+          </p>
+
+          <!--  -->
+          <div
+            class="input-group d-flex justify-content-center"
+            id="create_field"
+          >
+            <input
+              type="text"
+              class="form-control input"
+              id="inputCreateVault"
+              placeholder="Name your new vault…"
+            />
+          </div>
+          <!-- end create_field -->
+          <button class="btn d-flex mx-auto">create new vault</button>
+
+          <h6>
+            Just a heads-up: <span>You have 5 more vaults to create.</span>
+          </h6>
+        </div>
+        <!-- end modal-body -->
+      </div>
+    </div>
+  </div>
+  <!-- end createVault -->
+</div>
+<!-- end createVaultModal -->

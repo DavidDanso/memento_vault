@@ -355,6 +355,93 @@ main {
   margin-top: -4px;
   margin-bottom: 0;
 }
+
+/* createVault-modal */
+#createVaultModal .modal-dialog {
+  max-width: 700px;
+}
+#createVaultModal .modal-content {
+  background-color: #222222;
+}
+#close_svg {
+  width: 12%;
+  height: 12%;
+  object-fit: cover;
+}
+#createVaultModal .modal-header {
+  border-bottom: none;
+}
+#marker_img {
+  width: 9%;
+  height: 9%;
+  object-fit: cover;
+}
+#createVaultModal h1 {
+  color: var(--text-color);
+  font-family: var(--header-font);
+  letter-spacing: 1px;
+  font-size: 1.9rem;
+  margin-bottom: 1%;
+  text-align: center;
+}
+#createVaultModal p {
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.3rem;
+  text-align: center;
+  line-height: 1.2;
+}
+/*  */
+#createVaultModal .input {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+  border: 1px solid #707070;
+  background: transparent;
+}
+#createVaultModal .input:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+#createVaultModal .input::placeholder {
+  color: #707070;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1rem;
+}
+#createVaultModal button {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  vertical-align: middle;
+  padding: 5px 15px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  margin-top: 3%;
+}
+#createVaultModal button:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
+}
+#createVaultModal h6 {
+  font-size: 1.2rem;
+  font-family: var(--header-font);
+  color: #ff5924;
+  letter-spacing: 1px;
+  margin-top: 6%;
+}
+#createVaultModal h6 span {
+  font-family: var(--text-font);
+  color: var(--nav-links-color);
+}
 /********************** Mobile Devices Portrait and less ****************************/
 @media (max-width: 380px) {
   /* CSS rules here */
@@ -553,6 +640,46 @@ main {
     font-size: 1.1rem;
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  /* createVault-modal */
+  #createVaultModal .modal-dialog {
+    max-width: 700px;
+  }
+  #createVaultModal .modal-content {
+    background-color: #222222;
+  }
+  #close_svg {
+    width: 7%;
+    height: 7%;
+  }
+  #marker_img {
+    width: 6%;
+    height: 6%;
+  }
+  #createVaultModal h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1%;
+  }
+  #createVaultModal p {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+  /*  */
+  #createVaultModal .input {
+    font-size: 1.2rem;
+  }
+  #createVaultModal .input::placeholder {
+    font-size: 1.1rem;
+  }
+  #createVaultModal button {
+    font-size: 1.3rem;
+    padding: 5px 15px;
+    margin-top: 1%;
+  }
+  #createVaultModal h6 {
+    font-size: 1.2rem;
+    margin-top: 4%;
   }
 }
 

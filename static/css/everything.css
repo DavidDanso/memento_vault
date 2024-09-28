@@ -402,7 +402,6 @@ main {
   width: 100%;
   height: auto;
   display: block;
-  border: 1px solid var(--nav-links-color);
   border-radius: 5px;
   transition: all 1.9s ease;
 }
@@ -522,7 +521,9 @@ main {
 @media (max-width: 575.98px) {
   header,
   #cards_row .col-md-6,
-  .masonry-item p {
+  .masonry-item p,
+  #create_form,
+  #des_text {
     display: none;
   }
   #hero #mob_form_card {
@@ -617,33 +618,14 @@ main {
   }
 
   /*  */
-  #mob_form_card {
-    display: none;
+  #mob_form_card,
+  #page_line,
+  #form_card,
+  #mob_txt {
+    display: none !important;
   }
-  #hero h5 {
-    font-size: 1.3rem;
-    text-align: center;
-    margin-top: 2%;
-    margin-bottom: 2%;
-  }
-  #hero .input {
-    font-size: 1.1rem;
-    margin-bottom: 1%;
-  }
-  #hero .input::placeholder {
-    font-size: 1rem;
-  }
-  #submit--img {
-    width: 27px;
-    margin-top: 0%;
-  }
-  #hero button {
-    margin-left: 3%;
-  }
+
   /*  */
-  #page_line {
-    width: 90%;
-  }
   #search {
     padding: 0.1em 0.1em 0.1em 1em;
     width: 650px;
@@ -663,16 +645,61 @@ main {
 
   /* vault_objs */
   #vault_objs {
-    margin-top: 7%;
+    margin-top: 8%;
   }
   #vault_objs h2 {
     font-size: 1.4rem;
+    margin-bottom: -1%;
   }
   #vault_objs h2 span::after {
     width: 55%;
     height: 3px;
     left: 0;
     bottom: -5px;
+  }
+
+  /* create_form */
+  #create_form {
+    background: #0a0b0e;
+    margin-bottom: 3%;
+  }
+  #create_form h5 {
+    font-family: var(--text-font);
+    color: var(--text-color);
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    text-align: left;
+    margin-top: 1%;
+  }
+  #create_form .input {
+    color: var(--text-color);
+    letter-spacing: 1px;
+    font-family: var(--text-font);
+    font-size: 1.1rem;
+    border: 1px solid #707070;
+    background: transparent;
+    margin-top: 2%;
+    margin-bottom: -8px;
+  }
+  #create_form .input:focus {
+    box-shadow: none !important;
+    outline: 0px !important;
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
+  }
+  #create_form .input::placeholder {
+    color: var(--nav-links-color);
+    font-size: 1.1rem;
+  }
+  #submit--img {
+    width: 27px;
+    margin-top: 4%;
+    margin-bottom: -14px;
+  }
+  #create_form button {
+    background: transparent;
+    border: none;
+    margin-left: 3%;
   }
 
   /*  masonry-container */
