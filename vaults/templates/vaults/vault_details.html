@@ -69,31 +69,18 @@
 
         <!-- hero -->
         <div id="hero">
-          <div id="header_">
-            <a href="#">
-              <img
-                src="{% static 'images/arrow.png'%}"
-                class="img-fluid"
-                id="arrow_img"
-                alt="arrow_img"
-              />
-            </a>
-            <h2><span>Otoo's Wedding</span></h2>
-          </div>
-          <!-- end header_ -->
-
           <div id="empty_vault">
             <!--  -->
-            <h1>This vault is empty.</h1>
+            <h1>Otoo's vault is empty.</h1>
             <img
-              src="{% static 'images/image-gallery.png'%}"
+              src="{% static 'images/photo_.png'%}"
               class="img-fluid d-flex mx-auto"
               id="image_gallery"
               alt="image_gallery"
             />
             <p>
-              You can either generate a new QR code now or upload directly to
-              your <span></span>vault and create a QR code later for others to
+              You can either download the QR code or upload directly to the
+              <span></span>vault and download the QR code later for others to
               use.
             </p>
             <div id="action_btns">
@@ -127,13 +114,8 @@
           <!-- end empty_vault -->
 
           <div id="notEmpty_vault">
-            <div id="sub_header_">
-              <img
-                src="{% static 'images/qr-code-grey.png'%}"
-                class="img-fluid"
-                id="qrCode_grey"
-                alt="qrCode_grey"
-              />
+            <div id="header_">
+              <h2><span>Otoo's Wedding</span></h2>
 
               <button
                 class="btn"
@@ -150,7 +132,8 @@
                 direct uploads to vault
               </button>
             </div>
-            <!-- end sub_header_ -->
+            <!-- end header_ -->
+
             <button class="btn" id="qrCode_">download qr-code</button>
             <hr id="page_divider" />
 

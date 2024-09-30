@@ -234,30 +234,7 @@ main {
 }
 /* hero */
 #hero {
-  margin-top: 10%;
-}
-#hero #arrow_img {
-  width: 5rem;
-  transform: scaleX(-1);
-}
-#hero #header_ h2 {
-  color: var(--text-color);
-  letter-spacing: 1px;
-  font-family: var(--header-font);
-  font-size: 1.4rem;
-}
-#hero #header_ h2 span {
-  position: relative;
-  display: inline-block;
-}
-#hero #header_ h2 span::after {
-  content: "";
-  width: 55%;
-  height: 3px;
-  background-color: var(--nav-links-color);
-  position: absolute;
-  left: 0;
-  bottom: -5px;
+  margin-top: 8%;
 }
 #empty_vault h1 {
   color: var(--text-color);
@@ -324,6 +301,7 @@ main {
   color: var(--nav-links-color);
 }
 
+/*  */
 #empty_vault {
   display: none;
 }
@@ -331,6 +309,26 @@ main {
 /* notEmpty_vault */
 #notEmpty_vault {
   margin-top: 30%;
+}
+#hero #header_ h2 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--header-font);
+  font-size: 1.7rem;
+  margin-bottom: 25%;
+}
+#hero #header_ h2 span {
+  position: relative;
+  display: inline-block;
+}
+#hero #header_ h2 span::after {
+  content: "";
+  width: 55%;
+  height: 3px;
+  background-color: var(--nav-links-color);
+  position: absolute;
+  left: 0;
+  bottom: -5px;
 }
 #notEmpty_vault #qrCode_grey {
   width: 20%;
@@ -604,11 +602,8 @@ main {
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
-  #notEmpty_vault #qrCode_grey {
+  #qrCode_grey {
     display: none;
-  }
-  #hero #header_ h2 {
-    text-align: right;
   }
   #uploadImageModal label {
     display: none;
@@ -686,7 +681,7 @@ main {
 
   /* hero */
   #hero {
-    margin-top: 6%;
+    margin-top: 12%;
   }
   #hero #arrow_img {
     width: 5rem;
@@ -697,13 +692,14 @@ main {
     align-items: center;
   }
   #hero #header_ h2 {
-    font-size: 1.4rem;
+    font-size: 2.1rem;
     margin-right: 2%;
+    margin-bottom: 0%;
   }
   /*  */
   #empty_vault h1 {
     font-size: 2.8rem;
-    margin-top: 12%;
+    margin-top: 22%;
   }
   #hero #image_gallery {
     width: 4rem;
@@ -745,11 +741,6 @@ main {
   #notEmpty_vault {
     margin-top: 5%;
   }
-  #sub_header_ {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
   #notEmpty_vault #qrCode_grey {
     width: 5%;
     padding: 6px;
@@ -767,7 +758,7 @@ main {
   }
   #notEmpty_vault #qrCode_ {
     font-size: 1.2rem;
-    margin-top: 1%;
+    margin-top: 3%;
     margin-left: 0%;
   }
 
