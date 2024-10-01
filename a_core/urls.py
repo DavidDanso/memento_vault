@@ -3,15 +3,25 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
 from vaults.views import *
+from a_auth.views import *
+
 
 urlpatterns = [
+    # admin
     path('admin/', admin.site.urls),
+
+    # user
     path('profile', include('users.urls')),
+
+    # vault
     path('vaults/', include('vaults.urls')),
     path('dashboard', dashboard_view, name='dashboard'),
     path('user-uploads/911', uploads_view, name='uploads'),
     path('thank_u', thankY_view, name='thank_u'),
     path('everything', everything_view, name='everything'),
+
+    # auth
+    path('login', login_view, name='login'),
 ]
 
 # Only used when DEBUG=True, whitenoise can serve files when DEBUG=False

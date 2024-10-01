@@ -310,18 +310,18 @@ main {
 #notEmpty_vault {
   margin-top: 30%;
 }
-#hero #header_ h2 {
+#hero #notEmpty_vault h2 {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--header-font);
   font-size: 1.7rem;
   margin-bottom: 25%;
 }
-#hero #header_ h2 span {
+#hero #notEmpty_vault h2 span {
   position: relative;
   display: inline-block;
 }
-#hero #header_ h2 span::after {
+#hero #notEmpty_vault h2 span::after {
   content: "";
   width: 55%;
   height: 3px;
@@ -329,11 +329,6 @@ main {
   position: absolute;
   left: 0;
   bottom: -5px;
-}
-#notEmpty_vault #qrCode_grey {
-  width: 20%;
-  border: 1px solid var(--nav-links-color);
-  padding: 2%;
 }
 #notEmpty_vault #upload_img {
   vertical-align: middle;
@@ -683,19 +678,7 @@ main {
   #hero {
     margin-top: 12%;
   }
-  #hero #arrow_img {
-    width: 5rem;
-  }
-  #header_ {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  #hero #header_ h2 {
-    font-size: 2.1rem;
-    margin-right: 2%;
-    margin-bottom: 0%;
-  }
+
   /*  */
   #empty_vault h1 {
     font-size: 2.8rem;
@@ -741,9 +724,17 @@ main {
   #notEmpty_vault {
     margin-top: 5%;
   }
-  #notEmpty_vault #qrCode_grey {
-    width: 5%;
-    padding: 6px;
+  #hero #notEmpty_vault h2 {
+    font-size: 2.1rem;
+    margin-right: 2%;
+    margin-bottom: 0%;
+  }
+  #header_ {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 4%;
+    margin-bottom: 2%;
   }
   #notEmpty_vault #upload_img {
     vertical-align: middle;
@@ -755,10 +746,11 @@ main {
     width: 20%;
     text-align: center;
     margin-top: 0%;
+    margin-bottom: 0%;
   }
   #notEmpty_vault #qrCode_ {
     font-size: 1.2rem;
-    margin-top: 3%;
+    margin-top: 0%;
     margin-left: 0%;
   }
 

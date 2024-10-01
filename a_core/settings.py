@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     # my_apps
     'users.apps.UsersConfig',
     'vaults.apps.VaultsConfig',
+    'a_auth.apps.AAuthConfig',
 
     # instlled apps
     'active_link',

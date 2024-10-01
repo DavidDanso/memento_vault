@@ -1,0 +1,274 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  box-sizing: border-box;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background: var(--main-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+/* Fonts */
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "NeueHaasGrotesk-55Roman";
+  src: url("../fonts/NeueHaasGroteskText-55Roman-Web.woff2");
+}
+@font-face {
+  font-weight: normal;
+  font-style: normal;
+  font-family: "NeueHaasGroteskText-65Regular";
+  src: url("../fonts/regular.woff2");
+}
+.page-content {
+  --main-color: #222222;
+  --text-color: #eeeeee;
+  --nav-links-color: #9b9b9b;
+  --header-font: "NeueHaasGrotesk-55Roman";
+  --text-font: "NeueHaasGroteskText-65Regular";
+}
+a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+a:hover {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
+/*change color of text highlight*/
+::-moz-selection {
+  color: var(--main-color);
+  background: var(--text-color);
+}
+
+::selection {
+  color: var(--main-color);
+  background: var(--text-color);
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 6px;
+}
+
+/****************************************** hero-section ************************************/
+#hero {
+  margin-top: 10%;
+}
+.hero-intro {
+  margin: 3%;
+}
+#logo {
+  width: 50px;
+}
+#login_pill {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 45%;
+}
+#login_pill .badge-pill {
+  background: #304a36;
+  color: #6fd098;
+  font-family: var(--text-font);
+  font-size: 1rem;
+  border-radius: 7px;
+  letter-spacing: 1px;
+}
+#email_icon {
+  width: 20px;
+  margin-right: 2%;
+}
+.hero-intro h1 {
+  color: var(--text-color);
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
+  margin-top: 3%;
+}
+.hero-intro p {
+  color: var(--nav-links-color);
+  font-family: var(--text-font);
+  font-size: 1.3rem;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 1px;
+}
+.hero-intro p a {
+  color: #5486bc;
+  font-size: 1.2rem;
+}
+
+/* login fields */
+#hero form {
+  margin-top: 10%;
+  margin-right: 1%;
+}
+#hero label {
+  font-size: 1.2rem;
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+}
+#hero .input {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+  border: 1px solid #707070;
+  background: transparent;
+  margin-bottom: 3%;
+}
+#hero .input:focus {
+  box-shadow: none !important;
+  outline: 0px !important;
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+}
+#hero .input::placeholder {
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+}
+#hero h6 {
+  font-size: 1.2rem;
+  font-family: var(--text-font);
+  color: #5486bc;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-top: 1px;
+}
+
+/* footer login_account */
+#login_account {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.3rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  margin-bottom: 3%;
+  padding: 5px 17px;
+  margin-top: 12%;
+  margin-bottom: 4%;
+  transition: all 0.4s ease-in-out;
+}
+#login_account:hover {
+  border: 1px solid var(--text-color);
+  transition: all 0.4s ease-in-out;
+}
+
+/********************** Extra small devices (portrait phones, less than 576px) ****************************/
+@media (max-width: 575.98px) {
+}
+/************************ Small devices (landscape phones, 576px and up) *****************************/
+@media (min-width: 576px) and (max-width: 767.98px) {
+  body {
+    display: none;
+  }
+}
+/***************************** Medium devices (tablets, 768px and up) ********************************/
+@media (min-width: 768px) and (max-width: 991.98px) {
+}
+/********************************** Large devices (desktops, 992px and up) *********************************/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  /* body {
+    display: none;
+  } */
+}
+/************************ Extra large devices (large desktops, 1200px and up) ********************************/
+@media (min-width: 1200px) {
+  /* hero */
+  #hero {
+    margin-top: 5%;
+  }
+  .hero-intro {
+    margin: 3%;
+  }
+  #logo {
+    width: 50px;
+  }
+  #login_pill {
+    margin-top: 7%;
+  }
+  #login_pill .badge-pill {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+  }
+  #email_icon {
+    width: 17px;
+    margin-right: 2%;
+  }
+  .hero-intro h1 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-top: 1%;
+  }
+  .hero-intro p {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-top: 1px;
+  }
+
+  /* login fields */
+  #login_fields {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #hero form {
+    margin-top: 3%;
+    margin-right: 1%;
+    width: 35%;
+  }
+  #hero label {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+  #hero .input {
+    font-size: 1.1rem;
+    margin-bottom: 3%;
+  }
+  #hero .input::placeholder {
+    font-size: 1.1rem;
+  }
+  #hero h6 {
+    font-size: 1.1rem;
+    margin-top: -4px;
+  }
+
+  /* footer login_account */
+  #login_account {
+    font-size: 1.2rem;
+    margin-bottom: 3%;
+    padding: 5px 17px;
+    margin-top: 8%;
+    margin-bottom: 8%;
+  }
+}
