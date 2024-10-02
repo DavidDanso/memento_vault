@@ -88,7 +88,7 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 45%;
+  margin-top: 18%;
 }
 #login_pill .badge-pill {
   background: #304a36;
@@ -215,14 +215,14 @@ a:hover {
     width: 50px;
   }
   #login_pill {
-    margin-top: 7%;
+    margin-top: 4%;
   }
   #login_pill .badge-pill {
     font-size: 0.8rem;
     letter-spacing: 1px;
   }
   #email_icon {
-    width: 17px;
+    width: 16px;
     margin-right: 2%;
   }
   .hero-intro h1 {

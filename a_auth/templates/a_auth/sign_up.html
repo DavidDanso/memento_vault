@@ -1,0 +1,177 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="js has-scroll-init has-scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
+    />
+
+    <meta
+      name="keywords"
+      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
+    />
+
+    <meta name="author" content="the_desiinger" />
+    <link rel="icon" href="{% static '/images/logo.svg' %}" />
+    <title>Memento Vault | Login Page</title>
+
+    <!-- Preload CSS -->
+    <link href="{% static '/css/normalize.css' %}" />
+    <link rel="preload" as="style" href="{% static '/css/sign_up.css' %}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static '/css/sign_up.css' %}" />
+
+    <script>
+      document.documentElement.className = "js";
+      var supportsCssVars = function () {
+        var e,
+          t = document.createElement("style");
+        return (
+          (t.innerHTML = "root: { --tmp-var: bold; }"),
+          document.head.appendChild(t),
+          (e = !!(
+            window.CSS &&
+            window.CSS.supports &&
+            window.CSS.supports("font-weight", "var(--tmp-var)")
+          )),
+          t.parentNode.removeChild(t),
+          e
+        );
+      };
+      supportsCssVars() ||
+        alert(
+          "Please view this work in a modern browser that supports CSS Variables."
+        );
+    </script>
+  </head>
+  <body
+    id="pageTop"
+    class="page-content"
+    data-spy="scroll"
+    data-target="#mainNav"
+  >
+    <!--======================== Main-Section ================================-->
+    <main>
+      <div id="hero">
+        <div class="container-fluid">
+          <div class="hero-intro">
+            <a href="{% url 'dashboard' %}">
+              <img
+                src="{% static 'images/logo.svg' %}"
+                class="img-fluid"
+                id="logo"
+                alt="logo"
+              />
+            </a>
+
+            <!--  -->
+            <div id="login_pill">
+              <span class="badge badge-pill">
+                <img
+                  src="{% static 'images/mail.png' %}"
+                  id="email_icon"
+                  class="img-fluid"
+                  alt="email_icon"
+                />
+                Email Sign Up
+              </span>
+            </div>
+            <!-- end login_pill -->
+
+            <h1>Set your username and password</h1>
+            <p>Or use <a href="#">Google</a></p>
+
+            <div id="login_fields">
+              <form action="" method="POST" class="row g-3">
+                {% csrf_token%}
+
+                <div class="col-md-12">
+                  <label for="inputEmailAddress" class="form-label"
+                    >Email Address</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control input"
+                    id="inputEmailAddress"
+                    placeholder="email"
+                  />
+                </div>
+                <!-- end EmailAddress -->
+
+                <div class="col-md-12">
+                  <label for="inputUsername" class="form-label">Username</label>
+                  <input
+                    type="text"
+                    class="form-control input"
+                    id="inputUsername"
+                    placeholder="what others will see"
+                  />
+                </div>
+                <!-- end Username -->
+
+                <div class="col-md-6">
+                  <label for="inputPassword" class="form-label">Password</label>
+                  <input
+                    type="text"
+                    class="form-control input"
+                    id="inputPassword"
+                    placeholder="password"
+                  />
+                </div>
+                <!-- end Password -->
+
+                <div class="col-md-6">
+                  <label for="inputPasswordConfirm" class="form-label"
+                    >Password Confirm</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control input"
+                    id="inputPasswordConfirm"
+                    placeholder="passwordConfirm"
+                  />
+                </div>
+                <!-- end PasswordConfirm -->
+
+                <div class="login-footer">
+                  <input
+                    type="submit"
+                    class="btn d-flex mx-auto"
+                    name="login"
+                    id="login_account"
+                    value="Create Account"
+                  />
+                </div>
+                <!-- End login-footer-->
+                <p>
+                  Already have an account?
+                  <a href="{% url 'login' %}">Log in</a> instead
+                </p>
+              </form>
+              <!-- End form-->
+            </div>
+            <!-- end login_fields -->
+          </div>
+          <!-- end hero-intro -->
+        </div>
+        <!-- end container -->
+      </div>
+    </main>
+    <!-- end main -->
+
+    <!--=============================================== JavaScript ===================================-->
+    <script
+      src="https://code.jquery.com/jquery-3.6.4.min.js"
+      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Custom Links -->
+    <script src="{% static '/js/jquery-min.js' %}"></script>
+    <script src="{% static '/js/bootstrap.min.js' %}"></script>
+    <script src="{% static '/js/sign_up.js' %}"></script>
+  </body>
+</html>

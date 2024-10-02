@@ -72,7 +72,7 @@
             <div id="login_pill">
               <span class="badge badge-pill">
                 <img
-                  src="{% static 'images/pic_default.svg' %}"
+                  src="{% static 'images/mail.png' %}"
                   id="email_icon"
                   class="img-fluid"
                   alt="email_icon"
@@ -126,7 +126,9 @@
                   />
                 </div>
                 <!-- End login-footer-->
-                <p>New Here? <a href="#">Signup for Free</a></p>
+                <p>
+                  New Here? <a href="{% url 'sign-up' %}">Sign up for Free</a>
+                </p>
               </form>
               <!-- End form-->
             </div>
