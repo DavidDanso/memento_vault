@@ -26,6 +26,12 @@ def everything_view(request):
 
 
 # 
+def gallery_view(request):
+    context = {}
+    return render(request, 'vaults/gallery.html', context)
+
+
+# 
 def thankY_view(request):
     context = {}
     return render(request, 'thankY_page.html', context)

@@ -19,6 +19,7 @@ urlpatterns = [
     path('user-uploads/911', uploads_view, name='uploads'),
     path('thank_u', thankY_view, name='thank_u'),
     path('everything', everything_view, name='everything'),
+    path('gallery', gallery_view, name='gallery'),
 
     # auth
     path('login', login_view, name='login'),
