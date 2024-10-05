@@ -306,6 +306,16 @@ main {
   font-size: 1.3rem;
   font-weight: 300;
 }
+
+/*  */
+#title .badge {
+  background: #2b2d3c;
+  margin-top: 2%;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+  color: #b7b7b7;
+}
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -433,6 +443,17 @@ main {
     font-weight: bold;
     margin-left: 2%;
   }
+  #title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2%;
+  }
+  #title .badge {
+    margin-top: 0%;
+    letter-spacing: 1px;
+    font-size: 1.1rem;
+  }
   #hero .carousel-caption p {
     letter-spacing: 1px;
     font-size: 1.2rem;
@@ -440,15 +461,11 @@ main {
     color: var(--text-color);
     letter-spacing: 1px;
     margin-bottom: 0;
-    margin-top: 3%;
+    margin-top: 2%;
     font-weight: 200;
   }
-  /*  */
-  /* .carousel-control-next, */
-  /* .carousel-control-prev { */
-  /* width: 5px; */
-  /* } */
 
+  /*  */
   #hero #next_ {
     width: 50px;
   }
