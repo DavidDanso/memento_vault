@@ -66,12 +66,15 @@
         <!-- profile settings -->
         <div id="settings">
           <img
-            src="{% static 'images/default-avatar.png'%}"
+            src="{{user.profile.avatar}}"
             class="img-fluid rounded-circle"
             id="profile_img"
             alt="profile_img"
           />
-          <p>You have a treasure trove of memories, <span>DavidDanso</span></p>
+          <p>
+            You have a treasure trove of memories,
+            <span>{{user.profile.name}}</span>
+          </p>
           <button
             type="button"
             class="btn"
@@ -171,5 +174,28 @@
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/profile.js' %}"></script>
+
+    <script>
+      // This updates the avatar
+      const fileInput = document.querySelector('input[type="file"]');
+
+      fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        const image = document.querySelector("#profile_avatar");
+
+        if (file && file.type.includes("image")) {
+          const url = URL.createObjectURL(file);
+          image.src = url;
+        }
+      });
+
+      // This updates the name
+      const display_nameInput = document.getElementById("id_displayname");
+      const display_nameOutput = document.getElementById("displayname");
+
+      display_nameInput.addEventListener("input", (event) => {
+        display_nameOutput.innerText = event.target.value;
+      });
+    </script>
   </body>
 </html>

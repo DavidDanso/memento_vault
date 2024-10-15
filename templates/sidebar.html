@@ -128,7 +128,7 @@
     </a>
     <a href="{% url 'profile' %}">
       <img
-        src="{% static 'images/default-avatar.png' %}"
+        src="{{user.profile.avatar}}"
         class="img-fluid rounded-circle"
         id="user_avatar"
         alt="user_avatar"

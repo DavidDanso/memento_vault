@@ -517,7 +517,7 @@ main {
   border: none;
   color: var(--text-color);
 }
-#full_name {
+#displayname {
   color: var(--nav-links-color) !important;
 }
 

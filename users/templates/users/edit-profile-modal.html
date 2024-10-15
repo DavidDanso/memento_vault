@@ -16,14 +16,14 @@
           <div id="modal-wrapper">
             <!--  -->
             <img
-              src="{% static 'images/default-avatar.png' %}"
+              src="{{user.profile.avatar}}"
               class="img-fluid d-flex mx-auto rounded-circle"
               id="profile_avatar"
               alt="profile_avatar"
             />
             <!--  -->
 
-            <h6 id="full_name">DavidDanso</h6>
+            <h6 id="displayname">{{user.profile.displayname|default:""}}</h6>
 
             <form
               action=""
@@ -31,7 +31,7 @@
               enctype="multipart/form-data"
               class="row g-3"
             >
-              {% csrf_token%}
+              {% csrf_token %}
               <div class="input-group mb-3" id="img_field">
                 <input type="file" class="form-control" id="inputGroupFile02" />
               </div>
@@ -42,7 +42,7 @@
                 <input
                   type="text"
                   class="form-control input"
-                  id="inputfullName"
+                  id="id_displayname"
                 />
               </div>
               <!-- end fullName -->
