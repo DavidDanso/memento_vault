@@ -650,8 +650,9 @@ main {
   /* recent_uploads */
   #dashboard h3 {
     font-size: 1.2rem;
-    margin-top: 3%;
+    margin-top: 10%;
     text-align: center;
+    margin-bottom: 10px;
   }
   #dashboard h3 span {
     border-bottom: 1px solid var(--text-color);

@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+from decouple import config
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -12,9 +14,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4z9z$ol)gal^i34j9)jgd*$grj7uawm18whufdwk70ath662v2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ENVIROMENT = config('ENVIROMENT')
 
-ALLOWED_HOSTS = []
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
+
+if ENVIROMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
+
+CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
 
 
 # Application definition
@@ -35,6 +48,8 @@ INSTALLED_APPS = [
     # instlled apps
     'active_link',
 ]
+
+SITE_ID = 1
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,12 +85,19 @@ WSGI_APPLICATION = 'a_core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
+
+# sqlite3 DB
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+
+# POSTGRES_LOCALLY = True
+# if ENVIROMENT == 'production' or POSTGRES_LOCALLY == True:
+#     DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
 
 
 # Password validation

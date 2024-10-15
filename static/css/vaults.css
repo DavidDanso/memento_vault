@@ -301,8 +301,8 @@ main {
   font-style: italic;
 }
 #photo_ {
-  width: 55px;
-  margin-top: 10%;
+  width: 75px;
+  margin-top: 16%;
 }
 #vault_count {
   float: right;
@@ -600,11 +600,11 @@ main {
   /* main_card */
   #hero h2 {
     font-size: 2.2rem;
-    margin-top: 10%;
+    margin-top: 22%;
   }
   #photo_ {
-    width: 55px;
-    margin-top: 7%;
+    width: 80px;
+    margin-top: 11%;
   }
   #vault_count {
     padding: 1%;

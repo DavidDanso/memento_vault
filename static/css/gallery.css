@@ -314,7 +314,7 @@ main {
   letter-spacing: 1px;
   font-family: var(--text-font);
   font-size: 1.1rem;
-  color: #b7b7b7;
+  color: #ffd7c4;
 }
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
@@ -452,7 +452,8 @@ main {
   #title .badge {
     margin-top: 0%;
     letter-spacing: 1px;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    font-weight: 200;
   }
   #hero .carousel-caption p {
     letter-spacing: 1px;
@@ -460,6 +461,7 @@ main {
     margin-left: 2%;
     color: var(--text-color);
     letter-spacing: 1px;
+    font-family: var(--text-font);
     margin-bottom: 0;
     margin-top: 2%;
     font-weight: 200;
