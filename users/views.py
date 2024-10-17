@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import *
 from .forms import ProfileForm
 
-# Create your views here.
+# profile views here.
 @login_required
 def profile_view(request):
     profile = request.user.profile

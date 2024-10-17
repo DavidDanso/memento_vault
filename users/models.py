@@ -9,7 +9,7 @@ class Profile(models.Model):
     displayname = models.CharField(max_length=20, null=True, blank=True)
     username = models.CharField(max_length=20, null=True, blank=True)
     location = models.CharField(max_length=20, null=True, blank=True) 
-    email = models.EmailField(max_length=255, unique=True, blank=True)
+    email = models.EmailField(max_length=255, unique=True, blank=True, default="noemail@domain.com")
     id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     
     def __str__(self):
@@ -21,6 +21,8 @@ class Profile(models.Model):
     
     @property
     def avatar(self):
+        # If the user has uploaded an image, return the image URL
         if self.image:
             return self.image.url
+        # Otherwise, return the path to the default avatar
         return f'{settings.STATIC_URL}images/default-avatar.png'

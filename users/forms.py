@@ -15,10 +15,10 @@ class ProfileForm(ModelForm):
             'location': forms.TextInput(attrs={'placeholder': 'Enter your location'}),
         }
         exclude = ['user']
-        
-class EmailForm(ModelForm):
-    email = forms.EmailField(required=True)
 
-    class Meta:
-        model = User
-        fields = ['email']
+    # add class to the input field
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+        for name, fields in self.fields.items():
+            fields.widget.attrs.update({'class': 'form-control form-control-lg input'})
+        

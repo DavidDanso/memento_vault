@@ -32,48 +32,30 @@
               class="row g-3"
             >
               {% csrf_token %}
-              <div class="input-group mb-3" id="img_field">
-                <input type="file" class="form-control" id="inputGroupFile02" />
-              </div>
+              <div class="input-group mb-3" id="img_field">{{form.image}}</div>
               <!--  -->
 
               <div class="col-md-6">
                 <label for="inputfullName" class="form-label">Name</label>
-                <input
-                  type="text"
-                  class="form-control input"
-                  id="id_displayname"
-                />
+                {{form.displayname}}
               </div>
               <!-- end fullName -->
 
               <div class="col-md-6">
                 <label for="inputuserName" class="form-label">Username</label>
-                <input
-                  type="text"
-                  class="form-control input"
-                  id="inputuserName"
-                />
+                {{form.username}}
               </div>
               <!-- end userName -->
 
               <div class="col-md-12">
                 <label for="inputEmail" class="form-label">Email</label>
-                <input
-                  type="email"
-                  class="form-control input"
-                  id="inputEmail"
-                />
+                {{form.email}}
               </div>
               <!-- end Email -->
 
               <div class="col-md-12">
                 <label for="inputLocation" class="form-label">Location</label>
-                <input
-                  type="text"
-                  class="form-control input"
-                  id="inputLocation"
-                />
+                {{form.location}}
               </div>
               <!-- end Location -->
 
