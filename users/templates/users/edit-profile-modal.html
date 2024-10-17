@@ -26,10 +26,12 @@
             <h6 id="displayname">{{user.profile.displayname|default:""}}</h6>
 
             <form
-              action=""
+              action="{% url 'profile' %}"
               method="POST"
               enctype="multipart/form-data"
               class="row g-3"
+              hx-target="#settings"
+              hx-swap="innerHTML"
             >
               {% csrf_token %}
               <div class="input-group mb-3" id="img_field">{{form.image}}</div>

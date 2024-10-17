@@ -507,7 +507,7 @@ main {
   letter-spacing: 1px;
   font-family: var(--text-font);
   font-size: 1.8vh;
-  border: none;
+  border: none !important;
   background: transparent;
   max-width: 70%;
 }

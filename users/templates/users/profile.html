@@ -90,65 +90,7 @@
             edit profile
           </button>
 
-          <!-- settings-card -->
-          <div id="settings-card">
-            <div class="card">
-              <div class="card-body">
-                <h5>your plan <span>Basic Plan</span></h5>
-                <hr id="card_line" />
-                <h6>you have 5 more vaults to create.</h6>
-
-                <div id="whats_new_banner">
-                  <a href="#" class="btn">what’s new?</a>
-                </div>
-                <!-- end whats_new_banner -->
-              </div>
-              <!-- end card-body -->
-            </div>
-            <!-- end card -->
-          </div>
-          <!-- end settings-card -->
-
-          <!-- delete_account_card -->
-          <div id="delete_account_card">
-            <div class="row">
-              <div class="col-md-6 align-self-center">
-                <div class="card">
-                  <div class="card-body">
-                    <h2>name: <span>DavidDanso</span></h2>
-                    <h2>username: <span>desiinger</span></h2>
-                    <h2>location: <span>accra, ghana</span></h2>
-                    <h2>account: <span>joined a month ago</span></h2>
-                    <h2>email: <span>example@example.com</span></h2>
-                  </div>
-                  <!-- end card-body -->
-                </div>
-                <!-- end card -->
-                <h2>
-                  DANGER ZONE:
-                  <a
-                    href="#"
-                    data-bs-toggle="modal"
-                    data-bs-target="#deleteAccountModal"
-                    >close & delete my account</a
-                  >
-                </h2>
-              </div>
-              <!-- end col -->
-
-              <div class="col-md-6">
-                <img
-                  src="{% static 'images/volunteer.svg'%}"
-                  class="img-fluid"
-                  id="volunteer_img"
-                  alt="volunteer_img"
-                />
-              </div>
-              <!-- end col -->
-            </div>
-            <!-- end row -->
-          </div>
-          <!-- end delete_account_card -->
+          {% include 'partials/profile-info.html' %}
         </div>
         <!-- end profile settings -->
       </div>
