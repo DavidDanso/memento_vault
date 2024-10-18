@@ -90,17 +90,16 @@
                 {% csrf_token%}
 
                 <div class="col-md-12">
-                  <label for="inputEmailAddress" class="form-label"
-                    >Email Address</label
-                  >
+                  <label for="inputUsername" class="form-label">Username</label>
                   <input
-                    type="email"
+                    type="text"
                     class="form-control input"
-                    id="inputEmailAddress"
-                    placeholder="email"
+                    id="inputUsername"
+                    placeholder="enter username"
+                    name="username"
                   />
                 </div>
-                <!-- end EmailAddress -->
+                <!-- end Username -->
 
                 <div class="col-md-12">
                   <label for="inputPassword" class="form-label">Password</label>
@@ -109,6 +108,7 @@
                     class="form-control input"
                     id="inputPassword"
                     placeholder="password"
+                    name="password"
                   />
                 </div>
                 <!-- end Password -->

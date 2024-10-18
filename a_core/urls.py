@@ -24,6 +24,7 @@ urlpatterns = [
     # auth
     path('login', login_view, name='login'),
     path('sign-up', signup_view, name='sign-up'),
+    path('logout', logout_view, name='logout'),
 ]
 
 # Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
