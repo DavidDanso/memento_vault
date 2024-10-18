@@ -56,6 +56,9 @@
   >
     <!--======================== Main-Section ================================-->
     <main>
+      <!-- django messages -->
+      {% include 'toast.html' %}
+      <!--  end django message -->
       <div id="hero">
         <div class="container-fluid">
           <div class="hero-intro">
@@ -86,7 +89,7 @@
             <p>Or use <a href="#">Google</a></p>
 
             <div id="login_fields">
-              <form action="" method="POST" class="row g-3">
+              <form method="POST" class="row g-3">
                 {% csrf_token%}
 
                 <div class="col-md-12">
@@ -151,5 +154,36 @@
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/login.js' %}"></script>
+
+    <script>
+      // Show toasts when page loads after form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        const toasts = document.querySelectorAll(".alert");
+        toasts.forEach((toast, index) => {
+          setTimeout(() => {
+            toast.classList.add("show");
+            // Auto hide after 6 seconds
+            setTimeout(() => {
+              hideToast(toast.id);
+            }, 6000);
+          }, index * 200); // Stagger multiple toasts
+        });
+      });
+
+      function hideToast(toastId) {
+        const toast = document.getElementById(toastId);
+        if (toast) {
+          toast.classList.add("hide");
+          toast.classList.remove("show");
+          // Remove from DOM after animation
+          setTimeout(() => {
+            const container = toast.closest(".alert-container");
+            if (container) {
+              container.remove();
+            }
+          }, 300);
+        }
+      }
+    </script>
   </body>
 </html>

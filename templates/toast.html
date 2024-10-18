@@ -1,0 +1,36 @@
+<!-- django messages -->
+<message>
+  {% if messages %}
+  <!--  -->
+  {% for message in messages %}
+  <div class="alert-container">
+    <div
+      class="alert alert-{{message.tags}}"
+      role="alert"
+      id="toast-{{forloop.counter}}"
+    >
+      <div>
+        <div class="alert-content">{{message}}</div>
+      </div>
+      <div
+        class="close-button"
+        onclick="hideToast('toast-{{forloop.counter}}')"
+      >
+        <svg
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <!-- end alert-container -->
+  {% endfor %}
+  <!--  -->
+  {% endif %}
+  <!--  end django message -->
+</message>

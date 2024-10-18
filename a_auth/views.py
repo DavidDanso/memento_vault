@@ -6,28 +6,27 @@ from django.contrib.auth import login, authenticate, logout
 
 ########################################## login page views
 def login_view(request):
-    # 
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
 
         try:
             user = User.objects.get(username=username)
-        except:
-            messages.error(request,  'User not found❌')
+            # Authenticate the user only if they exist
+            authenticated_user = authenticate(username=username, password=password)
+            if authenticated_user is not None:
+                login(request, authenticated_user)
+                messages.success(request, 'User login successful ✅')
+                return redirect('dashboard')
+            else:
+                # Incorrect password
+                messages.error(request, 'Incorrect password ❌')
+        except User.DoesNotExist:
+            # User does not exist
+            messages.error(request, 'User not found ❌')
 
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
+    return render(request, 'a_auth/login.html', {})
 
-            # user login success message
-            messages.success(request,  'User login Successful')
-            return redirect('dashboard')
-        else:
-            messages.error(request,  'Username or Password is incorrect❌')
-
-    context = {}
-    return render(request, 'a_auth/login.html', context)
 
 
 ########################################## signup page views
