@@ -61,40 +61,44 @@
     <!--======================== Main-Section ================================-->
     <main>
       <div class="container-fluid">
-        <!-- django messages -->
-        {% include 'toast.html' %}
-        <!--  end django message -->
         <header>{% include 'top_nav.html' %}</header>
         <!-- end header -->
 
         <!-- profile settings -->
         <div id="settings">
-          <img
-            src="{{user.profile.avatar}}"
-            class="img-fluid rounded-circle"
-            id="profile_img"
-            alt="profile_img"
-          />
-          <p>
-            You have a treasure trove of memories,
-            <span>{{user.profile.name}}</span>
-          </p>
-          <button
-            type="button"
-            class="btn"
-            data-bs-toggle="modal"
-            data-bs-target="#editProfileModal"
-          >
-            <img
-              src="{% static 'images/edit-pen.svg'%}"
-              class="img-fluid"
-              id="edit_pen"
-              alt="edit_pen"
-            />
-            edit profile
-          </button>
+          <!-- django messages -->
+          {% include 'toast.html' %}
+          <!--  end django message -->
 
-          {% include 'partials/profile-info.html' %}
+          <div id="settings_info">
+            <img
+              src="{{user.profile.avatar}}"
+              class="img-fluid rounded-circle"
+              id="profile_img"
+              alt="profile_img"
+            />
+            <p>
+              You have a treasure trove of memories,
+              <span>{{user.profile.name}}</span>
+            </p>
+            <button
+              type="button"
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#editProfileModal"
+            >
+              <img
+                src="{% static 'images/edit-pen.svg'%}"
+                class="img-fluid"
+                id="edit_pen"
+                alt="edit_pen"
+              />
+              edit profile
+            </button>
+
+            {% include 'partials/profile-info.html' %}
+          </div>
+          <!-- end settings_info -->
         </div>
         <!-- end profile settings -->
       </div>

@@ -117,20 +117,10 @@ a:hover {
   cursor: pointer;
 }
 
-.close-button svg {
-  width: 2rem;
-  height: 2rem;
-  margin-left: 0.5rem;
-  fill: white;
-}
-
-.alert-error {
+.alert-success {
   background: #dc8686 !important;
   color: var(--main-color) !important;
-}
-.alert-success {
-  background: #c3e2c2 !important;
-  color: var(--main-color) !important;
+  border: 1px solid #dc8686 !important;
 }
 #close_ {
   width: 25px;
@@ -296,6 +286,8 @@ main {
 /* settings */
 #settings {
   margin-top: 25%;
+}
+#settings_info {
   display: flex;
   flex-direction: column;
   align-items: center; /* Centers child elements horizontally */

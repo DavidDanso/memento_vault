@@ -15,7 +15,7 @@ def signup_view(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            messages.success(request, 'Please complete your profile details.')
+            messages.success(request, 'Click "Edit Profile" to add or modify your profile details.')
             return redirect('profile')
         else:
             messages.error(request,  'Error: Please check your information and try again')
@@ -37,7 +37,7 @@ def login_view(request):
             authenticated_user = authenticate(username=username, password=password)
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                messages.success(request, 'User login successful ✅')
+                messages.success(request, "Welcome back! You're now logged in")
                 return redirect('dashboard')
             else:
                 # Incorrect password
