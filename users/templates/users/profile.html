@@ -61,6 +61,9 @@
     <!--======================== Main-Section ================================-->
     <main>
       <div class="container-fluid">
+        <!-- django messages -->
+        {% include 'toast.html' %}
+        <!--  end django message -->
         <header>{% include 'top_nav.html' %}</header>
         <!-- end header -->
 
@@ -139,6 +142,35 @@
       display_nameInput.addEventListener("input", (event) => {
         display_nameOutput.innerText = event.target.value;
       });
+
+      // Show toasts when page loads after form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        const toasts = document.querySelectorAll(".alert");
+        toasts.forEach((toast, index) => {
+          setTimeout(() => {
+            toast.classList.add("show");
+            // Auto hide after 6 seconds
+            setTimeout(() => {
+              hideToast(toast.id);
+            }, 6000);
+          }, index * 200); // Stagger multiple toasts
+        });
+      });
+
+      function hideToast(toastId) {
+        const toast = document.getElementById(toastId);
+        if (toast) {
+          toast.classList.add("hide");
+          toast.classList.remove("show");
+          // Remove from DOM after animation
+          setTimeout(() => {
+            const container = toast.closest(".alert-container");
+            if (container) {
+              container.remove();
+            }
+          }, 300);
+        }
+      }
     </script>
   </body>
 </html>

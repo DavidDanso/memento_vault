@@ -1,3 +1,4 @@
+{% load static %}
 <!-- django messages -->
 <message>
   {% if messages %}
@@ -16,15 +17,12 @@
         class="close-button"
         onclick="hideToast('toast-{{forloop.counter}}')"
       >
-        <svg
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1.5"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
+        <img
+          src="{% static 'images/cross.png' %}"
+          id="close_"
+          class="img-fluid"
+          alt="close_"
+        />
       </div>
     </div>
   </div>
