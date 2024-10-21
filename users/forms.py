@@ -11,7 +11,6 @@ class ProfileForm(ModelForm):
         widgets = {
             'image': forms.FileInput(),
             'displayname': forms.TextInput(attrs={'placeholder': 'Add display name'}),
-            'username': forms.TextInput(attrs={'placeholder': 'Choose a username'}),
             'email': forms.EmailInput(attrs={'placeholder': 'Enter your email address'}),
             'location': forms.TextInput(attrs={'placeholder': 'Enter your location'}),
         }

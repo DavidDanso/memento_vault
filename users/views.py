@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from django.contrib import messages
 from .forms import ProfileForm
 
 @login_required
@@ -15,6 +15,11 @@ def profile_view(request):
             if request.htmx:  # Check if the request is an HTMX request
                 return render(request, 'partials/profile-info.html', {'profile': profile})
             return redirect('profile')
+
+        elif 'delete_account' in request.POST:
+            profile.delete()
+            messages.success(request, 'Account delete Successful')
+            return redirect('sign-up')
 
     context = {'profile': profile, 'form': form}
     return render(request, 'users/profile.html', context)

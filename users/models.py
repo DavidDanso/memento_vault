@@ -17,7 +17,7 @@ class Profile(models.Model):
     
     @property
     def name(self):
-        return self.displayname or self.username or self.user.username
+        return self.username or self.user.username
     
     @property
     def avatar(self):
