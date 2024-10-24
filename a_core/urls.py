@@ -27,9 +27,8 @@ urlpatterns = [
     path('logout', logout_view, name='logout'),
 ]
 
-# Only used when DEBUG=True, whitenoise can serve files when DEBUG=False
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 # Change Site Title, Index Title and Site Title
 admin.site.site_header = "Memento Vault Panel"

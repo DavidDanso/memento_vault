@@ -1,0 +1,17 @@
+# Environment and version control
+.env
+.git
+.gitignore
+.DS_Store
+
+# Python
+*.pyc
+__pycache__
+venv/
+
+# Application assets
+media/*
+static/*
+
+# Build files
+Dockerfile
