@@ -138,4 +138,6 @@ Memento Vault is a platform designed to securely store and share photos and vide
 
 - Access the app via http://localhost:8000
 - Sign up to create your first vault, generate QR codes, and start uploading media.
-   
+
+
+Note: I am actively developing new features, so expect frequent updates as the platform continues to improve.
