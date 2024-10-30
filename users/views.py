@@ -18,7 +18,7 @@ def profile_view(request):
 
         elif 'delete_account' in request.POST:
             profile.delete()
-            messages.success(request, 'Account delete Successful')
+            messages.success(request, 'Account deleted Successful')
             return redirect('sign-up')
 
     context = {'profile': profile, 'form': form}

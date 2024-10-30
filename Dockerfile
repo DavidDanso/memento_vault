@@ -1,5 +1,5 @@
 # Use the official Python image as a base image
-FROM python:3.12
+FROM python:3.12-slim
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE=1  
