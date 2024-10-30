@@ -177,6 +177,7 @@ a:hover {
 }
 #user_avatar {
   width: 35px;
+  height: 35px;
   object-fit: cover;
   margin-top: 25%;
 }
@@ -295,6 +296,8 @@ main {
 }
 #settings #profile_img {
   width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 #settings p {
   font-family: var(--text-font);
@@ -498,6 +501,8 @@ main {
 }
 #profile_avatar {
   width: 90px;
+  height: 90px;
+  object-fit: cover;
 }
 #profile_settings h6 {
   color: var(--text-color);
@@ -817,6 +822,7 @@ main {
   }
   #user_avatar {
     width: 35px;
+    height: 35px;
     object-fit: cover;
     margin-top: 25%;
   }
@@ -841,7 +847,8 @@ main {
     margin-top: 6%;
   }
   #settings #profile_img {
-    width: 70px;
+    width: 65px;
+    height: 65px;
   }
   #settings p {
     font-size: 1.4rem;
@@ -949,198 +956,10 @@ main {
     max-width: 700px;
   }
   #profile_avatar {
-    width: 80px;
-    margin-bottom: 2px;
-  }
-  #profile_settings h6 {
-    letter-spacing: 1px;
-    font-size: 1.2rem;
-    margin-bottom: 2%;
-  }
-  #profile_settings label {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-  }
-  #profile_settings .input {
-    letter-spacing: 1px;
-    font-size: 1.1rem;
-  }
-  #img_field {
-    margin-bottom: 5%;
-  }
-  #img_field input {
-    letter-spacing: 1px;
-    font-size: 1.8vh;
-    max-width: 40%;
-  }
-  #profile_settings .col-md-6 {
-    margin-top: 7%;
-  }
-  #update_profile {
-    letter-spacing: 1px;
-    font-size: 1.2rem;
-    margin-left: 10px;
-  }
-  #profile_settings .modal-footer {
-    margin-bottom: -2%;
-  }
-}
-
-/************************ Extra large devices (large desktops, 1400px and up) ********************************/
-@media only screen and (min-width: 1400px) {
-  /* CSS rules here */
-  #nav_ {
-    margin-top: 15rem;
-  }
-  .sidebar {
-    width: 58px;
-  }
-  .icon_ {
-    width: 22px;
-    margin-left: -50%;
-  }
-  .icon_v {
-    width: 30px;
-  }
-  .notification_icon {
-    width: 28px;
-  }
-  #user_avatar {
-    width: 35px;
-    object-fit: cover;
-    margin-top: 25%;
-  }
-  .sidebar .bottom-icons {
-    margin-bottom: 35%;
-  }
-
-  #logout_img {
-    width: 18px;
-  }
-
-  /* top nav */
-  #logo {
-    width: 40px;
-    height: auto;
-    margin-top: 10%;
-    margin-bottom: 10%;
-  }
-
-  /* settings */
-  #settings {
-    margin-top: 6%;
-  }
-  #settings #profile_img {
     width: 70px;
-  }
-  #settings p {
-    font-size: 1.4rem;
-    margin-top: 2px;
-  }
-  #settings button {
-    font-size: 1.2rem;
-    width: 11%;
-    padding: 5px 15px;
-  }
-  #settings #edit_pen {
-    margin-right: 3%;
-  }
-
-  /* settings-card */
-  #settings-card {
-    margin-top: 2%;
-  }
-  #settings-card .card {
-    width: 50rem;
-  }
-  #settings-card h5 {
-    font-size: 1.2rem;
-  }
-  #settings-card h6 {
-    font-size: 1.1rem;
-    text-align: right;
-  }
-
-  /* whats_new_banner */
-  #whats_new_banner {
-    height: 13vh; /* Set height for the banner */
-    margin-top: 2%;
-  }
-  #whats_new_banner a {
-    font-size: 1.1rem;
-    width: 23%; /* Set button width */
-    padding: 5px 15px;
-  }
-
-  /* delete_account_card */
-  #delete_account_card {
-    margin-top: 1%;
-    width: 55%;
-  }
-  #delete_account_card h2 {
-    font-size: 1.2rem;
-  }
-  #delete_account_card #volunteer_img {
-    width: 75%;
-    margin-top: 1%;
-    float: right;
-  }
-  #delete_account_card h2 {
-    letter-spacing: 1px;
-    font-size: 1.2rem;
-    margin-top: 2%;
-  }
-  #delete_account_card h2 a {
-    font-size: 1.3rem;
-  }
-
-  /* delete-modal */
-  #delete-account-modal .modal-dialog {
-    max-width: 600px;
-  }
-  #delete-account-modal .modal-header {
-    margin-bottom: -2%;
-  }
-  #delete-account-modal #warning {
-    margin-bottom: 3%;
-  }
-  #delete-account-modal h3 {
-    letter-spacing: 1px;
-    font-size: 1.9vh;
-    padding: 3%;
-  }
-  #delete-account-modal h4 {
-    letter-spacing: 1px;
-    font-size: 1.2rem;
-    margin-bottom: 6%;
-  }
-  #delete-account-modal h6 {
-    letter-spacing: 1px;
-    font-size: 1.8vh;
-  }
-  #delete_account {
-    letter-spacing: 1px;
-    font-size: 2vh;
-    margin-left: 10px;
-  }
-  #delete-account-modal .modal-footer {
-    margin-bottom: -2%;
-  }
-
-  /*  */
-  #delete_img {
-    width: 18%;
-    margin-bottom: 2%;
-    margin-top: -4%;
-  }
-
-  /* profile_settings */
-  #profile_settings .modal-dialog {
-    max-width: 700px;
-  }
-  #profile_avatar {
-    width: 80px;
-    margin-bottom: 2px;
+    height: 70px;
+    object-fit: cover;
+    margin-bottom: 3px;
   }
   #profile_settings h6 {
     letter-spacing: 1px;

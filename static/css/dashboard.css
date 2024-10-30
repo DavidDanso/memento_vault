@@ -190,6 +190,7 @@ a:hover {
 }
 #user_avatar {
   width: 35px;
+  height: 35px;
   object-fit: cover;
   margin-top: 25%;
 }

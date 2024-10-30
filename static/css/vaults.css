@@ -126,6 +126,7 @@ a:hover {
 }
 #user_avatar {
   width: 35px;
+  height: 35px;
   object-fit: cover;
   margin-top: 25%;
 }
@@ -413,7 +414,7 @@ main {
   font-family: var(--text-font);
   font-size: 1rem;
 }
-#createVaultModal button {
+#createVaultModal #button_ {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
@@ -426,7 +427,7 @@ main {
   transition: all 0.4s ease-in-out;
   margin-top: 3%;
 }
-#createVaultModal button:hover {
+#createVaultModal #button_:hover {
   background-color: #2b2d3cbd;
   transition: all 0.4s ease-in-out;
   border: 1px solid #fff;
@@ -672,10 +673,10 @@ main {
   #createVaultModal .input::placeholder {
     font-size: 1.1rem;
   }
-  #createVaultModal button {
+  #createVaultModal #button_ {
     font-size: 1.3rem;
     padding: 5px 15px;
-    margin-top: 1%;
+    margin-top: 1.3%;
   }
   #createVaultModal h6 {
     font-size: 1.2rem;

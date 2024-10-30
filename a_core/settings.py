@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+
     # my_apps
     'users.apps.UsersConfig',
     'vaults.apps.VaultsConfig',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     # instlled apps
     'active_link',
     'django_htmx',
+    'django.contrib.humanize',
 ]
 
 SITE_ID = 1

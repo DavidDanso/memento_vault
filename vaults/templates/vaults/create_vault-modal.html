@@ -39,19 +39,23 @@
           </p>
 
           <!--  -->
-          <div
-            class="input-group d-flex justify-content-center"
-            id="create_field"
-          >
+          <form action="" method="POST">
+            {% csrf_token %}
+            <div
+              class="input-group d-flex justify-content-center"
+              id="create_field"
+            >
+              {{form.title}}
+            </div>
+            <!-- end create_field -->
             <input
-              type="text"
-              class="form-control input"
-              id="inputCreateVault"
-              placeholder="Name your new vault…"
+              type="submit"
+              class="btn d-flex mx-auto"
+              id="button_"
+              value="create new vault"
             />
-          </div>
-          <!-- end create_field -->
-          <button class="btn d-flex mx-auto">create new vault</button>
+            <!-- end submit_field -->
+          </form>
 
           <h6>
             Just a heads-up: <span>You have 5 more vaults to create.</span>
