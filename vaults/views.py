@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -6,7 +6,6 @@ from users.models import Profile
 from .forms import *
 
 # Dashboard view requires user login and renders the main dashboard page.
-# Redirects unauthenticated users to the login page.
 @login_required(login_url='login')
 def dashboard_view(request):
     # Context dictionary can hold user-specific data to pass to the template.
@@ -14,11 +13,11 @@ def dashboard_view(request):
     return render(request, 'dashboard.html', context)
 
 
-# Vault view loads the main vaults page, specific to the logged-in user.
 # Retrieves the user's profile for potential customization or data display.✅
+@login_required(login_url='login')
 def vault_view(request):
     # Ensure Profile exists for the logged-in user
-    profile, created = Profile.objects.get_or_create(user=request.user)
+    profile = get_object_or_404(Profile, user=request.user)
 
     # Retrieve all vaults associated with the logged-in user's profile
     vaults = profile.vaults.all()
