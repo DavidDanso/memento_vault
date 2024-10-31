@@ -39,7 +39,8 @@ def vault_view(request):
             vault.owner = profile
             vault.save()
             messages.success(request, 'Vault created successfully.')
-            return redirect('vaults')
+            # Redirect to the newly created vault's detail view
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
 
     context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 'now': current_date,}
     return render(request, 'vaults/vaults.html', context)
