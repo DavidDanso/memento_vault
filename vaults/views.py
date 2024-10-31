@@ -26,6 +26,12 @@ def vault_view(request):
     # Get the current date
     current_date = timezone.now()
 
+    # Prepare a dictionary to hold vaults and their media count
+    vaults_with_media_count = []
+    for vault in vaults:
+        media_count = vault.media_files.count()  # Count media files for each vault
+        vaults_with_media_count.append({'vault': vault, 'media_count': media_count})
+
     form = VaultCreationForm()
     if request.method == 'POST':
         form = VaultCreationForm(request.POST)
@@ -36,7 +42,7 @@ def vault_view(request):
             messages.success(request, 'Vault created successfully.')
             return redirect('vaults')
 
-    context = {'form': form, 'vaults': vaults, 'now': current_date,}
+    context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 'now': current_date,}
     return render(request, 'vaults/vaults.html', context)
 
 

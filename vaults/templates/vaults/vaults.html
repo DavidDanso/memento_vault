@@ -91,12 +91,23 @@
           <h6>{{ now|date:"F, Y" }}</h6>
 
           <div class="row">
-            {% for vault in vaults %}
+            {% for item in vaults_with_media_count %}
             <div class="col-md-3">
-              <a href="#">
+              <a href="#" aria-label="View {{ item.vault.title }}">
                 <div class="card" id="main_card">
                   <div class="card-body">
+                    {% if item.media_count > 0 %}
+                    <!--  -->
+                    <img
+                      src="{% static 'images/photo_.png'%}"
+                      class="img-fluid d-flex mx-auto"
+                      id="photo_"
+                      alt="Media icon for {{ item.vault.title }}"
+                    />
+                    <!--  -->
+                    {% else %}
                     <h2>Empty</h2>
+                    {% endif %}
 
                     <div id="vault_count">
                       <img
@@ -105,7 +116,7 @@
                         id="count_icon"
                         alt="count_icon"
                       />
-                      <span>0</span>
+                      <span>{{ item.media_count }}</span>
                     </div>
                     <!-- end vault_count -->
                   </div>
@@ -116,8 +127,8 @@
                 <div class="card" id="sub_card">
                   <div class="card-body">
                     <div id="vault_info">
-                      <h3>{{vault.title}}</h3>
-                      <p>{{ vault.updated_at|naturaltime }}</p>
+                      <h3>{{item.vault.title}}</h3>
+                      <p>{{ item.vault.updated_at|naturaltime }}</p>
                     </div>
                     <!-- end vault_info -->
                   </div>
