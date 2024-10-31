@@ -69,52 +69,11 @@
 
         <!-- hero -->
         <div id="hero">
-          <div id="empty_vault">
-            <!--  -->
-            <h1>Otoo's vault is empty.</h1>
-            <img
-              src="{% static 'images/photo_.png'%}"
-              class="img-fluid d-flex mx-auto"
-              id="image_gallery"
-              alt="image_gallery"
-            />
-            <p>
-              You can either download the QR code or upload directly to the
-              <span></span>vault and download the QR code later for others to
-              use.
-            </p>
-            <div id="action_btns">
-              <button class="btn" id="qrCode_">
-                <img
-                  src="{% static 'images/qr-code.png'%}"
-                  class="img-fluid"
-                  id="qrCode_img"
-                  alt="qrCode_img"
-                />
-                download qr-code
-              </button>
-              <button
-                class="btn"
-                id="upload_"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                <img
-                  src="{% static 'images/upload_img.png'%}"
-                  class="img-fluid"
-                  id="upload_img"
-                  alt="upload_img"
-                />
-                direct uploads to vault
-              </button>
-            </div>
-            <!-- end action_btns -->
-            <!--  -->
-          </div>
-          <!-- end empty_vault -->
-
+          {% if media_count > 0 %}
           <div id="notEmpty_vault">
-            <h2><span>Otoo's Wedding</span></h2>
+            <h2 class="text-capitalize">
+              <span>{{vault.title}} vault</span>
+            </h2>
             <div id="header_">
               <button class="btn" id="qrCode_">download qr-code</button>
               <!--  -->
@@ -164,6 +123,51 @@
             <!--  -->
           </div>
           <!-- end notEmpty_vault -->
+          {% else %}
+          <div id="empty_vault">
+            <!--  -->
+            <h1 class="text-capitalize">{{vault.title}} vault is empty.</h1>
+            <img
+              src="{% static 'images/photo_.png'%}"
+              class="img-fluid d-flex mx-auto"
+              id="image_gallery"
+              alt="image_gallery"
+            />
+            <p>
+              You can either download the QR code or upload directly to the
+              <span></span>vault and download the QR code later for others to
+              use.
+            </p>
+            <div id="action_btns">
+              <button class="btn" id="qrCode_">
+                <img
+                  src="{% static 'images/qr-code.png'%}"
+                  class="img-fluid"
+                  id="qrCode_img"
+                  alt="qrCode_img"
+                />
+                download qr-code
+              </button>
+              <button
+                class="btn"
+                id="upload_"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+              >
+                <img
+                  src="{% static 'images/upload_img.png'%}"
+                  class="img-fluid"
+                  id="upload_img"
+                  alt="upload_img"
+                />
+                direct uploads to vault
+              </button>
+            </div>
+            <!-- end action_btns -->
+            <!--  -->
+          </div>
+          <!-- end empty_vault -->
+          {% endif %}
         </div>
         <!-- end hero -->
       </div>

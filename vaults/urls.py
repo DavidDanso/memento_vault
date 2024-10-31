@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.vault_view, name='vaults'),
-    path('911', views.vault_details_view, name='vault-details'),
+    path('<uuid:pk>/<str:title>', views.vault_details_view, name='vault-details'),
 ]

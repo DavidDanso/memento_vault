@@ -93,7 +93,10 @@
           <div class="row">
             {% for item in vaults_with_media_count %}
             <div class="col-md-3">
-              <a href="#" aria-label="View {{ item.vault.title }}">
+              <a
+                href="{% url 'vault-details' item.vault.id item.vault.title|slugify %}"
+                aria-label="View {{ item.vault.title }}"
+              >
                 <div class="card" id="main_card">
                   <div class="card-body">
                     {% if item.media_count > 0 %}

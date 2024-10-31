@@ -302,11 +302,6 @@ main {
   color: var(--nav-links-color);
 }
 
-/*  */
-#empty_vault {
-  display: none;
-}
-
 /* notEmpty_vault */
 #notEmpty_vault {
   margin-top: 30%;
@@ -686,7 +681,7 @@ main {
     margin-top: 22%;
   }
   #hero #image_gallery {
-    width: 4rem;
+    width: 7rem;
   }
   #empty_vault p {
     font-size: 1.4rem;

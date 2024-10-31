@@ -47,8 +47,14 @@ def vault_view(request):
 
 # Vault details view renders a page that likely displays specific details of a selected vault.
 # Could be extended to retrieve and pass specific vault data into the context.
-def vault_details_view(request):
-    context = {}
+def vault_details_view(request, pk, title):
+    # Get the vault object using the primary key
+    vault = get_object_or_404(Vault, pk=pk)
+
+    # Count media files for the retrieved vault
+    media_count = vault.media_files.count()
+
+    context = {'media_count': media_count, 'vault': vault}
     return render(request, 'vaults/vault_details.html', context)
 
 
