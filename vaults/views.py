@@ -47,15 +47,34 @@ def vault_view(request):
 
 
 # Vault details view renders a page that likely displays specific details of a selected vault.
-# Could be extended to retrieve and pass specific vault data into the context.
 def vault_details_view(request, pk, title):
+    # Ensure Profile exists for the logged-in user
+    profile = get_object_or_404(Profile, user=request.user)
+
+    # Retrieve all vaults associated with the logged-in user's profile
+    vaults = profile.vaults.all()
+
     # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=pk)
 
     # Count media files for the retrieved vault
     media_count = vault.media_files.count()
 
-    context = {'media_count': media_count, 'vault': vault}
+    # Retrieve all media files associated with the vault
+    media_files = vault.media_files.all()  # This gets all the uploaded media content
+
+    # Categorize media files by type
+    categorized_media = []
+    for media in media_files:
+        file_url = media.file.url.lower()  # Convert URL to lowercase for consistent checking
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg')):
+            categorized_media.append({'media': media, 'type': 'image'})
+        elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
+            categorized_media.append({'media': media, 'type': 'video'})
+        else:
+            categorized_media.append({'media': media, 'type': 'unsupported'})
+
+    context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media}
     return render(request, 'vaults/vault_details.html', context)
 
 

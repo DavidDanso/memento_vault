@@ -1,18 +1,13 @@
 {% load static %}
+<!--  -->
 <!DOCTYPE html>
 <html lang="en" class="js has-scroll-init has-scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
-    />
+    <meta name="description" content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features." />
 
-    <meta
-      name="keywords"
-      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
-    />
+    <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
@@ -20,11 +15,7 @@
 
     <!-- Preload CSS -->
     <link href="{% static '/css/normalize.css' %}" />
-    <link
-      rel="preload"
-      as="style"
-      href="{% static '/css/vault_details.css' %}"
-    />
+    <link rel="preload" as="style" href="{% static '/css/vault_details.css' %}" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static '/css/vault_details.css' %}" />
@@ -34,30 +25,12 @@
       var supportsCssVars = function () {
         var e,
           t = document.createElement("style");
-        return (
-          (t.innerHTML = "root: { --tmp-var: bold; }"),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports("font-weight", "var(--tmp-var)")
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e;
       };
-      supportsCssVars() ||
-        alert(
-          "Please view this work in a modern browser that supports CSS Variables."
-        );
+      supportsCssVars() || alert("Please view this work in a modern browser that supports CSS Variables.");
     </script>
   </head>
-  <body
-    id="pageTop"
-    class="page-content"
-    data-spy="scroll"
-    data-target="#mainNav"
-  >
+  <body id="pageTop" class="page-content" data-spy="scroll" data-target="#mainNav">
     <!--======================== Nav-Section ================================-->
     {% include 'sidebar.html' %}
 
@@ -69,6 +42,11 @@
 
         <!-- hero -->
         <div id="hero">
+          <!--  -->
+          <a href="javascript:history.back()">
+            <img src="{% static 'images/arrow.png' %}" id="arrow-img" class="img-fluid" alt="arrow-img" />
+          </a>
+          <!--  -->
           {% if media_count > 0 %}
           <div id="notEmpty_vault">
             <h2 class="text-capitalize">
@@ -77,18 +55,8 @@
             <div id="header_">
               <button class="btn" id="qrCode_">download qr-code</button>
               <!--  -->
-              <button
-                class="btn"
-                id="upload_"
-                data-bs-toggle="modal"
-                data-bs-target="#uploadImg"
-              >
-                <img
-                  src="{% static 'images/upload_img.png'%}"
-                  class="img-fluid"
-                  id="upload_img"
-                  alt="upload_img"
-                />
+              <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#uploadImg">
+                <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
                 direct uploads to vault
               </button>
             </div>
@@ -98,68 +66,43 @@
 
             <!--  -->
             <div id="masonry-container">
-              <div
-                class="masonry-item"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                <img
-                  src="{% static 'images/photo-1634152962476-4b8a00e1915c.avif' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
+              {% for media in media_files %}
+              <div class="masonry-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                {% if media.type == 'image' %}
+                <img src="{{ media.media.file.url }}" class="img-fluid" alt="upload-img" />
+                {% elif media.type == 'video' %}
+                <video class="img-fluid">
+                  <source src="{{ media.media.file.url }}" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                {% else %}
+                <p>Unsupported file format</p>
+                {% endif %}
               </div>
               <!-- end masonry-item -->
-
-              <div class="masonry-item">
-                <img
-                  src="{% static 'images/photo-1698570493404-ee2c4f1fc498.avif' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
-              </div>
-              <!-- end masonry-item -->
+              {% endfor %}
             </div>
+
             <!--  -->
           </div>
           <!-- end notEmpty_vault -->
+
           {% else %}
           <div id="empty_vault">
             <!--  -->
             <h1 class="text-capitalize">{{vault.title}} vault is empty.</h1>
-            <img
-              src="{% static 'images/photo_.png'%}"
-              class="img-fluid d-flex mx-auto"
-              id="image_gallery"
-              alt="image_gallery"
-            />
+            <img src="{% static 'images/photo_.png'%}" class="img-fluid d-flex mx-auto" id="image_gallery" alt="image_gallery" />
             <p>
               You can either download the QR code or upload directly to the
-              <span></span>vault and download the QR code later for others to
-              use.
+              <span></span>vault and download the QR code later for others to use.
             </p>
             <div id="action_btns">
               <button class="btn" id="qrCode_">
-                <img
-                  src="{% static 'images/qr-code.png'%}"
-                  class="img-fluid"
-                  id="qrCode_img"
-                  alt="qrCode_img"
-                />
+                <img src="{% static 'images/qr-code.png'%}" class="img-fluid" id="qrCode_img" alt="qrCode_img" />
                 download qr-code
               </button>
-              <button
-                class="btn"
-                id="upload_"
-                data-bs-toggle="modal"
-                data-bs-target="#staticBackdrop"
-              >
-                <img
-                  src="{% static 'images/upload_img.png'%}"
-                  class="img-fluid"
-                  id="upload_img"
-                  alt="upload_img"
-                />
+              <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
                 direct uploads to vault
               </button>
             </div>
@@ -184,11 +127,7 @@
     <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>

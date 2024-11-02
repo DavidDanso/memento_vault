@@ -237,6 +237,10 @@ main {
 #hero {
   margin-top: 8%;
 }
+#arrow-img {
+  width: 20%;
+  transform: scaleX(-1);
+}
 #empty_vault h1 {
   color: var(--text-color);
   letter-spacing: 1px;
@@ -672,7 +676,10 @@ main {
 
   /* hero */
   #hero {
-    margin-top: 12%;
+    margin-top: 5%;
+  }
+  #arrow-img {
+    width: 5%;
   }
 
   /*  */
@@ -718,7 +725,7 @@ main {
 
   /* notEmpty_vault */
   #notEmpty_vault {
-    margin-top: 5%;
+    margin-top: 3%;
   }
   #hero #notEmpty_vault h2 {
     font-size: 2.1rem;
