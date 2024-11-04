@@ -61,13 +61,13 @@ def vault_details_view(request, pk, title):
     media_count = vault.media_files.count()
 
     # Retrieve all media files associated with the vault
-    media_files = vault.media_files.all()  # This gets all the uploaded media content
+    media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
 
     # Categorize media files by type
     categorized_media = []
     for media in media_files:
         file_url = media.file.url.lower()  # Convert URL to lowercase for consistent checking
-        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg')):
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp')):
             categorized_media.append({'media': media, 'type': 'image'})
         elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
             categorized_media.append({'media': media, 'type': 'video'})

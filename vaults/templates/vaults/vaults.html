@@ -7,15 +7,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
-    />
+    <meta name="description" content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features." />
 
-    <meta
-      name="keywords"
-      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
-    />
+    <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
@@ -33,30 +27,12 @@
       var supportsCssVars = function () {
         var e,
           t = document.createElement("style");
-        return (
-          (t.innerHTML = "root: { --tmp-var: bold; }"),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports("font-weight", "var(--tmp-var)")
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e;
       };
-      supportsCssVars() ||
-        alert(
-          "Please view this work in a modern browser that supports CSS Variables."
-        );
+      supportsCssVars() || alert("Please view this work in a modern browser that supports CSS Variables.");
     </script>
   </head>
-  <body
-    id="pageTop"
-    class="page-content"
-    data-spy="scroll"
-    data-target="#mainNav"
-  >
+  <body id="pageTop" class="page-content" data-spy="scroll" data-target="#mainNav">
     <!--======================== Nav-Section ================================-->
     {% include 'sidebar.html' %}
 
@@ -70,17 +46,8 @@
         <div id="hero">
           <div class="hero-intro">
             <h1>All Vaults</h1>
-            <button
-              class="btn"
-              data-bs-toggle="modal"
-              data-bs-target="#createVault"
-            >
-              <img
-                src="{% static 'images/marker.png'%}"
-                class="img-fluid"
-                id="create_img"
-                alt="create_img"
-              />
+            <button class="btn" data-bs-toggle="modal" data-bs-target="#createVault">
+              <img src="{% static 'images/marker.png'%}" class="img-fluid" id="create_img" alt="create_img" />
               create new vault
             </button>
           </div>
@@ -93,32 +60,19 @@
           <div class="row">
             {% for item in vaults_with_media_count %}
             <div class="col-md-3">
-              <a
-                href="{% url 'vault-details' item.vault.id item.vault.title|slugify %}"
-                aria-label="View {{ item.vault.title }}"
-              >
+              <a href="{% url 'vault-details' item.vault.id item.vault.title|slugify %}" aria-label="View {{ item.vault.title }}">
                 <div class="card" id="main_card">
                   <div class="card-body">
                     {% if item.media_count > 0 %}
                     <!--  -->
-                    <img
-                      src="{% static 'images/photo_.png'%}"
-                      class="img-fluid d-flex mx-auto"
-                      id="photo_"
-                      alt="Media icon for {{ item.vault.title }}"
-                    />
+                    <img src="{% static 'images/photo_.png'%}" class="img-fluid d-flex mx-auto" id="photo_" alt="Media icon for {{ item.vault.title }}" />
                     <!--  -->
                     {% else %}
                     <h2>Empty</h2>
                     {% endif %}
 
                     <div id="vault_count">
-                      <img
-                        src="{% static 'images/count_icon.svg'%}"
-                        class="img-fluid"
-                        id="count_icon"
-                        alt="count_icon"
-                      />
+                      <img src="{% static 'images/count_icon.svg'%}" class="img-fluid" id="count_icon" alt="count_icon" />
                       <span>{{ item.media_count }}</span>
                     </div>
                     <!-- end vault_count -->
@@ -156,11 +110,7 @@
     <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
