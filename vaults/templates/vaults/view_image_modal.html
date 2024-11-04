@@ -1,66 +1,48 @@
 {% load static %}
+<!--  -->
+{% load humanize %}
+<!--  -->
 <!--=========================================== profile_settings--layout ===============================-->
 <div id="viewImageModal">
-  <div
-    class="modal fade"
-    id="staticBackdrop"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="staticBackdrop{{media.media.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel{{media.media.id}}" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
           <div class="row">
             <div class="col-md-5 align-self-center">
-              <img
-                src="{% static 'images/photo-1634152962476-4b8a00e1915c.avif' %}"
-                class="img-fluid d-flex mx-auto"
-                id="modal_img"
-                alt="modal_img"
-              />
+              {% if media.type == 'image' %}
+              <img src="{{ media.media.file.url }}" class="img-fluid" alt="upload-img" />
+              {% elif media.type == 'video' %}
+              <video class="img-fluid" controls>
+                <source src="{{ media.media.file.url }}" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+              {% else %}
+              <p>Unsupported file format</p>
+              {% endif %}
             </div>
             <!-- end col -->
 
             <div class="col-md-7">
               <div id="div_header">
                 <h1 class="modal-title">
-                  Monalisa.webp
-                  <img
-                    src="{% static 'images/close-icon.png' %}"
-                    class="img-fluid btn-close"
-                    id="close_svg"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                    alt="close_svg"
-                  />
+                  {{ media.media.file.name|cut:"vault_media/"|truncatechars:20 }}
+                  <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
                 </h1>
-                <small>11 minutes ago</small>
+                <small id="modal_timestamp">11</small>
               </div>
               <!-- end div_header -->
 
               <div id="div_body">
                 <div id="image_description">
-                  <p>
-                    psum quia dolor sit psum quia dolor sitpsum quia dolor sit
-                    psum quia dolor sit psum quia dolor sit psum quia dolor sit
-                    psum quia dolor sitpsum quia dolor sit psum quia dolor sit
-                    psum quia dolor sit
-                  </p>
+                  <p>psum quia dolor sit psum quia dolor sitpsum quia dolor sit psum quia dolor sit psum quia dolor sit psum quia dolor sit psum quia dolor sitpsum quia dolor sit psum quia dolor sit psum quia dolor sit</p>
                 </div>
                 <!-- end image_description -->
 
                 <!--  -->
                 <h2>
                   MoodLens
-                  <img
-                    src="{% static 'images/smile.png' %}"
-                    class="img-fluid"
-                    id="modal_icon"
-                    alt="modal_icon"
-                  />
+                  <img src="{% static 'images/smile.png' %}" class="img-fluid" id="modal_icon" alt="modal_icon" />
                 </h2>
                 <span class="badge badge-pill">excited</span>
                 <span class="badge badge-pill">sad</span>
@@ -69,20 +51,10 @@
                 <hr id="line_divider" />
                 <center>
                   <a href="#">
-                    <img
-                      src="{% static 'images/image-.png' %}"
-                      class="img-fluid download_btn"
-                      id="modal_icon"
-                      alt="modal_icon"
-                    />
+                    <img src="{% static 'images/image-.png' %}" class="img-fluid download_btn" id="modal_icon" alt="modal_icon" />
                   </a>
                   <a href="#">
-                    <img
-                      src="{% static 'images/trash.png' %}"
-                      class="img-fluid delete_btn"
-                      id="modal_icon"
-                      alt="modal_icon"
-                    />
+                    <img src="{% static 'images/trash.png' %}" class="img-fluid delete_btn" id="modal_icon" alt="modal_icon" />
                   </a>
                 </center>
                 <!-- end action_btns -->
