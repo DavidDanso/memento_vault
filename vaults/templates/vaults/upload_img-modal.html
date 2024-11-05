@@ -1,35 +1,16 @@
 {% load static %}
 <!--=========================================== uploadImageModal--layout ===============================-->
 <div id="uploadImageModal">
-  <div
-    class="modal fade"
-    id="uploadImg"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="uploadImg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h1>Otto’s Wedding - Vault</h1>
-          <img
-            src="{% static 'images/close-icon.png' %}"
-            class="img-fluid btn-close"
-            id="close_svg"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-            alt="close_svg"
-          />
+          <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
         </div>
         <!-- end modal-header -->
         <div class="modal-body">
-          <p>
-            For optimal results, upload videos in at least 780p or 1080p MP4
-            format. Images should be up to 5MB each and can be in PNG, JPEG, or
-            JPG formats.
-          </p>
+          <p>For optimal results, upload videos in at least 780p or 1080p MP4 format. Images should be up to 5MB each and can be in PNG, JPEG, or JPG formats.</p>
 
           <!--  -->
           <div class="card d-flex mx-auto" id="main_card">
@@ -38,31 +19,18 @@
               <div id="upload_div">
                 <div class="card" id="uploads_card">
                   <div class="card-body">
-                    <img
-                      src="{% static 'images/upload.png' %}"
-                      class="img-fluid d-flex mx-auto"
-                      id="uploads_img"
-                      alt="uploads_img"
-                    />
+                    <img src="{% static 'images/upload.png' %}" class="img-fluid d-flex mx-auto" id="uploads_img" alt="uploads_img" />
 
                     <!--  -->
-                    <div class="input-group mb-3" id="upload_field">
-                      <input
-                        type="file"
-                        class="form-control input"
-                        id="inputGroupFile02"
-                      />
-                      <label class="input-group-text" for="inputGroupFile02"
-                        ><img
-                          src="{% static 'images/pic.svg' %}"
-                          class="img-fluid"
-                          id="pic_svg"
-                          alt="pic_svg"
-                        />
-                        Upload</label
-                      >
-                    </div>
-                    <!-- end upload_field -->
+                    <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
+                      {% csrf_token %}
+                      <div class="input-group mb-3" id="upload_field">
+                        {{media_form}}
+                        <button type="submit" id="media_btn" class="btn">Upload</button>
+                      </div>
+                      <!-- end upload_field -->
+                    </form>
+                    <!-- end uploadForm -->
                   </div>
                   <!-- end card-body -->
                 </div>
@@ -88,3 +56,9 @@
   <!-- end viewImageModal -->
 </div>
 <!-- end uploadImageModal -->
+
+<script>
+  document.getElementById("inputGroupFile02").addEventListener("change", function () {
+    document.getElementById("uploadForm").submit();
+  });
+</script>

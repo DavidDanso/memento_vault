@@ -14,7 +14,7 @@
               {% if media.type == 'image' %}
               <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
               {% elif media.type == 'video' %}
-              <video class="img-fluid" controls id="modal_img">
+              <video class="videos" controls="controls" loading="lazy" id="modal_img">
                 <source src="{{ media.media.file.url }}" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>

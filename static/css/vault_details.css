@@ -487,6 +487,9 @@ main {
   align-items: center;
 }
 #uploadImageModal label {
+  display: none;
+}
+#uploadImageModal #media_btn {
   font-size: 1.2rem;
   font-family: var(--text-font);
   color: var(--nav-links-color);
@@ -836,7 +839,7 @@ main {
   }
 
   /*  */
-  #uploadImageModal label {
+  #uploadImageModal #media_btn {
     font-size: 1.2rem;
     margin-bottom: -1%;
   }
@@ -844,10 +847,7 @@ main {
     font-size: 1.1rem;
     margin-bottom: -1%;
   }
-  #pic_svg {
-    width: 20px;
-    margin-right: 5%;
-  }
+
   #uploadImageModal h6 {
     font-size: 1.2rem;
     margin-top: 2%;

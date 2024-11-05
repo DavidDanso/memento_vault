@@ -74,7 +74,16 @@ def vault_details_view(request, pk, title):
         else:
             categorized_media.append({'media': media, 'type': 'unsupported'})
 
-    context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media}
+    media_form = VaultMediaForm()
+    if request.method == 'POST':
+        media_form = VaultMediaForm(request.POST, request.FILES)
+        if media_form.is_valid():
+            media_vault = media_form.save(commit=False)
+            media_vault.vault = vault
+            media_vault.save()
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
+
+    context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media, 'media_form': media_form}
     return render(request, 'vaults/vault_details.html', context)
 
 
