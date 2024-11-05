@@ -2,6 +2,7 @@
 <!--  -->
 {% load humanize %}
 <!--  -->
+{% load custom_filters %}
 <!--=========================================== profile_settings--layout ===============================-->
 <div id="viewImageModal">
   <div class="modal fade" id="staticBackdrop{{media.media.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel{{media.media.id}}" aria-hidden="true">
@@ -26,7 +27,7 @@
             <div class="col-md-7">
               <div id="div_header">
                 <h1 class="modal-title">
-                  {{ media.media.file.name|cut:"vault_media/"|truncatechars:20 }}
+                  {{ media.media.file.name|truncate_filename:20 }}
                   <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
                 </h1>
                 <small id="modal_timestamp">{{ media.media.created_at|naturaltime }}</small>

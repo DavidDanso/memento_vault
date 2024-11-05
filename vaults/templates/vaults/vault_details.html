@@ -73,10 +73,15 @@
                 {% if media.type == 'image' %}
                 <img src="{{ media.media.file.url }}" class="img-fluid" alt="upload-img" />
                 {% elif media.type == 'video' %}
-                <video class="img-fluid">
-                  <source src="{{ media.media.file.url }}" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                <!-- Wrapper div with the play icon as background -->
+                <div class="video-wrapper">
+                  <video class="img-fluid" id="vid_img">
+                    <source src="{{ media.media.file.url }}" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                <!-- end video-wrapper -->
+
                 {% else %}
                 <p>Unsupported file format</p>
                 {% endif %}

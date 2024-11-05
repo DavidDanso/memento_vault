@@ -20,7 +20,7 @@ def vault_view(request):
     profile = get_object_or_404(Profile, user=request.user)
 
     # Retrieve all vaults associated with the logged-in user's profile
-    vaults = profile.vaults.all()
+    vaults = profile.vaults.all().order_by('-updated_at')
 
     # Get the current date
     current_date = timezone.now()
