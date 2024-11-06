@@ -81,17 +81,41 @@ def vault_details_view(request, pk, title):
             media_vault = media_form.save(commit=False)
             media_vault.vault = vault
             media_vault.save()
-            return redirect('vault-details', pk=vault.pk, title=vault.title)
+            return redirect('vault-details', pk=pk, title=title)
 
     context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media, 'media_form': media_form}
     return render(request, 'vaults/vault_details.html', context)
 
 
 # Everything view renders a page that might showcase all vault-related items or records.
-# Could be expanded to include context data from various vaults.
 def everything_view(request):
-    context = {}
+    # Ensure Profile exists for the logged-in user
+    profile = get_object_or_404(Profile, user=request.user)
+
+    # Retrieve all vaults associated with the logged-in user's profile
+    vaults = profile.vaults.all()
+
+    # Collect and sort media files from all vaults associated with the user
+    media_files = VaultMedia.objects.filter(vault__in=vaults).order_by('-updated_at')
+
+    # Categorize media files by type
+    categorized_media = []
+    for media in media_files:
+        file_url = media.file.url.lower()
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp')):
+            categorized_media.append({'media': media, 'type': 'image'})
+        elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
+            categorized_media.append({'media': media, 'type': 'video'})
+        else:
+            categorized_media.append({'media': media, 'type': 'unsupported'})
+
+    # Pass categorized media to the context for easy handling in the template
+    context = {
+        'media_files': categorized_media,
+        'profile': profile,
+    }
     return render(request, 'vaults/everything.html', context)
+
 
 
 # Gallery view loads a gallery page to display media or files related to vaults.

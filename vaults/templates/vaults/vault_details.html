@@ -45,9 +45,10 @@
         <!-- hero -->
         <div id="hero">
           <!--  -->
-          <a href="javascript:history.back()">
+          <a href="{% url 'vaults' %}">
             <img src="{% static 'images/arrow.png' %}" id="arrow-img" class="img-fluid" alt="arrow-img" />
           </a>
+
           <!--  -->
           {% if media_count > 0 %}
           <div id="notEmpty_vault">
@@ -113,7 +114,7 @@
                 <img src="{% static 'images/qr-code.png'%}" class="img-fluid" id="qrCode_img" alt="qrCode_img" />
                 download qr-code
               </button>
-              <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#uploadImg">
                 <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
                 direct uploads to vault
               </button>

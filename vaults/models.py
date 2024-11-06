@@ -11,7 +11,7 @@ class Vault(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'{self.title} vault'
+        return f'{self.title} vault [ {self.owner} ]'
     
     # display new clients first
     class Meta:
@@ -24,4 +24,4 @@ class VaultMedia(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f'Media for {self.vault.title} vault'
+        return f'{self.vault.title} vault media [ {self.vault.owner} ]'

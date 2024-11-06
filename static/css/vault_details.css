@@ -638,6 +638,14 @@ main {
     border: none;
     max-width: 90%;
   }
+  #upload_field {
+    margin-left: 11%;
+  }
+  #uploadImageModal #media_btn {
+    margin-top: 6%;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
 @media (min-width: 576px) and (max-width: 767.98px) {

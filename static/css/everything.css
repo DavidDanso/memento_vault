@@ -518,6 +518,34 @@ main {
   margin-bottom: -4px;
 }
 
+/*  */
+.video-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+#vid_img {
+  pointer-events: none; /* Allows clicks to pass through the video */
+}
+
+.video-wrapper::before {
+  content: "";
+  background-image: url("../images/play.png");
+  background-size: 45px 45px; /* Adjust size as needed */
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+/*  */
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -779,4 +807,10 @@ main {
     margin: 3%;
     margin-bottom: -5px;
   }
+
+  /*  */
+  .video-wrapper::before {
+    background-size: 80px 80px;
+  }
+  /*  */
 }
