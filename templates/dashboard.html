@@ -4,15 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
-    />
+    <meta name="description" content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features." />
 
-    <meta
-      name="keywords"
-      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
-    />
+    <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
@@ -30,30 +24,12 @@
       var supportsCssVars = function () {
         var e,
           t = document.createElement("style");
-        return (
-          (t.innerHTML = "root: { --tmp-var: bold; }"),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports("font-weight", "var(--tmp-var)")
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e;
       };
-      supportsCssVars() ||
-        alert(
-          "Please view this work in a modern browser that supports CSS Variables."
-        );
+      supportsCssVars() || alert("Please view this work in a modern browser that supports CSS Variables.");
     </script>
   </head>
-  <body
-    id="pageTop"
-    class="page-content"
-    data-spy="scroll"
-    data-target="#mainNav"
-  >
+  <body id="pageTop" class="page-content" data-spy="scroll" data-target="#mainNav">
     <!--======================== Nav-Section ================================-->
     {% include 'sidebar.html' %}
 
@@ -77,21 +53,13 @@
                     Welcome back,
                     <span>{{request.user.profile}}</span>👋
                   </h6>
-                  <p>
-                    psum quia dolor sit psum quia dolor sitpsum quia dolor sit
-                    psum quia dolor
-                  </p>
+                  <p>Securely store and easily access your valuable memories in your Memento Vault.</p>
                 </div>
                 <!-- end div -->
 
                 <div id="div">
                   <button class="btn">
-                    <img
-                      src="{% static 'images/marker.png'%}"
-                      class="img-fluid"
-                      id="create_img"
-                      alt="create_img"
-                    />
+                    <img src="{% static 'images/marker.png'%}" class="img-fluid" id="create_img" alt="create_img" />
                     create new vault
                   </button>
                 </div>
@@ -108,33 +76,18 @@
             <div class="col-md-4" id="main__card">
               <div class="card">
                 <div class="card-body">
-                  <img
-                    src="{% static 'images/user.svg' %}"
-                    class="img-fluid d-flex mx-auto"
-                    id="user_img"
-                    alt="user_img"
-                  />
+                  <img src="{% static 'images/user.svg' %}" class="img-fluid d-flex mx-auto" id="user_img" alt="user_img" />
                   <h5>@{{request.user.profile.username}}</h5>
                   <center><small>basic plan</small></center>
 
                   <div id="div_pills">
                     <span class="badge badge-pill">
-                      <img
-                        src="{% static 'images/photo.png' %}"
-                        class="img-fluid"
-                        id="pill_img"
-                        alt="pill_img"
-                      />
-                      12
+                      <img src="{% static 'images/photo.png' %}" class="img-fluid" id="pill_img" alt="pill_img" />
+                      {{image_count}}
                     </span>
                     <span class="badge badge-pill">
-                      <img
-                        src="{% static 'images/video-camera.png' %}"
-                        class="img-fluid"
-                        id="pill_img"
-                        alt="pill_img"
-                      />
-                      8
+                      <img src="{% static 'images/video-camera.png' %}" class="img-fluid" id="pill_img" alt="pill_img" />
+                      {{video_count}}
                     </span>
                   </div>
                 </div>
@@ -148,22 +101,12 @@
               <div class="card">
                 <div class="card-body">
                   <div id="card_header">
-                    <h4>active qr-code for <span>mimi's vault</span></h4>
-                    <img
-                      src="{% static 'images/icon-1.png' %}"
-                      class="img-fluid"
-                      id="icon_img"
-                      alt="icon_img"
-                    />
+                    <h4>active qr-code for <span>{{new_vault}} vault</span></h4>
+                    <img src="{% static 'images/icon-1.png' %}" class="img-fluid" id="icon_img" alt="icon_img" />
                   </div>
                   <!-- end card_header -->
 
-                  <img
-                    src="{% static 'images/qr-code-grey.png' %}"
-                    class="img-fluid"
-                    id="default_img"
-                    alt="default_img"
-                  />
+                  <img src="{% static 'images/qr-code-grey.png' %}" class="img-fluid" id="default_img" alt="default_img" />
                   <br />
                   <a href="#"><span>download qr-code</span></a>
                 </div>
@@ -178,17 +121,12 @@
                 <div class="card-body">
                   <div id="card_header">
                     <h4>nō of created <span>vaults</span></h4>
-                    <img
-                      src="{% static 'images/vault.png' %}"
-                      class="img-fluid"
-                      id="icon_img"
-                      alt="icon_img"
-                    />
+                    <img src="{% static 'images/vault.png' %}" class="img-fluid" id="icon_img" alt="icon_img" />
                   </div>
                   <!-- end card_header -->
 
-                  <h1>4</h1>
-                  <a href="#"><span>view all vaults</span></a>
+                  <h1>{{ vault_count }}</h1>
+                  <a href="{% url 'vaults' %}"><span>view all vaults</span></a>
                 </div>
                 <!-- end card-body -->
               </div>
@@ -283,11 +221,7 @@
     <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>

@@ -544,10 +544,10 @@ main {
 #uploadImageModal #media_btn {
   font-size: 1.2rem;
   font-family: var(--text-font);
-  color: var(--nav-links-color);
+  color: var(--main-color);
   letter-spacing: 1px;
-  background: transparent;
-  border: 1px solid #707070;
+  background: #cbdceb;
+  border: 1px solid #cbdceb;
 }
 #uploadImageModal .input {
   color: var(--text-color);
@@ -968,7 +968,7 @@ main {
 
   /*  */
   #uploadImageModal #media_btn {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: -1%;
   }
   #uploadImageModal .input {

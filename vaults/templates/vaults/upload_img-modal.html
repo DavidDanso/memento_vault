@@ -5,12 +5,12 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1>Otto’s Wedding - Vault</h1>
+          <h1>{{vault.title}} - Vault</h1>
           <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
         </div>
         <!-- end modal-header -->
         <div class="modal-body">
-          <p>For optimal results, upload videos in at least 780p or 1080p MP4 format. Images should be up to 5MB each and can be in PNG, JPEG, or JPG formats.</p>
+          <p>Share your best moments with others. Upload your <span></span> favorite videos and images.</p>
 
           <!--  -->
           <div class="card d-flex mx-auto" id="main_card">
@@ -58,7 +58,11 @@
 <!-- end uploadImageModal -->
 
 <script>
-  document.getElementById("inputGroupFile02").addEventListener("change", function () {
-    document.getElementById("uploadForm").submit();
+  <!--  -->
+  document.addEventListener("DOMContentLoaded", function () {
+    const uploadButton = document.getElementById("media_btn");
+    uploadButton.addEventListener("click", function () {
+      uploadButton.value = "Uploading...";
+    });
   });
 </script>

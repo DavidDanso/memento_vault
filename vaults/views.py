@@ -1,16 +1,48 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
+from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from functools import reduce
+from operator import or_
 from users.models import Profile
 from .forms import *
 
-# Dashboard view requires user login and renders the main dashboard page.
 @login_required(login_url='login')
 def dashboard_view(request):
-    # Context dictionary can hold user-specific data to pass to the template.
-    context = {}
+    # Ensure Profile exists for the logged-in user
+    profile = get_object_or_404(Profile, user=request.user)
+
+    # Retrieve all vaults associated with the logged-in user's profile
+    vaults = profile.vaults.all()
+
+    # Vault count and first vault title
+    vault_count = vaults.count()
+    new_vault = vaults[0].title if vault_count > 0 else "No Vaults Available"
+
+    # Retrieve all media files for user's vaults
+    media_files = VaultMedia.objects.filter(vault__in=vaults)
+
+    # File extension groups
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp']
+    video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
+
+    # Count images and videos with OR logic for extensions
+    image_count = media_files.filter(
+        reduce(or_, (Q(file__icontains=ext) for ext in image_extensions))
+    ).count()
+
+    video_count = media_files.filter(
+        reduce(or_, (Q(file__icontains=ext) for ext in video_extensions))
+    ).count()
+
+    # Context dictionary
+    context = {
+        'vault_count': vault_count, 'new_vault': new_vault, 
+        'image_count': image_count, 'video_count': video_count
+    }
     return render(request, 'dashboard.html', context)
+
 
 
 # Retrieves the user's profile for potential customization or data display.✅
