@@ -41,6 +41,15 @@
 <!-- End delete-media-modal-->
 
 <script>
+  <!--  -->
+  document.addEventListener("DOMContentLoaded", function () {
+    const deleteButton = document.getElementById("delete_media");
+    deleteButton.addEventListener("click", function () {
+      deleteButton.value = "Deleting...";
+    });
+  });
+
+  //
   function setMediaId(mediaId) {
     document.querySelector('#deleteMediaModal input[name="media_id"]').value = mediaId;
   }
