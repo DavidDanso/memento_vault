@@ -38,7 +38,6 @@ def vault_view(request):
             vault = form.save(commit=False)
             vault.owner = profile
             vault.save()
-            messages.success(request, 'Vault created successfully.')
             # Redirect to the newly created vault's detail view
             return redirect('vault-details', pk=vault.pk, title=vault.title)
 
@@ -48,12 +47,6 @@ def vault_view(request):
 
 # Vault details view renders a page that likely displays specific details of a selected vault.
 def vault_details_view(request, pk, title):
-    # Ensure Profile exists for the logged-in user
-    profile = get_object_or_404(Profile, user=request.user)
-
-    # Retrieve all vaults associated with the logged-in user's profile
-    vaults = profile.vaults.all()
-
     # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=pk)
 
@@ -81,6 +74,16 @@ def vault_details_view(request, pk, title):
             media_vault = media_form.save(commit=False)
             media_vault.vault = vault
             media_vault.save()
+            messages.success(request, 'Your file has been uploaded successfully. 🤩')
+            return redirect('vault-details', pk=pk, title=title)
+        
+        if 'delete_media' in request.POST:
+            # Get the media_id from POST data and delete the specific media file
+            media_id = request.POST.get('media_id')
+            # Ensure media belongs to this vault and delete
+            media_to_delete = get_object_or_404(VaultMedia, id=media_id)
+            media_to_delete.delete()
+            messages.success(request, 'The selected file has been permanently deleted. 🗑️')
             return redirect('vault-details', pk=pk, title=title)
 
     context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media, 'media_form': media_form}

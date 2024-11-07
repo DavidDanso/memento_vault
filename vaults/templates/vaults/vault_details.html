@@ -44,7 +44,10 @@
 
         <!-- hero -->
         <div id="hero">
-          <!--  -->
+          <!-- django messages -->
+          {% include 'toast.html' %}
+          <!--  end django message -->
+
           <a href="{% url 'vaults' %}">
             <img src="{% static 'images/arrow.png' %}" id="arrow-img" class="img-fluid" alt="arrow-img" />
           </a>
@@ -132,6 +135,10 @@
       <!--=========================================== upload_img-Modal ===============================-->
       {% include 'vaults/upload_img-modal.html' %}
       <!-- End upload_img-modal-->
+
+      <!--=========================================== deleteMedia-Modal ===============================-->
+      {% include 'vaults/delete_media-modal.html' %}
+      <!-- End deleteMedia-modal-->
     </main>
     <!-- end main -->
 
@@ -141,5 +148,36 @@
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/vault_details.js' %}"></script>
+
+    <script>
+      // Show toasts when page loads after form submission
+      document.addEventListener("DOMContentLoaded", function () {
+        const toasts = document.querySelectorAll(".alert");
+        toasts.forEach((toast, index) => {
+          setTimeout(() => {
+            toast.classList.add("show");
+            // Auto hide after 6 seconds
+            setTimeout(() => {
+              hideToast(toast.id);
+            }, 6000);
+          }, index * 200); // Stagger multiple toasts
+        });
+      });
+
+      function hideToast(toastId) {
+        const toast = document.getElementById(toastId);
+        if (toast) {
+          toast.classList.add("hide");
+          toast.classList.remove("show");
+          // Remove from DOM after animation
+          setTimeout(() => {
+            const container = toast.closest(".alert-container");
+            if (container) {
+              container.remove();
+            }
+          }, 300);
+        }
+      }
+    </script>
   </body>
 </html>

@@ -74,6 +74,58 @@ a:hover {
   border-radius: 6px;
 }
 
+/****************************************** alert-style ************************************/
+.alert-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-width: 36rem;
+  margin: 0.75rem auto;
+  padding: 0 1rem;
+  z-index: 50;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  background-color: #ffb38e;
+  color: white;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.alert.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alert.hide {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+.alert-content {
+  font-size: 1.125rem;
+}
+
+.close-button {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.alert-success {
+  background: #ffb38e !important;
+  color: var(--main-color) !important;
+  border: 1px solid #ffb38e !important;
+}
+#close_ {
+  width: 25px;
+}
+
 /****************************************** NAVIGATION ************************************/
 /* sidebar */
 #nav_ {
@@ -625,6 +677,74 @@ main {
   margin-bottom: -4px;
 }
 
+/* delete-modal */
+#delete-media-modal .modal-dialog {
+  max-width: 600px;
+}
+#delete-media-modal .modal-content {
+  background-color: #222222;
+  border: 1px solid #707070;
+}
+#delete-media-modal .modal-header {
+  border-bottom: transparent;
+  margin-bottom: -2%;
+}
+#delete-media-modal #warning {
+  background: #282218;
+  border: 1px solid #574017;
+  margin-bottom: 3%;
+}
+#delete-media-modal h3 {
+  color: var(--text-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.9vh;
+  text-align: center;
+  padding: 3%;
+}
+#delete-media-modal h4 {
+  color: var(--text-color);
+  font-family: var(--header-font);
+  letter-spacing: 1px;
+  font-size: 2.1vh;
+  margin-bottom: 6%;
+  text-align: center;
+  line-height: 1.1;
+}
+#delete-media-modal h6 {
+  color: var(--text-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.8vh;
+  text-align: center;
+}
+#delete-media-modal h6 span {
+  border-bottom: 1px solid #707070;
+}
+#delete_media {
+  color: var(--text-color);
+  background: #951c2f;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 2vh;
+  transition: all 0.5s ease-in-out;
+  margin-left: 10px;
+}
+#delete_media:hover {
+  color: var(--text-color);
+  background: #951c2eac;
+  transition: all 0.5s ease-in-out;
+}
+#delete-media-modal .modal-footer {
+  margin-bottom: -2%;
+}
+
+/*  */
+#delete_img {
+  width: 20%;
+  margin-bottom: 4%;
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -922,5 +1042,45 @@ main {
     width: 7% !important;
     margin: 3%;
     margin-bottom: -5px;
+  }
+
+  /* delete-modal */
+  #delete-media-modal .modal-dialog {
+    max-width: 600px;
+  }
+  #delete-media-modal .modal-header {
+    margin-bottom: -2%;
+  }
+  #delete-media-modal #warning {
+    margin-bottom: 3%;
+  }
+  #delete-media-modal h3 {
+    letter-spacing: 1px;
+    font-size: 1.9vh;
+    padding: 3%;
+  }
+  #delete-media-modal h4 {
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    margin-bottom: 6%;
+  }
+  #delete-media-modal h6 {
+    letter-spacing: 1px;
+    font-size: 1.8vh;
+  }
+  #delete_media {
+    letter-spacing: 1px;
+    font-size: 2vh;
+    margin-left: 10px;
+  }
+  #delete-media-modal .modal-footer {
+    margin-bottom: -2%;
+  }
+
+  /*  */
+  #delete_img {
+    width: 18%;
+    margin-bottom: 2%;
+    margin-top: -4%;
   }
 }

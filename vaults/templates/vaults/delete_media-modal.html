@@ -1,0 +1,47 @@
+{% load static %}
+<!--=========================================== delete-account-Modal--layout ===============================-->
+<div id="delete-media-modal">
+  <div class="modal fade" id="deleteMediaModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div id="modal-wrapper">
+            <div id="warning">
+              <h3>Unexpected bad things will happen if you don't read this!</h3>
+            </div>
+            <!-- end warning -->
+
+            <h4>This action cannot be undone. This will permanently delete this media from this vault.</h4>
+
+            <!--  -->
+            <img src="{% static 'images/delete.png' %}" class="img-fluid d-flex mx-auto" id="delete_img" alt="delete_img" />
+            <!--  -->
+
+            <h6>Please click on the Delete Button to confirm, or click Cancel</h6>
+            <form action="{% url 'vault-details' pk=vault.pk title=vault.title %}" method="POST">
+              {% csrf_token %}
+              <input type="hidden" name="media_id" value="" />
+              <div class="modal-footer">
+                <a href="#" data-bs-dismiss="modal" aria-label="Close">
+                  <h6><span>Cancel, keep this media</span></h6>
+                </a>
+                <input type="submit" class="btn" name="delete_media" id="delete_media" value="Delete Media" />
+              </div>
+            </form>
+          </div>
+          <!-- End modal-wrapper-->
+        </div>
+        <!-- End modal-body-->
+      </div>
+      <!-- End modal-content-->
+    </div>
+  </div>
+  <!-- End modal-->
+</div>
+<!-- End delete-media-modal-->
+
+<script>
+  function setMediaId(mediaId) {
+    document.querySelector('#deleteMediaModal input[name="media_id"]').value = mediaId;
+  }
+</script>
