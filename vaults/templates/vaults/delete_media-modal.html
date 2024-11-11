@@ -18,7 +18,7 @@
             <!--  -->
 
             <h6>Please click on the Delete Button to confirm, or click Cancel</h6>
-            <form action="{% url 'vault-details' pk=vault.pk title=vault.title %}" method="POST">
+            <form action="" method="POST">
               {% csrf_token %}
               <input type="hidden" name="media_id" value="" />
               <div class="modal-footer">

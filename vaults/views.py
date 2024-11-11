@@ -165,6 +165,15 @@ def everything_view(request):
             vault.save()
             # Redirect to the newly created vault's detail view
             return redirect('vault-details', pk=vault.pk, title=vault.title)
+        
+        if 'delete_media' in request.POST:
+            # Get the media_id from POST data and delete the specific media file
+            media_id = request.POST.get('media_id')
+            # Ensure media belongs to this vault and delete
+            media_to_delete = get_object_or_404(VaultMedia, id=media_id)
+            media_to_delete.delete()
+            messages.success(request, 'The selected file has been permanently deleted. 🗑️')
+            return redirect('everything')
 
     # Pass categorized media to the context for easy handling in the template
     context = {
