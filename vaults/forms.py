@@ -7,7 +7,7 @@ class VaultCreationForm(forms.ModelForm):
         model = Vault
         fields = ['title']
         widgets = {
-            'title': forms.TextInput(attrs={'placeholder': 'Name your new vault...'}),
+            'title': forms.TextInput(attrs={'placeholder': 'name your new vault...'}),
         }
 
     def __init__(self, *args, **kwargs):

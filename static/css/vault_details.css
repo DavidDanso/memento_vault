@@ -89,7 +89,7 @@ a:hover {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem 0.75rem 1.5rem;
-  background-color: #ffb38e;
+  background-color: #a2d2df;
   color: white;
   border-radius: 0.5rem;
   opacity: 0;
@@ -118,9 +118,9 @@ a:hover {
 }
 
 .alert-success {
-  background: #ffb38e !important;
+  background: #c3e2c2 !important;
   color: var(--main-color) !important;
-  border: 1px solid #ffb38e !important;
+  border: 1px solid #c3e2c2 !important;
 }
 #close_ {
   width: 25px;

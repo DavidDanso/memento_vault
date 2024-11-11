@@ -41,38 +41,20 @@
 
         <!-- hero -->
         <div id="hero">
-          <div class="row" id="cards_row">
-            <div class="col-md-6 align-self-center">
-              <div class="card" id="form_card">
-                <div class="card-body">
-                  <h5>create new vault</h5>
-                  <!--  -->
-                  <div class="input-group mb-3" id="vault_form">
-                    <input type="text" class="form-control input" placeholder="name your new vault..." />
-                    <button type="submit" name="createVault">
-                      <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
-                    </button>
-                  </div>
-                  <!-- end vault_form -->
-                </div>
-                <!-- End card-body-->
-              </div>
-              <!-- End card-->
-            </div>
-            <!-- end col -->
-          </div>
-          <!-- end row -->
-
           <!-- mobile form -->
           <div class="card" id="mob_form_card">
             <div class="card-body">
               <h5>create new vault</h5>
-              <div class="input-group mb-3" id="vault_form">
-                <input type="text" class="form-control input" placeholder="name your new vault..." />
-                <button type="submit" name="createVault">
-                  <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
-                </button>
-              </div>
+              <!--  -->
+              <form action="{% url 'everything' %}" method="POST">
+                {% csrf_token %}
+                <div class="input-group mb-3" id="vault_form">
+                  {{form.title}}
+                  <button type="submit" name="createVault">
+                    <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
+                  </button>
+                </div>
+              </form>
               <!-- end vault_form -->
             </div>
             <!-- End card-body-->
@@ -82,6 +64,7 @@
 
           <hr class="d-flex mx-auto" id="page_line" />
 
+          <!--  -->
           <center>
             <div id="search">
               <input id="input" class="form-control live-search-box" placeholder="search by 'mood' or vault name..." />
@@ -103,12 +86,15 @@
             <div class="create_form">
               <div class="card" id="create_form">
                 <div class="card-body">
-                  <div class="input-group mb-3" id="vault_form">
-                    <input type="text" class="form-control input" placeholder="name your new vault..." />
-                    <button type="submit" name="createVault">
-                      <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
-                    </button>
-                  </div>
+                  <form action="{% url 'everything' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="input-group mb-3" id="vault_form">
+                      {{form.title}}
+                      <button type="submit" name="createVault">
+                        <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
+                      </button>
+                    </div>
+                  </form>
                   <!-- end vault_form -->
                 </div>
                 <!-- End card-body-->

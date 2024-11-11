@@ -58,7 +58,7 @@
                 <!-- end div -->
 
                 <div id="div">
-                  <button class="btn">
+                  <button class="btn" data-bs-toggle="modal" data-bs-target="#createVault">
                     <img src="{% static 'images/marker.png'%}" class="img-fluid" id="create_img" alt="create_img" />
                     create new vault
                   </button>
@@ -217,6 +217,10 @@
         <!-- end dashboard -->
       </div>
       <!-- end container-fluid -->
+
+      <!--=========================================== create_vault-Modal ===============================-->
+      {% include 'vaults/create_vault-modal.html' %}
+      <!-- End create_vault-modal-->
     </main>
     <!-- end main -->
 

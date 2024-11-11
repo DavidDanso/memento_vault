@@ -24,7 +24,7 @@ def dashboard_view(request):
     media_files = VaultMedia.objects.filter(vault__in=vaults)
 
     # File extension groups
-    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp']
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
     video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
 
     # Count images and videos with OR logic for extensions
@@ -36,10 +36,21 @@ def dashboard_view(request):
         reduce(or_, (Q(file__icontains=ext) for ext in video_extensions))
     ).count()
 
+    form = VaultCreationForm()
+    if request.method == 'POST':
+        form = VaultCreationForm(request.POST)
+        if form.is_valid():
+            vault = form.save(commit=False)
+            vault.owner = profile
+            vault.save()
+            # Redirect to the newly created vault's detail view
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
+
     # Context dictionary
     context = {
         'vault_count': vault_count, 'new_vault': new_vault, 
-        'image_count': image_count, 'video_count': video_count
+        'image_count': image_count, 'video_count': video_count,
+        'form': form
     }
     return render(request, 'dashboard.html', context)
 
@@ -92,7 +103,7 @@ def vault_details_view(request, pk, title):
     categorized_media = []
     for media in media_files:
         file_url = media.file.url.lower()  # Convert URL to lowercase for consistent checking
-        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp')):
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif')):
             categorized_media.append({'media': media, 'type': 'image'})
         elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
             categorized_media.append({'media': media, 'type': 'video'})
@@ -137,17 +148,29 @@ def everything_view(request):
     categorized_media = []
     for media in media_files:
         file_url = media.file.url.lower()
-        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp')):
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif')):
             categorized_media.append({'media': media, 'type': 'image'})
         elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
             categorized_media.append({'media': media, 'type': 'video'})
         else:
             categorized_media.append({'media': media, 'type': 'unsupported'})
 
+
+    form = VaultCreationForm()
+    if request.method == 'POST':
+        form = VaultCreationForm(request.POST)
+        if form.is_valid():
+            vault = form.save(commit=False)
+            vault.owner = profile
+            vault.save()
+            # Redirect to the newly created vault's detail view
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
+
     # Pass categorized media to the context for easy handling in the template
     context = {
         'media_files': categorized_media,
         'profile': profile,
+        'form': form,
     }
     return render(request, 'vaults/everything.html', context)
 

@@ -9,6 +9,7 @@ django-active-link==0.2.2
 django-allauth==65.0.2
 django-cleanup==9.0.0
 django-htmx==1.19.0
+django-resized==1.0.3
 humanize==4.11.0
 idna==3.10
 oauthlib==3.2.2
