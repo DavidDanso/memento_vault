@@ -23,6 +23,8 @@ def dashboard_view(request):
     # Retrieve all media files for user's vaults
     media_files = VaultMedia.objects.filter(vault__in=vaults)
 
+    recent_media = media_files[:2]
+
     # File extension groups
     image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
     video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
@@ -50,7 +52,8 @@ def dashboard_view(request):
     context = {
         'vault_count': vault_count, 'new_vault': new_vault, 
         'image_count': image_count, 'video_count': video_count,
-        'form': form
+        'form': form,
+        'recent_media': recent_media
     }
     return render(request, 'dashboard.html', context)
 
@@ -86,6 +89,7 @@ def vault_view(request):
 
     context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 'now': current_date,}
     return render(request, 'vaults/vaults.html', context)
+
 
 
 # Vault details view renders a page that likely displays specific details of a selected vault.
@@ -131,6 +135,7 @@ def vault_details_view(request, pk, title):
 
     context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media, 'media_form': media_form}
     return render(request, 'vaults/vault_details.html', context)
+
 
 
 # Everything view renders a page that might showcase all vault-related items or records.

@@ -25,3 +25,6 @@ class VaultMedia(models.Model):
 
     def __str__(self):
         return f'{self.vault.title} vault media [ {self.vault.owner} ]'
+    
+    class Meta:
+        ordering = ['-updated_at']
