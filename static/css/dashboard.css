@@ -527,14 +527,14 @@ main {
   font-size: 1.2rem;
 }
 #recent_uploads .card {
-  margin-top: 3%;
+  margin-top: 1px;
   background: #eae4dd;
 }
 #initials h4 {
   color: var(--main-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-top: 4%;
   margin-bottom: 6%;
 }
@@ -542,7 +542,7 @@ main {
   color: #ff5924;
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-weight: bold;
   border: 1px solid #707070;
   padding: 3%;
@@ -810,17 +810,17 @@ main {
     border-bottom: 1px solid var(--text-color);
   }
   #recent_uploads .card {
-    margin-top: 1%;
+    margin-top: 1px;
   }
   #initials h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0;
+    font-size: 1.1rem;
+    margin-bottom: 1%;
     margin-top: 2%;
   }
   #initials h4 span {
-    font-size: 1.7rem;
+    font-size: 1.3rem;
     margin-right: 3%;
-    padding: 4%;
+    padding: 3%;
   }
   #recent_uploads h5 {
     font-size: 1.2rem;
@@ -835,11 +835,12 @@ main {
   #recent_uploads a {
     font-size: 1.2rem;
     padding: 3px 12px;
+    margin-top: 1%;
+    margin-left: 13%;
+    margin-bottom: -5%;
   }
-  #recent_uploads .col-md-4,
-  .col-md-3,
-  .col-md-3 {
-    border-right: 1px solid #2b2d3c;
+  #recent_uploads .col-md-3 {
+    border-left: 1px solid #2b2d3c;
   }
 }
 

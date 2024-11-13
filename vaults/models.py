@@ -2,6 +2,7 @@
 from django.db import models
 from users.models import Profile
 import uuid
+from django.utils import timezone
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -25,6 +26,6 @@ class VaultMedia(models.Model):
 
     def __str__(self):
         return f'{self.vault.title} vault media [ {self.vault.owner} ]'
-    
+
     class Meta:
         ordering = ['-updated_at']

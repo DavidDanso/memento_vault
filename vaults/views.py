@@ -23,7 +23,9 @@ def dashboard_view(request):
     # Retrieve all media files for user's vaults
     media_files = VaultMedia.objects.filter(vault__in=vaults)
 
-    recent_media = media_files[:2]
+    # Optionally retrieve recent media files
+    recent_media = media_files.order_by('-updated_at')[:3]  # Adjust as needed
+
 
     # File extension groups
     image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
@@ -53,7 +55,7 @@ def dashboard_view(request):
         'vault_count': vault_count, 'new_vault': new_vault, 
         'image_count': image_count, 'video_count': video_count,
         'form': form,
-        'recent_media': recent_media
+        'recent_media': recent_media,
     }
     return render(request, 'dashboard.html', context)
 

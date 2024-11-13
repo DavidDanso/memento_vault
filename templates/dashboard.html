@@ -1,4 +1,6 @@
 {% load static %}
+<!--  -->
+{% load humanize %}
 <!DOCTYPE html>
 <html lang="en" class="js has-scroll-init has-scroll-smooth">
   <head>
@@ -143,29 +145,19 @@
           <h3><span>recent uploads</span></h3>
           <div class="row d-flex justify-content-center" id="recent_uploads">
             {% for media in recent_media %}
-            <div class="col-md-5">
+            <div class="col-md-4">
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-9">
                       <div id="initials">
-                        <h4><span class="text-capitalize">{{ media.vault.title|slice:":1" }}</span>{{media.vault.title}} vault</h4>
+                        <h4><span class="text-capitalize">{{ media.vault.title|slice:":2" }}</span>{{media.vault.title|truncatechars:20}} vault</h4>
                       </div>
                       <!-- end initials -->
                     </div>
                     <!-- end col -->
 
-                    <div class="col-6 col-md-3">
-                      <h5>6 uploads</h5>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-6 col-md-3">
-                      <h6>3 mins ago</h6>
-                    </div>
-                    <!-- end col -->
-
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <a href="{% url 'vault-details' media.vault.id media.vault.title|slugify %}" class="btn">view</a>
                     </div>
                     <!-- end col -->
