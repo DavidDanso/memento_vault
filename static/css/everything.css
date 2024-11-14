@@ -740,6 +740,23 @@ main {
   margin-bottom: 4%;
 }
 
+/* no_media */
+#no_media {
+  margin-top: 80%;
+}
+#no_media img {
+  width: 25%;
+  margin-top: 40%;
+}
+#no_media h4 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 2vh;
+  text-align: center;
+  margin-top: 3%;
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -1046,5 +1063,18 @@ main {
     width: 18%;
     margin-bottom: 2%;
     margin-top: -4%;
+  }
+
+  /* no_media */
+  #no_media {
+    margin-top: 20%;
+  }
+  #no_media img {
+    width: 5%;
+    margin-top: 25%;
+  }
+  #no_media h4 {
+    font-size: 2vh;
+    margin-top: 1%;
   }
 }
