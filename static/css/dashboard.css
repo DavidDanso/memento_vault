@@ -798,6 +798,9 @@ main {
   #dashboard #line_divider {
     width: 90%;
   }
+  .no_vault-txt {
+    font-size: 1.2rem !important;
+  }
 
   /* recent_uploads */
   #dashboard h3 {

@@ -18,7 +18,7 @@ def dashboard_view(request):
 
     # Vault count and first vault title
     vault_count = vaults.count()
-    new_vault = vaults[0].title if vault_count > 0 else "No Vaults Available"
+    new_vault = vaults[0].title if vault_count > 0 else "📂 No Vaults Available - Create your first vault"
 
     # Retrieve all media files for user's vaults
     media_files = VaultMedia.objects.filter(vault__in=vaults)

@@ -102,15 +102,22 @@
             <div class="col-md-4 align-self-end">
               <div class="card">
                 <div class="card-body">
+                  {% if vault_count > 0 %}
                   <div id="card_header">
                     <h4>active qr-code for <span>{{new_vault}} vault</span></h4>
                     <img src="{% static 'images/icon-1.png' %}" class="img-fluid" id="icon_img" alt="icon_img" />
                   </div>
                   <!-- end card_header -->
-
                   <img src="{% static 'images/qr-code-grey.png' %}" class="img-fluid" id="default_img" alt="default_img" />
                   <br />
                   <a href="#"><span>download qr-code</span></a>
+
+                  {% else %}
+                  <div id="card_header">
+                    <h4 class="no_vault-txt"><span>{{new_vault}}</span></h4>
+                    <img src="{% static 'images/empty-set.png' %}" class="img-fluid" id="icon_img" alt="icon_img" />
+                  </div>
+                  {% endif %}
                 </div>
                 <!-- end card-body -->
               </div>
@@ -142,6 +149,7 @@
           <hr class="d-flex mx-auto" id="line_divider" />
           <!--  -->
 
+          {% if recent_media %}
           <h3><span>recent uploads</span></h3>
           <div class="row d-flex justify-content-center" id="recent_uploads">
             {% for media in recent_media %}
@@ -151,7 +159,7 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div id="initials">
-                        <h4><span class="text-capitalize">{{ media.vault.title|slice:":2" }}</span>{{media.vault.title|truncatechars:20}} vault</h4>
+                        <h4><span class="text-capitalize">{{ media.vault.title|slice:":2" }}</span>🔒㊙️ {{media.vault.title|truncatechars:20}} vault🔒㊙️</h4>
                       </div>
                       <!-- end initials -->
                     </div>
@@ -172,6 +180,11 @@
             <!-- end col -->
           </div>
           <!-- end recent_uploads -->
+          {% else %}
+          <!-- no_uploads -->
+          <h3>No media files uploaded yet</h3>
+          <!--  -->
+          {% endif %}
         </div>
         <!-- end dashboard -->
       </div>
