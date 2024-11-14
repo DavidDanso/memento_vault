@@ -470,6 +470,45 @@ main {
   z-index: 1;
 }
 /*  */
+
+/* no_vault */
+#no_vault {
+  margin-top: 80%;
+}
+#no_vault #icon_img {
+  width: 25%;
+  margin-top: 40%;
+}
+#no_vault h4 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 2vh;
+  text-align: center;
+  margin-top: 3%;
+}
+#no_vault #button_ {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  vertical-align: middle;
+  padding: 5px 15px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+  margin-top: 2%;
+}
+#no_vault #create_img {
+  width: 25px;
+  margin-right: 2px;
+}
+#no_vault #button_:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
+}
 /********************** Mobile Devices Portrait and less ****************************/
 @media (max-width: 380px) {
   /* CSS rules here */
@@ -756,4 +795,26 @@ main {
     background-size: 80px 80px;
   }
   /*  */
+
+  /* no_vault */
+  #no_vault {
+    margin-top: 20%;
+  }
+  #no_vault #icon_img {
+    width: 5%;
+    margin-top: 25%;
+  }
+  #no_vault h4 {
+    font-size: 2vh;
+    margin-top: 1%;
+  }
+  #no_vault #button_ {
+    margin-top: 2px;
+    font-size: 1.2rem;
+    padding: 5px 15px;
+  }
+  #no_vault #create_img {
+    width: 25px;
+    margin-right: 2px;
+  }
 }
