@@ -7,6 +7,7 @@ from functools import reduce
 from operator import or_
 from users.models import Profile
 from .forms import *
+from django.db.models import Exists, OuterRef
 
 @login_required(login_url='login')
 def dashboard_view(request):
@@ -15,6 +16,11 @@ def dashboard_view(request):
 
     # Retrieve all vaults associated with the logged-in user's profile
     vaults = profile.vaults.all()
+    
+    # Filter vaults with recent uploads (vaults with media files)
+    recent_media = vaults.annotate(
+        has_media=Exists(VaultMedia.objects.filter(vault=OuterRef('pk')))
+    ).filter(has_media=True)[:3]
 
     # Vault count and first vault title
     vault_count = vaults.count()
@@ -22,9 +28,6 @@ def dashboard_view(request):
 
     # Retrieve all media files for user's vaults
     media_files = VaultMedia.objects.filter(vault__in=vaults)
-
-    # Optionally retrieve recent media files
-    recent_media = media_files.order_by('-updated_at')[:3]  # Adjust as needed
 
 
     # File extension groups

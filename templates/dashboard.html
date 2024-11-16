@@ -159,14 +159,14 @@
                   <div class="row">
                     <div class="col-md-9">
                       <div id="initials">
-                        <h4><span class="text-capitalize">{{ media.vault.title|slice:":2" }}</span>🔒㊙️ {{media.vault.title|truncatechars:20}} vault🔒㊙️</h4>
+                        <h4><span class="text-capitalize">{{ media.title|slice:":2" }}</span>🔒㊙️ {{media.title|truncatechars:20}} vault🔒㊙️</h4>
                       </div>
                       <!-- end initials -->
                     </div>
                     <!-- end col -->
 
                     <div class="col-md-3">
-                      <a href="{% url 'vault-details' media.vault.id media.vault.title|slugify %}" class="btn">view</a>
+                      <a href="{% url 'vault-details' media.id media.title|slugify %}" class="btn">view</a>
                     </div>
                     <!-- end col -->
                   </div>
