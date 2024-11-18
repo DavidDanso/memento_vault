@@ -9,6 +9,7 @@
         </div>
         <!-- end modal-header -->
         <div class="modal-body">
+          {% if vault_count < 5 %}
           <img src="{% static 'images/marker.png' %}" class="img-fluid d-flex mx-auto" id="marker_img" alt="marker_img" />
           <h1>Create new Vault</h1>
           <p>A Vault securely stores and organizes your shared memories. Easily upload photos and videos directly, or invite others to contribute using a unique QR code, building a collaborative archive of your special moments.</p>
@@ -23,6 +24,17 @@
           </form>
 
           <h6>Just a heads-up: <span>You have 5 more vaults to create.</span></h6>
+
+          {% else %}
+          <h2>🎉 Vault Milestone Reached!</h2>
+          <p>Wow, you've created <strong>5 incredible Vaults</strong> - each a unique treasure chest of memories! 🌟 Your digital memory collection is now complete, preserving your most cherished moments in stunning detail.</p>
+          <h4>Vault Limit Reached</h4>
+          <p>You've maximized your memory-saving potential! While you can't create additional Vaults right now, you can continue to:</p>
+          <li>Invite contributors to your existing Vaults</li>
+          <li>Upload more photos and videos to your current collections</li>
+          <li>Edit and manage your memory archives</li>
+          <h6>Pro Tip: <span>Want more Vault space? Check out our premium options to expand your memory-keeping possibilities! 📸✨</span></h6>
+          {% endif %}
         </div>
         <!-- end modal-body -->
       </div>
