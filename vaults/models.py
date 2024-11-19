@@ -5,11 +5,17 @@ import uuid
 from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vaults")
+    guest_num = models.IntegerField(default=2, null=True, blank=True, validators=[
+            MinValueValidator(2),
+            MaxValueValidator(10)
+        ])
+    photos_per_person = models.IntegerField(default=10, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

@@ -29,6 +29,9 @@ def dashboard_view(request):
     # Retrieve all media files for user's vaults
     media_files = VaultMedia.objects.filter(vault__in=vaults)
 
+    #
+    vaults_to_created = 5 - vault_count
+
 
     # File extension groups
     image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
@@ -59,6 +62,7 @@ def dashboard_view(request):
         'image_count': image_count, 'video_count': video_count,
         'form': form,
         'recent_media': recent_media,
+        'vaults_to_created': vaults_to_created,
     }
     return render(request, 'dashboard.html', context)
 
@@ -76,6 +80,10 @@ def vault_view(request):
     # Get the current date
     current_date = timezone.now()
 
+    #
+    vault_count = vaults.count()
+    vaults_to_created = 5 - vault_count
+
     # Prepare a dictionary to hold vaults and their media count
     vaults_with_media_count = []
     for vault in vaults:
@@ -92,7 +100,8 @@ def vault_view(request):
             # Redirect to the newly created vault's detail view
             return redirect('vault-details', pk=vault.pk, title=vault.title)
 
-    context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 'now': current_date,}
+    context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 
+               'now': current_date, 'vaults_to_created': vaults_to_created, 'vault_count': vault_count}
     return render(request, 'vaults/vaults.html', context)
 
 
