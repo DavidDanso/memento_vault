@@ -488,6 +488,11 @@ main {
 }
 #uploadImageModal .modal-content {
   background-color: #222222;
+  border-style: solid;
+  border-width: 20px;
+  border-image-source: url(../images/description_img.png);
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: stretch;
 }
 #uploadImageModal h1 {
   color: #8f9aab;
@@ -582,6 +587,11 @@ main {
 }
 #viewImageModal .modal-content {
   background-color: #222222;
+  border-style: solid;
+  border-width: 20px;
+  border-image-source: url(../images/description_img.png);
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: stretch;
 }
 #modal_img {
   width: 50%;
@@ -683,7 +693,11 @@ main {
 }
 #delete-media-modal .modal-content {
   background-color: #222222;
-  border: 1px solid #707070;
+  border-style: solid;
+  border-width: 20px;
+  border-image-source: url(../images/description_img.png);
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: stretch;
 }
 #delete-media-modal .modal-header {
   border-bottom: transparent;
@@ -938,6 +952,9 @@ main {
   /*  */
 
   /* upload-modal */
+  #uploadImageModal .modal-dialog {
+    max-width: 730px;
+  }
   #uploadImageModal h1 {
     font-size: 1.7rem;
     margin-bottom: 1%;

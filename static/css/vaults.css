@@ -377,6 +377,11 @@ main {
 }
 #createVaultModal .modal-content {
   background-color: #222222;
+  border-style: solid;
+  border-width: 20px;
+  border-image-source: url(../images/description_img.png);
+  border-image-slice: 60 60 60 60;
+  border-image-repeat: stretch;
 }
 #close_svg {
   width: 12%;
