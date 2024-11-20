@@ -12,12 +12,28 @@
           {% if vault_count < 5 %}
           <img src="{% static 'images/marker.png' %}" class="img-fluid d-flex mx-auto" id="marker_img" alt="marker_img" />
           <h1>Create new Vault</h1>
-          <p>A Vault securely stores and organizes your shared memories. Easily upload photos and videos directly, or invite others to contribute using a unique QR code, building a collaborative archive of your special moments.</p>
+          <p>Securely organize your memories. Upload your own photos or invite friends to contribute via a QR code.</p>
 
           <!--  -->
           <form action="" method="POST">
             {% csrf_token %}
             <div class="input-group d-flex justify-content-center" name="create_field" id="create_field">{{form.title}}</div>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="form-label">👤 Number of Guest</label>
+                <div class="input-group d-flex justify-content-center">{{form.guest_num}}</div>
+                <small>enter guest number. set limit (2-10).</small>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6">
+                <label for="exampleFormControlInput1" class="form-label">📷 Photos per Person</label>
+                <div class="input-group d-flex justify-content-center">{{form.photos_per_person}}</div>
+                <small>maximum photos per guest (1-10).</small>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
             <!-- end create_field -->
             <input type="submit" class="btn d-flex mx-auto" id="button_" value="create new vault" />
             <!-- end submit_field -->

@@ -5,9 +5,11 @@ from .models import Vault, VaultMedia
 class VaultCreationForm(forms.ModelForm):
     class Meta:
         model = Vault
-        fields = ['title']
+        fields = ['title', 'guest_num', 'photos_per_person']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'name your new vault...'}),
+            'guest_num': forms.NumberInput(attrs={'placeholder': 'Number of guests (2-10)...'}),
+            'photos_per_person': forms.NumberInput(attrs={'placeholder': 'Photos per person (default 10)...'}),
         }
 
     def __init__(self, *args, **kwargs):

@@ -280,9 +280,13 @@ main {
 
 /* main_card */
 #main_card {
-  background: #656565;
+  background-image: url("../images/bg.avif"); /* Replace with your image path */
+  background-size: cover; /* Adjust background size as needed */
+  background-position: center; /* Adjust background position as needed */
+  background-repeat: no-repeat; /* Prevent image repetition */
   box-shadow: 0 10px 10px -10px rgba(0, 0, 0, 0.35);
   transition: 1s;
+  background-color: #656565;
 }
 #hero #main_card:hover {
   -webkit-box-shadow: -1px 9px 40px -12px rgba(0, 0, 0, 0.35);
@@ -301,9 +305,8 @@ main {
   font-weight: bold;
   font-style: italic;
 }
-#photo_ {
-  width: 75px;
-  margin-top: 16%;
+#space_ {
+  margin-top: 28%;
 }
 #vault_count {
   float: right;
@@ -354,7 +357,18 @@ main {
   letter-spacing: 1px;
   font-size: 1.2rem;
   margin-top: -4px;
+  margin-bottom: 10%;
+}
+#card_line {
+  color: #fff;
+}
+#hero small {
+  font-family: var(--text-font);
+  color: #b6a28e;
+  letter-spacing: 1px;
+  font-size: 1.2rem;
   margin-bottom: 0;
+  text-align: center;
 }
 
 /* createVault-modal */
@@ -431,6 +445,23 @@ main {
   font-family: var(--text-font);
   font-size: 1rem;
 }
+
+/*  */
+#createVaultModal label {
+  font-size: 1.2rem;
+  font-family: var(--header-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  margin-top: 6%;
+}
+#createVaultModal small {
+  font-size: 1.2rem;
+  font-family: var(--text-font);
+  color: #b6a28e;
+  letter-spacing: 1px;
+}
+/*  */
+
 #createVaultModal #button_ {
   font-family: var(--text-font);
   color: var(--text-color);
@@ -442,7 +473,7 @@ main {
   padding: 5px 15px;
   text-align: center;
   transition: all 0.4s ease-in-out;
-  margin-top: 3%;
+  margin-top: 5%;
 }
 #createVaultModal #button_:hover {
   background-color: #2b2d3cbd;
@@ -683,12 +714,11 @@ main {
 
   /* main_card */
   #hero h2 {
-    font-size: 2.2rem;
+    font-size: 2.7rem;
     margin-top: 22%;
   }
-  #photo_ {
-    width: 80px;
-    margin-top: 11%;
+  #space_ {
+    margin-top: 39%;
   }
   #vault_count {
     padding: 1%;
@@ -723,6 +753,11 @@ main {
   #hero p {
     font-size: 1.1rem;
     margin-top: 0;
+    margin-bottom: 0;
+  }
+  #hero small {
+    letter-spacing: 1px;
+    font-size: 1.1rem;
     margin-bottom: 0;
   }
 
@@ -765,10 +800,22 @@ main {
   #createVaultModal .input::placeholder {
     font-size: 1.1rem;
   }
+
+  /*  */
+  #createVaultModal label {
+    font-size: 1.2rem;
+    margin-top: 6%;
+  }
+  #createVaultModal small {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+  /*  */
+
   #createVaultModal #button_ {
     font-size: 1.3rem;
     padding: 5px 15px;
-    margin-top: 1.3%;
+    margin-top: 3%;
   }
   #createVaultModal h6 {
     font-size: 1.2rem;

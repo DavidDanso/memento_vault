@@ -66,7 +66,7 @@
                   <div class="card-body">
                     {% if item.media_count > 0 %}
                     <!--  -->
-                    <img src="{% static 'images/photo_.png'%}" class="img-fluid d-flex mx-auto" id="photo_" alt="Media icon for {{ item.vault.title }}" />
+                    <div id="space_"></div>
                     <!--  -->
                     {% else %}
                     <h2>Empty</h2>
@@ -89,6 +89,11 @@
                       <p>{{ item.vault.updated_at|naturaltime }}</p>
                     </div>
                     <!-- end vault_info -->
+
+                    <hr id="card_line" />
+                    <center>
+                      <small>up to {{item.vault.guest_num}} guests can upload to this vault.</small>
+                    </center>
                   </div>
                   <!-- end card-body -->
                 </div>

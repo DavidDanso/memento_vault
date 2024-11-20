@@ -418,6 +418,23 @@ main {
   font-family: var(--text-font);
   font-size: 1rem;
 }
+
+/*  */
+#createVaultModal label {
+  font-size: 1.2rem;
+  font-family: var(--header-font);
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  margin-top: 6%;
+}
+#createVaultModal small {
+  font-size: 1.2rem;
+  font-family: var(--text-font);
+  color: #b6a28e;
+  letter-spacing: 1px;
+}
+/*  */
+
 #createVaultModal #button_ {
   font-family: var(--text-font);
   color: var(--text-color);
@@ -902,6 +919,16 @@ main {
   #createVaultModal .input::placeholder {
     font-size: 1.1rem;
   }
+  /*  */
+  #createVaultModal label {
+    font-size: 1.2rem;
+    margin-top: 6%;
+  }
+  #createVaultModal small {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+  }
+  /*  */
   #createVaultModal #button_ {
     font-size: 1.3rem;
     padding: 5px 15px;
