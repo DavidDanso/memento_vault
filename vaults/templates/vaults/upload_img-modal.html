@@ -25,7 +25,8 @@
                     <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
                       {% csrf_token %}
                       <div class="input-group mb-3" id="upload_field">
-                        {{media_form}}
+                        <input type="file" name="file" multiple class="input form-control" />
+                        <!-- Allow multiple uploads -->
                         <button type="submit" id="media_btn" class="btn">Upload Media</button>
                       </div>
                       <!-- end upload_field -->

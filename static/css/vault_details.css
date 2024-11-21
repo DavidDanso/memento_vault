@@ -773,10 +773,10 @@ main {
     max-width: 90%;
   }
   #upload_field {
-    margin-left: 11%;
+    margin-left: 1%;
   }
   #uploadImageModal #media_btn {
-    margin-top: 6%;
+    /* margin-top: 16%; */
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
   }

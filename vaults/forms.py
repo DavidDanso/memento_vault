@@ -17,12 +17,16 @@ class VaultCreationForm(forms.ModelForm):
         for name, field in self.fields.items():
             field.widget.attrs.update({'class': 'input form-control'})
 
+
 class VaultMediaForm(forms.ModelForm):
     class Meta:
         model = VaultMedia
         fields = ['file']  # Only the file field for uploading media
 
-    def __init__(self, *args, **kwargs):
-        super(VaultMediaForm, self).__init__(*args, **kwargs)
-        for name, field in self.fields.items():
-            field.widget.attrs.update({'class': 'input form-control'})
+    # Custom method to handle multiple file uploads
+    def clean_file(self):
+        files = self.cleaned_data.get('file')
+        if not files:
+            raise forms.ValidationError("No files were uploaded.")
+        return files
+            

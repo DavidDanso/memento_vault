@@ -46,27 +46,6 @@
           <!--  end django message -->
 
           {% if media_files %}
-          <!-- mobile form -->
-          <div class="card" id="mob_form_card">
-            <div class="card-body">
-              <h5>create new vault</h5>
-              <!--  -->
-              <form action="{% url 'everything' %}" method="POST">
-                {% csrf_token %}
-                <div class="input-group mb-3" id="vault_form">
-                  {{form.title}}
-                  <button type="submit" name="createVault">
-                    <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
-                  </button>
-                </div>
-              </form>
-              <!-- end vault_form -->
-            </div>
-            <!-- End card-body-->
-          </div>
-          <!-- End card-->
-          <!--  -->
-
           <hr class="d-flex mx-auto" id="page_line" />
 
           <!--  -->
@@ -85,29 +64,9 @@
         <!-- images & videos -->
         <div id="vault_objs">
           <h2 id="mob_txt"><span>vault images & videos</span></h2>
-          <h2 id="des_text"><span>create new vault</span></h2>
+          <h2 id="des_text"><span>vault images & videos</span></h2>
 
           <div id="masonry-container">
-            <div class="create_form">
-              <div class="card" id="create_form">
-                <div class="card-body">
-                  <form action="{% url 'everything' %}" method="POST">
-                    {% csrf_token %}
-                    <div class="input-group mb-3" id="vault_form">
-                      {{form.title}}
-                      <button type="submit" name="createVault">
-                        <img src="{% static 'images/up-arrow.png' %}" class="img-fluid" id="submit--img" alt="submit--img" />
-                      </button>
-                    </div>
-                  </form>
-                  <!-- end vault_form -->
-                </div>
-                <!-- End card-body-->
-              </div>
-              <!-- End card-->
-            </div>
-            <!-- end create_form -->
-
             {% for media in media_files %}
             <div class="masonry-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{media.media.id}}">
               {% if media.type == 'image' %}

@@ -132,10 +132,11 @@ def vault_details_view(request, pk, title):
     if request.method == 'POST':
         media_form = VaultMediaForm(request.POST, request.FILES)
         if media_form.is_valid():
-            media_vault = media_form.save(commit=False)
-            media_vault.vault = vault
-            media_vault.save()
-            messages.success(request, 'Your file has been uploaded successfully. 🤩')
+            files = request.FILES.getlist('file')  # Get all uploaded files
+            for f in files:
+                media_vault = VaultMedia(file=f, vault=vault)
+                media_vault.save()
+            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
             return redirect('vault-details', pk=pk, title=title)
         
         if 'delete_media' in request.POST:
