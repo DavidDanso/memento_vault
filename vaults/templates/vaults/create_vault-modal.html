@@ -29,7 +29,7 @@
               <div class="col-md-6">
                 <label for="exampleFormControlInput1" class="form-label">📷 Photos per Person</label>
                 <div class="input-group d-flex justify-content-center">{{form.photos_per_person}}</div>
-                <small>maximum photos per guest (1-10).</small>
+                <small>maximum photos per guest (1-6).</small>
               </div>
               <!-- end col -->
             </div>
@@ -39,7 +39,9 @@
             <!-- end submit_field -->
           </form>
 
-          <h6>Just a heads-up: <span>You have {{vaults_to_created}} more vaults to create.</span></h6>
+          <h6>
+            Just a heads-up: <span>You have <strong>{{vaults_to_created}}</strong> more vaults to create, also basic plan users can have up to 10 guests, with a maximum of 6 photos per guest.</span>
+          </h6>
 
           {% else %}
           <h2>🎉 Vault Milestone Reached!</h2>
