@@ -322,7 +322,8 @@ main {
   header,
   #hero .carousel-caption p,
   #prev_,
-  #next_ {
+  #next_,
+  .carousel-caption h5 {
     display: none;
   }
 }

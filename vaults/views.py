@@ -94,14 +94,25 @@ def vault_view(request):
     if request.method == 'POST':
         form = VaultCreationForm(request.POST)
         if form.is_valid():
-            vault = form.save(commit=False)
-            vault.owner = profile
-            vault.save()
-            # Redirect to the newly created vault's detail view
-            return redirect('vault-details', pk=vault.pk, title=vault.title)
+            guest_num = form.cleaned_data.get('guest_num')
+            photos_per_person = form.cleaned_data.get('photos_per_person')
 
-    context = {'form': form, 'vaults_with_media_count': vaults_with_media_count, 
-               'now': current_date, 'vaults_to_created': vaults_to_created, 'vault_count': vault_count}
+            # Check conditions for guest_num and photos_per_person
+            if guest_num > 10 or photos_per_person > 6:
+                messages.error(request, "Guest number must be 10 or less and photos per person must be 6 or less.")
+            else:
+                vault = form.save(commit=False)
+                vault.owner = profile
+                vault.save()
+                return redirect('vault-details', pk=vault.pk, title=vault.title)
+
+    context = {
+        'form': form, 
+        'vaults_with_media_count': vaults_with_media_count, 
+        'now': current_date, 
+        'vaults_to_created': vaults_to_created, 
+        'vault_count': vault_count
+    }
     return render(request, 'vaults/vaults.html', context)
 
 
@@ -206,21 +217,40 @@ def everything_view(request):
 
 
 # Gallery view loads a gallery page to display media or files related to vaults.
-# Context can include images, videos, or other content.
 def gallery_view(request):
-    context = {}
+    # Ensure Profile exists for the logged-in user
+    profile = get_object_or_404(Profile, user=request.user)
+
+    # Retrieve all vaults associated with the logged-in user's profile
+    vaults = profile.vaults.all()
+
+    # Retrieve all media files for user's vaults
+    media_files = VaultMedia.objects.filter(vault__in=vaults)
+
+    # File extension groups
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
+    video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
+
+    # Count images and videos with OR logic for extensions
+    image_count = media_files.filter(
+        reduce(or_, (Q(file__icontains=ext) for ext in image_extensions))
+    ).count()
+
+    video_count = media_files.filter(
+        reduce(or_, (Q(file__icontains=ext) for ext in video_extensions))
+    ).count()
+
+    context = {'image_count': image_count, 'video_count': video_count}
     return render(request, 'vaults/gallery.html', context)
 
 
 # Thank you view renders a post-action thank you page, possibly shown after a successful action.
-# A context dictionary could contain success messages or action summaries.
 def thankY_view(request):
     context = {}
     return render(request, 'thankY_page.html', context)
 
 
 # Uploads view displays a dedicated page for uploading files or media into a vault.
-# Context can be used to pass forms or upload configurations to the template.
 def uploads_view(request):
     context = {}
     return render(request, 'vaults/uploads_page.html', context)

@@ -17,7 +17,7 @@ class Vault(models.Model):
         ])
     photos_per_person = models.IntegerField(default=1, null=True, blank=True, validators=[
             MinValueValidator(1),
-            MaxValueValidator(10)
+            MaxValueValidator(6)
         ])
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
