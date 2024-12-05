@@ -97,6 +97,7 @@
                   <!-- end carousel-inner -->
 
                   <!-- Carousel Controls -->
+                  {% if vault_count > 1 or image_count > 1 %}
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <img src="{% static 'images/arrow.svg' %}" id="prev_" alt="Previous" />
                     <span class="visually-hidden">Previous</span>
@@ -105,6 +106,8 @@
                     <img src="{% static 'images/arrow.svg' %}" id="next_" alt="Next" />
                     <span class="visually-hidden">Next</span>
                   </button>
+                  {% endif %}
+                  <!--  -->
                 </div>
                 <!-- End Carousel -->
               </div>
