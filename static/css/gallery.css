@@ -317,6 +317,18 @@ main {
   font-size: 1.1rem;
   color: #ffd7c4;
 }
+
+/*  */
+.video-wrapper {
+  position: relative;
+  display: block;
+  cursor: pointer;
+}
+
+#vid_img {
+  pointer-events: none;
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -477,4 +489,16 @@ main {
     transform: scaleX(-1);
     width: 50px;
   }
+
+  /*  */
+  .video-wrapper {
+    max-width: 40%;
+    margin: 0 auto;
+  }
+
+  #vid_img {
+    width: 100%;
+    height: auto;
+  }
+  /*  */
 }

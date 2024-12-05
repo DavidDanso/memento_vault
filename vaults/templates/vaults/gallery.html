@@ -1,4 +1,8 @@
 {% load static %}
+<!--  -->
+{% load humanize %}
+<!--  -->
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en" class="js has-scroll-init has-scroll-smooth">
   <head>
@@ -47,52 +51,37 @@
             <!-- carousel -->
             <div class="card d-flex mx-auto" id="main_card">
               <div class="card-body">
-                <div id="carouselExampleCaptions" class="carousel slide">
+                <!-- Single carousel for all media_files -->
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                  <!-- Carousel Indicators -->
                   <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    {% for media in media_files %}
+                    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
+                    {% endfor %}
                   </div>
-                  <!-- end arousel-indicators -->
+
+                  <!-- Carousel Inner -->
                   <div class="carousel-inner">
-                    <div class="carousel-item active">
-                      <img src="{% static 'images/00000000BzV0NZyR0WYmPf.jpeg' %}" class="img-fluid d-flex mx-auto rounded" alt="..." />
-                      <div class="carousel-caption">
-                        <div id="title">
-                          <h5>psum quia dolor sit</h5>
-                          <h4>
-                            <span class="badge rounded-pill">happy</span>
-                            <span class="badge rounded-pill">confused</span>
-                          </h4>
-                        </div>
-                        <!-- end title -->
-
-                        <p>Some representative placeholder content for the first slide. Some representative placeholder.</p>
+                    {% for media in media_files %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                      {% if media.type == 'image' %}
+                      <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
+                      {% elif media.type == 'video' %}
+                      <!-- Wrapper div with the play icon as background -->
+                      <div class="video-wrapper">
+                        <video class="videos" id="vid_img" playsinline preload="metadata" loop>
+                          <source src="{{ media.media.file.url }}" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
                       </div>
-                    </div>
-                    <!-- end carousel-item -->
+                      <!-- end video-wrapper -->
+                      {% else %}
+                      <p>Unsupported file format</p>
+                      {% endif %}
 
-                    <div class="carousel-item">
-                      <img src="{% static 'images/00000000BzV0NZyrx4hxbA.jpeg' %}" class="img-fluid d-flex mx-auto rounded" alt="..." />
                       <div class="carousel-caption">
                         <div id="title">
-                          <h5>psum quia dolor sit</h5>
-                          <h4>
-                            <span class="badge rounded-pill">happy</span>
-                            <span class="badge rounded-pill">confused</span>
-                          </h4>
-                        </div>
-                        <!-- end title -->
-                        <p>Some representative placeholder content for the first slide. Some representative placeholder.</p>
-                      </div>
-                    </div>
-                    <!-- end carousel-item -->
-
-                    <div class="carousel-item">
-                      <img src="{% static 'images/andrew-seaman-4Fi_4Q6_eFM-unsplash.jpg' %}" class="img-fluid d-flex mx-auto rounded" alt="..." />
-                      <div class="carousel-caption">
-                        <div id="title">
-                          <h5>psum quia dolor sit</h5>
+                          <h5>{{ media.media.file.name|truncate_filename:20 }}</h5>
                           <h4>
                             <span class="badge rounded-pill">happy</span>
                             <span class="badge rounded-pill">confused</span>
@@ -103,22 +92,25 @@
                       </div>
                     </div>
                     <!-- end carousel-item -->
+                    {% endfor %}
                   </div>
                   <!-- end carousel-inner -->
+
+                  <!-- Carousel Controls -->
                   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
                     <img src="{% static 'images/arrow.svg' %}" id="prev_" alt="Previous" />
                     <span class="visually-hidden">Previous</span>
                   </button>
-
                   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                    <img src="{% static 'images/arrow.svg' %}" id="next_" alt="Previous" />
+                    <img src="{% static 'images/arrow.svg' %}" id="next_" alt="Next" />
                     <span class="visually-hidden">Next</span>
                   </button>
                 </div>
+                <!-- End Carousel -->
               </div>
-              <!-- End card-body-->
+              <!-- End card-body -->
             </div>
-            <!-- End card-->
+            <!-- End card -->
 
             <!-- end carousel -->
           </div>
@@ -136,5 +128,62 @@
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
     <script src="{% static '/js/gallery.js' %}"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const carousel = document.getElementById("carouselExampleCaptions");
+
+        // Function to handle video playback in the carousel
+        function setupCarouselVideos() {
+          const videos = carousel.querySelectorAll("video");
+
+          videos.forEach((video) => {
+            // Setup for each video in the carousel
+
+            // Initial muted autoplay
+            video.muted = true;
+            video.play().catch(() => {
+              console.log("Autoplay failed, user interaction required.");
+            });
+
+            // Enable sound and play on click
+            video.addEventListener("click", function () {
+              video.muted = false; // Unmute the video
+              video
+                .play()
+                .then(() => console.log("Video is playing with sound"))
+                .catch((err) => console.error("Error playing video:", err));
+            });
+
+            // Log video readiness for debugging
+            video.addEventListener("loadeddata", function () {
+              console.log("Video is loaded and ready.");
+            });
+          });
+
+          // Carousel slide event handler
+          carousel.addEventListener("slid.bs.carousel", function () {
+            // Pause all videos in the carousel
+            videos.forEach((video) => video.pause());
+
+            // Find the active carousel item and play the video inside it
+            const activeItem = carousel.querySelector(".carousel-item.active");
+            const activeVideo = activeItem.querySelector("video");
+
+            if (activeVideo) {
+              activeVideo.muted = true; // Reset to muted when switching
+              activeVideo.play().catch(() => {
+                console.log("Autoplay failed for active slide video.");
+              });
+            }
+          });
+        }
+
+        // Initial setup if carousel exists
+        if (carousel) {
+          setupCarouselVideos();
+        }
+      });
+    </script>
   </body>
 </html>

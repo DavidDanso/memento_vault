@@ -39,11 +39,11 @@ def dashboard_view(request):
 
     # Count images and videos with OR logic for extensions
     image_count = media_files.filter(
-        reduce(or_, (Q(file__icontains=ext) for ext in image_extensions))
+        reduce(or_, (Q(file__endswith=ext) for ext in image_extensions))
     ).count()
 
     video_count = media_files.filter(
-        reduce(or_, (Q(file__icontains=ext) for ext in video_extensions))
+        reduce(or_, (Q(file__endswith=ext) for ext in video_extensions))
     ).count()
 
     form = VaultCreationForm()
@@ -224,8 +224,19 @@ def gallery_view(request):
     # Retrieve all vaults associated with the logged-in user's profile
     vaults = profile.vaults.all()
 
-    # Retrieve all media files for user's vaults
-    media_files = VaultMedia.objects.filter(vault__in=vaults)
+    # Collect and sort media files from all vaults associated with the user
+    media_files = VaultMedia.objects.filter(vault__in=vaults).order_by('-updated_at')
+
+    # Categorize media files by type
+    categorized_media = []
+    for media in media_files:
+        file_url = media.file.url.lower()
+        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif')):
+            categorized_media.append({'media': media, 'type': 'image'})
+        elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
+            categorized_media.append({'media': media, 'type': 'video'})
+        else:
+            categorized_media.append({'media': media, 'type': 'unsupported'})
 
     # File extension groups
     image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
@@ -233,14 +244,15 @@ def gallery_view(request):
 
     # Count images and videos with OR logic for extensions
     image_count = media_files.filter(
-        reduce(or_, (Q(file__icontains=ext) for ext in image_extensions))
+        reduce(or_, (Q(file__endswith=ext) for ext in image_extensions))
     ).count()
 
     video_count = media_files.filter(
-        reduce(or_, (Q(file__icontains=ext) for ext in video_extensions))
+    reduce(or_, (Q(file__endswith=ext) for ext in video_extensions))
     ).count()
 
-    context = {'image_count': image_count, 'video_count': video_count}
+    context = {'image_count': image_count, 
+               'video_count': video_count, 'media_files': categorized_media}
     return render(request, 'vaults/gallery.html', context)
 
 
