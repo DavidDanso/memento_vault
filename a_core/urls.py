@@ -16,7 +16,8 @@ urlpatterns = [
     # vault
     path('vaults/', include('vaults.urls')),
     path('dashboard', dashboard_view, name='dashboard'),
-    path('user-uploads/911', uploads_view, name='uploads'),
+    path('user-uploads/<uuid:vault_id>', uploads_view, name='uploads'),
+    path('download-qr/<uuid:vault_id>/', download_qr_code, name='download-qr'),
     path('thank_u', thankY_view, name='thank_u'),
     path('everything', everything_view, name='everything'),
     path('gallery', gallery_view, name='gallery'),

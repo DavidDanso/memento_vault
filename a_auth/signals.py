@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 from users.models import Profile
+from vaults.models import Vault
 
 # Automatically create a Profile when a User is created
 @receiver(post_save, sender=User)
@@ -29,3 +30,11 @@ def update_user_from_profile(sender, instance, created, **kwargs):
 def delete_user_on_profile_delete(sender, instance, **kwargs):
     user = instance.user
     user.delete()
+
+
+
+@receiver(post_save, sender=Vault)
+def generate_qr_code_on_creation(sender, instance, created, **kwargs):
+    if created and not instance.qr_code:
+        instance.generate_qr_code()
+        instance.save()

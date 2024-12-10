@@ -59,7 +59,12 @@
               <span>{{vault.title}} vault</span>
             </h2>
             <div id="header_">
-              <button class="btn" id="qrCode_">download qr-code</button>
+              <button class="btn" id="qrCode_">
+                <a href="{% url 'download-qr' vault.id %}" class="text-decoration-none">download qr-code</a>
+              </button>
+
+              <a href="{% url 'uploads' vault.id %}" class="text-decoration-none text-white">upload link</a>
+            
               <!--  -->
               <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#uploadImg">
                 <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
@@ -115,8 +120,9 @@
             <div id="action_btns">
               <button class="btn" id="qrCode_">
                 <img src="{% static 'images/qr-code.png'%}" class="img-fluid" id="qrCode_img" alt="qrCode_img" />
-                download qr-code
+                <a href="{% url 'download-qr' vault.id %}" class="text-decoration-none">download qr-code</a>
               </button>
+
               <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#uploadImg">
                 <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
                 direct uploads to vault

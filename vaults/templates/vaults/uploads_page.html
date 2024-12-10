@@ -63,12 +63,8 @@
       <div id="uploads_page">
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            <h2>Otto’s Wedding - upload files</h2>
-            <p>
-              For optimal results, upload videos in at least 780p or 1080p MP4
-              format. <span></span> Images should be up to 5MB each and can be
-              in PNG, JPEG, or JPG formats.
-            </p>
+            <h2>{{vault.title}} vault - upload files</h2>
+            <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
 
             <!--  -->
             <div class="card d-flex mx-auto" id="main_card">
@@ -77,31 +73,19 @@
                 <div id="upload_div">
                   <div class="card" id="uploads_card">
                     <div class="card-body">
-                      <img
-                        src="{% static 'images/upload.png' %}"
-                        class="img-fluid d-flex mx-auto"
-                        id="uploads_img"
-                        alt="uploads_img"
-                      />
-
+                      <img src="{% static 'images/upload.png' %}" class="img-fluid d-flex mx-auto" id="uploads_img" alt="uploads_img" />
+  
                       <!--  -->
-                      <div class="input-group mb-3" id="upload_field">
-                        <input
-                          type="file"
-                          class="form-control input"
-                          id="inputGroupFile02"
-                        />
-                        <label class="input-group-text" for="inputGroupFile02"
-                          ><img
-                            src="{% static 'images/pic.svg' %}"
-                            class="img-fluid"
-                            id="pic_svg"
-                            alt="pic_svg"
-                          />
-                          Upload</label
-                        >
-                      </div>
-                      <!-- end upload_field -->
+                      <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
+                        {% csrf_token %}
+                        <div class="input-group mb-3" id="upload_field">
+                          <input type="file" name="file" multiple class="input form-control" />
+                          <!-- Allow multiple uploads -->
+                          <button type="submit" id="media_btn" class="btn">Upload Media</button>
+                        </div>
+                        <!-- end upload_field -->
+                      </form>
+                      <!-- end uploadForm -->
                     </div>
                     <!-- end card-body -->
                   </div>
@@ -110,8 +94,8 @@
                 <!-- end upload_div -->
                 <!--  -->
                 <h6>
-                  Just a heads-up:
-                  <span>you can only make 6 uploads to this vault.</span>
+                  Please note:
+                  <span>You can upload a maximum of {{ vault.photos_per_person }} item(s) in this vault.</span>
                 </h6>
                 <!--  -->
               </div>

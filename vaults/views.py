@@ -8,6 +8,7 @@ from operator import or_
 from users.models import Profile
 from .forms import *
 from django.db.models import Exists, OuterRef
+from django.http import HttpResponse
 
 @login_required(login_url='login')
 def dashboard_view(request):
@@ -263,6 +264,43 @@ def thankY_view(request):
 
 
 # Uploads view displays a dedicated page for uploading files or media into a vault.
-def uploads_view(request):
-    context = {}
+def uploads_view(request, vault_id):
+     # Get the vault object using the primary key
+    vault = get_object_or_404(Vault, pk=vault_id)
+
+    media_form = VaultMediaForm()
+    if request.method == 'POST':
+        media_form = VaultMediaForm(request.POST, request.FILES)
+        if media_form.is_valid():
+            files = request.FILES.getlist('file')  # Get all uploaded files
+            for f in files:
+                media_vault = VaultMedia(file=f, vault=vault)
+                media_vault.save()
+            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+            
+        
+        if 'delete_media' in request.POST:
+            # Get the media_id from POST data and delete the specific media file
+            media_id = request.POST.get('media_id')
+            # Ensure media belongs to this vault and delete
+            media_to_delete = get_object_or_404(VaultMedia, id=media_id)
+            media_to_delete.delete()
+            messages.success(request, 'The selected file has been permanently deleted. 🗑️')
+            
+
+    context = {'vault': vault}
     return render(request, 'vaults/uploads_page.html', context)
+
+
+#
+def download_qr_code(request, vault_id):
+    # Fetch the vault
+    vault = get_object_or_404(Vault, id=vault_id)
+
+    if vault.qr_code:
+        # Serve the QR code as a downloadable file
+        response = HttpResponse(vault.qr_code, content_type='image/png')
+        response['Content-Disposition'] = f'attachment; filename="{vault.title}_qr_code.png"'
+        return response
+    else:
+        return HttpResponse("QR code not found.", status=404)
