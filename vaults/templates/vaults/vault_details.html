@@ -64,12 +64,14 @@
               </button>
 
               <a href="{% url 'uploads' vault.id %}" class="text-decoration-none text-white">upload link</a>
-            
+
               <!--  -->
+              {% if media_count < vault.photos_per_person%}
               <button class="btn" id="upload_" data-bs-toggle="modal" data-bs-target="#uploadImg">
                 <img src="{% static 'images/upload_img.png'%}" class="img-fluid" id="upload_img" alt="upload_img" />
                 direct uploads to vault
               </button>
+              {% endif %}
               <!--  -->
             </div>
             <!-- end header_ -->

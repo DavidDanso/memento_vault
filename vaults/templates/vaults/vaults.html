@@ -96,7 +96,7 @@
 
                     <hr id="card_line" />
                     <center>
-                      <small>up to {{item.vault.guest_num}} guests can upload to this vault.</small>
+                      <small>Only {{ item.vault.photos_per_person }} upload{{ item.vault.photos_per_person|pluralize }} allowed inside this vault.</small>
                     </center>
                   </div>
                   <!-- end card-body -->

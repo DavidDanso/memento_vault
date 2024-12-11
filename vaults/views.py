@@ -129,6 +129,8 @@ def vault_details_view(request, pk, title):
     # Retrieve all media files associated with the vault
     media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
 
+    count = vault.photos_per_person - media_count
+
     # Categorize media files by type
     categorized_media = []
     for media in media_files:
@@ -145,13 +147,19 @@ def vault_details_view(request, pk, title):
         media_form = VaultMediaForm(request.POST, request.FILES)
         if media_form.is_valid():
             files = request.FILES.getlist('file')  # Get all uploaded files
-            for f in files:
-                media_vault = VaultMedia(file=f, vault=vault)
-                media_vault.save()
-            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
-            return redirect('vault-details', pk=pk, title=title)
+
+            # Check if the upload exceeds the photos per person limit
+            if media_count + len(files) > vault.photos_per_person:
+                messages.error(request, f"You can only upload up to {vault.photos_per_person} files in total. Please reduce your upload.")
+            else:
+                # Save each file to the database
+                for f in files:
+                    media_vault = VaultMedia(file=f, vault=vault)
+                    media_vault.save()
+                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+                return redirect('vault-details', pk=pk, title=title)
         
-        if 'delete_media' in request.POST:
+        elif 'delete_media' in request.POST:
             # Get the media_id from POST data and delete the specific media file
             media_id = request.POST.get('media_id')
             # Ensure media belongs to this vault and delete
@@ -160,7 +168,8 @@ def vault_details_view(request, pk, title):
             messages.success(request, 'The selected file has been permanently deleted. 🗑️')
             return redirect('vault-details', pk=pk, title=title)
 
-    context = {'media_count': media_count, 'vault': vault, 'media_files': categorized_media, 'media_form': media_form}
+    context = {'media_count': media_count, 'vault': vault, 
+        'media_files': categorized_media, 'media_form': media_form, 'count': count}
     return render(request, 'vaults/vault_details.html', context)
 
 
