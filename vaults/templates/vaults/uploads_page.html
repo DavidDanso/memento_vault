@@ -4,15 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
-    />
+    <meta name="description" content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features." />
 
-    <meta
-      name="keywords"
-      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
-    />
+    <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
@@ -20,11 +14,7 @@
 
     <!-- Preload CSS -->
     <link href="{% static '/css/normalize.css' %}" />
-    <link
-      rel="preload"
-      as="style"
-      href="{% static '/css/uploads_page.css' %}"
-    />
+    <link rel="preload" as="style" href="{% static '/css/uploads_page.css' %}" />
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static '/css/uploads_page.css' %}" />
@@ -34,30 +24,12 @@
       var supportsCssVars = function () {
         var e,
           t = document.createElement("style");
-        return (
-          (t.innerHTML = "root: { --tmp-var: bold; }"),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports("font-weight", "var(--tmp-var)")
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e;
       };
-      supportsCssVars() ||
-        alert(
-          "Please view this work in a modern browser that supports CSS Variables."
-        );
+      supportsCssVars() || alert("Please view this work in a modern browser that supports CSS Variables.");
     </script>
   </head>
-  <body
-    id="pageTop"
-    class="page-content"
-    data-spy="scroll"
-    data-target="#mainNav"
-  >
+  <body id="pageTop" class="page-content" data-spy="scroll" data-target="#mainNav">
     <!--======================== Main-Section ================================-->
     <main>
       <div id="uploads_page">
@@ -74,7 +46,7 @@
                   <div class="card" id="uploads_card">
                     <div class="card-body">
                       <img src="{% static 'images/upload.png' %}" class="img-fluid d-flex mx-auto" id="uploads_img" alt="uploads_img" />
-  
+
                       <!--  -->
                       <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
                         {% csrf_token %}
@@ -103,59 +75,21 @@
             </div>
             <!-- end card -->
             <!--  -->
+            <center>
+              <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn">finished uploading? click me</a>
+            </center>
+            <!--  -->
           </div>
           <!-- end uploads_page-intro -->
         </div>
         <!-- end container-fluid -->
       </div>
       <!-- end uploads_page -->
-
-      <!--======================== Upload-Contents ================================-->
-      <div id="upload_content">
-        <div class="container">
-          <div class="upload_content-intro">
-            <div id="div_header">
-              <h3><span>your uploads</span></h3>
-
-              <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn"
-                >finished uploading? click me</a
-              >
-            </div>
-            <!-- end div_header -->
-
-            <div id="masonry-container">
-              <div class="masonry-item">
-                <img
-                  src="{% static 'images/photo-1634157663445-42ffca53c60e.avif' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
-              </div>
-              <!-- end masonry-item -->
-              <div class="masonry-item">
-                <img
-                  src="{% static 'images/photo-1636189239307-9f3a701f30a8.avif' %}"
-                  class="img-fluid"
-                  alt="upload-img"
-                />
-              </div>
-              <!-- end masonry-item -->
-            </div>
-            <!-- end masonry-container -->
-          </div>
-          <!-- end upload_content-intro -->
-        </div>
-      </div>
-      <!-- end upload_content -->
     </main>
     <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>

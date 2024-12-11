@@ -76,7 +76,7 @@ a:hover {
 
 /****************************************** uploads_page-section ************************************/
 #uploads_page {
-  margin-top: 20%;
+  margin-top: 40%;
 }
 .uploads_page-intro {
   margin: 3%;
@@ -157,32 +157,13 @@ a:hover {
   font-family: var(--text-font);
   color: var(--nav-links-color);
 }
-
-/****************************************** upload_content-section ************************************/
-#upload_content {
-  margin-top: 8%;
-}
-.upload_content-intro {
-  margin: 3%;
-}
-.upload_content-intro h3 {
-  font-size: 1.3rem;
-  font-family: var(--header-font);
-  color: var(--text-color);
+.uploads_page-intro #media_btn {
+  font-size: 1.2rem;
+  font-family: var(--text-font);
+  color: var(--main-color);
   letter-spacing: 1px;
-}
-.upload_content-intro h3 span {
-  position: relative;
-  display: inline-block;
-}
-.upload_content-intro h3 span::after {
-  content: "";
-  width: 55%;
-  height: 3px;
-  background-color: var(--nav-links-color);
-  position: absolute;
-  left: 0;
-  bottom: -5px;
+  background: #cbdceb;
+  border: 1px solid #cbdceb;
 }
 #comp_upload-btn {
   font-family: var(--text-font);
@@ -200,23 +181,6 @@ a:hover {
   border: 1px solid #fff;
 }
 
-/* masonry-layout */
-#masonry-container {
-  column-count: 2;
-  column-gap: 12px;
-  margin-top: 5%;
-}
-#masonry-container .masonry-item {
-  break-inside: avoid;
-  margin-bottom: 12px;
-}
-#masonry-container .masonry-item img {
-  width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid var(--nav-links-color);
-  border-radius: 5px;
-}
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   .uploads_page-intro label {
@@ -227,8 +191,12 @@ a:hover {
     max-width: 90%;
   }
   #comp_upload-btn {
-    margin-left: 25%;
     margin-top: 5%;
+  }
+  .uploads_page-intro #media_btn {
+    /* margin-top: 16%; */
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
   }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
@@ -299,38 +267,12 @@ a:hover {
     margin-top: 2%;
     margin-bottom: -3px;
   }
-
-  /* upload_content */
-  #upload_content {
-    margin-top: 5%;
-  }
-  .upload_content-intro {
-    margin: 3%;
-  }
-  #upload_content #div_header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .upload_content-intro h3 {
-    font-size: 1.2rem;
+  .uploads_page-intro #media_btn {
+    font-size: 1.1rem;
+    margin-bottom: -1%;
   }
   #comp_upload-btn {
     font-size: 1.2rem;
-  }
-
-  /*  masonry-container */
-  #masonry-container {
-    column-count: 4;
-    column-gap: 14px;
     margin-top: 2%;
-  }
-  #masonry-container .masonry-item {
-    break-inside: avoid;
-    margin-bottom: 14px;
-  }
-  #masonry-container .masonry-item img {
-    width: 100%;
-    height: auto;
   }
 }
