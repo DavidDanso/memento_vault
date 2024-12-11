@@ -278,16 +278,6 @@ def uploads_view(request, vault_id):
                 media_vault.save()
             messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
             
-        
-        if 'delete_media' in request.POST:
-            # Get the media_id from POST data and delete the specific media file
-            media_id = request.POST.get('media_id')
-            # Ensure media belongs to this vault and delete
-            media_to_delete = get_object_or_404(VaultMedia, id=media_id)
-            media_to_delete.delete()
-            messages.success(request, 'The selected file has been permanently deleted. 🗑️')
-            
-
     context = {'vault': vault}
     return render(request, 'vaults/uploads_page.html', context)
 

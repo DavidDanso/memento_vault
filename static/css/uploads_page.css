@@ -74,6 +74,58 @@ a:hover {
   border-radius: 6px;
 }
 
+/****************************************** alert-style ************************************/
+.alert-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  max-width: 36rem;
+  margin: 0.75rem auto;
+  padding: 0 1rem;
+  z-index: 50;
+}
+
+.alert {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem 0.75rem 1.5rem;
+  background-color: #a2d2df;
+  color: white;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 700ms ease-out, transform 700ms ease-out;
+}
+
+.alert.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.alert.hide {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+
+.alert-content {
+  font-size: 1.125rem;
+}
+
+.close-button {
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.alert-success {
+  background: #c3e2c2 !important;
+  color: var(--main-color) !important;
+  border: 1px solid #c3e2c2 !important;
+}
+#close_ {
+  width: 25px;
+}
+
 /****************************************** uploads_page-section ************************************/
 #uploads_page {
   margin-top: 40%;
@@ -218,7 +270,7 @@ a:hover {
 @media (min-width: 1200px) {
   /* uploads_page */
   #uploads_page {
-    margin-top: 6%;
+    margin-top: 12%;
   }
   .uploads_page-intro {
     margin: 3%;
