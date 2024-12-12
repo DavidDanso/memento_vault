@@ -122,6 +122,11 @@ a:hover {
   color: var(--main-color) !important;
   border: 1px solid #c3e2c2 !important;
 }
+.alert-error {
+  background: #ff0000 important;
+  color: var(--text-color) !important;
+  border: 1px solid #ff0000 !important;
+}
 #close_ {
   width: 25px;
 }

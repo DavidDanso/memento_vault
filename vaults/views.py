@@ -129,7 +129,9 @@ def vault_details_view(request, pk, title):
     # Retrieve all media files associated with the vault
     media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
 
-    count = vault.photos_per_person - media_count
+    vault_media_count = vault.photos_per_person * vault.guest_num
+
+    remaining_uploads = vault_media_count - media_count
 
     # Categorize media files by type
     categorized_media = []
@@ -145,12 +147,12 @@ def vault_details_view(request, pk, title):
     media_form = VaultMediaForm()
     if request.method == 'POST':
         media_form = VaultMediaForm(request.POST, request.FILES)
-        if media_form.is_valid():
+        if media_form.is_valid(): 
             files = request.FILES.getlist('file')  # Get all uploaded files
 
             # Check if the upload exceeds the photos per person limit
-            if media_count + len(files) > vault.photos_per_person:
-                messages.error(request, f"You can only upload up to {vault.photos_per_person} files in total. Please reduce your upload.")
+            if media_count + len(files) > vault_media_count:
+                messages.error(request, f"You can only upload up to {vault_media_count} files in total. Please reduce your upload.")
             else:
                 # Save each file to the database
                 for f in files:
@@ -169,7 +171,8 @@ def vault_details_view(request, pk, title):
             return redirect('vault-details', pk=pk, title=title)
 
     context = {'media_count': media_count, 'vault': vault, 
-        'media_files': categorized_media, 'media_form': media_form, 'count': count}
+        'media_files': categorized_media, 'media_form': media_form, 
+        'vault_media_count': vault_media_count, 'remaining_uploads': remaining_uploads}
     return render(request, 'vaults/vault_details.html', context)
 
 
@@ -274,21 +277,43 @@ def thankY_view(request):
 
 # Uploads view displays a dedicated page for uploading files or media into a vault.
 def uploads_view(request, vault_id):
-     # Get the vault object using the primary key
+    # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=vault_id)
+
+    # Calculate the total media upload limit for the vault
+    total_vault_limit = vault.photos_per_person * vault.guest_num
+
+    # Count the currently uploaded media files
+    media_count = vault.media_files.count()
+
+    # Determine the remaining uploads for the user
+    uploads_remaining = max(0, (total_vault_limit - media_count) // 2)
 
     media_form = VaultMediaForm()
     if request.method == 'POST':
         media_form = VaultMediaForm(request.POST, request.FILES)
         if media_form.is_valid():
             files = request.FILES.getlist('file')  # Get all uploaded files
-            for f in files:
-                media_vault = VaultMedia(file=f, vault=vault)
-                media_vault.save()
-            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
-            
-    context = {'vault': vault}
+
+            # Check if the user is exceeding their allowed uploads
+            if len(files) > uploads_remaining:
+                messages.error(request, f"You can only upload up to {uploads_remaining} files. Please reduce your upload.")
+            else:
+                # Save each uploaded file to the database
+                for f in files:
+                    VaultMedia.objects.create(file=f, vault=vault)
+                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+                # Recalculate uploads remaining after successful upload
+                uploads_remaining -= len(files)
+
+    # Pass the remaining uploads count and other data to the context
+    context = {
+        'vault': vault,
+        'uploads_remaining': uploads_remaining,
+        'media_form': media_form,
+    }
     return render(request, 'vaults/uploads_page.html', context)
+
 
 
 #
