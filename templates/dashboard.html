@@ -112,7 +112,7 @@
                   <!-- end card_header -->
                   <img src="{% static 'images/qr-code-grey.png' %}" class="img-fluid" id="default_img" alt="default_img" />
                   <br />
-                  <a href="#"><span>download qr-code</span></a>
+                  <a href="{% url 'download-qr' new_vault_id %}"><span>download qr-code</span></a>
 
                   {% else %}
                   <div id="card_header">
