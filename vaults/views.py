@@ -62,6 +62,7 @@ def dashboard_view(request):
         'vault_count': vault_count, 'new_vault': new_vault, 
         'image_count': image_count, 'video_count': video_count,
         'form': form,
+        'new_vault_id': vaults[0].id if vault_count > 0 else None,
         'recent_media': recent_media,
         'vaults_to_created': vaults_to_created,
     }

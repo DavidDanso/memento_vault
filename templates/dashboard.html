@@ -104,7 +104,9 @@
                 <div class="card-body">
                   {% if vault_count > 0 %}
                   <div id="card_header">
-                    <h4>active qr-code for <span>{{new_vault}} vault</span></h4>
+                    <h4>
+                      active qr-code for <span><a href="{% url 'vault-details' new_vault_id new_vault.title|slugify %}">{{new_vault}} vault</a></span>
+                    </h4>
                     <img src="{% static 'images/icon-1.png' %}" class="img-fluid" id="icon_img" alt="icon_img" />
                   </div>
                   <!-- end card_header -->
