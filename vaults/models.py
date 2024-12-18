@@ -14,14 +14,7 @@ class Vault(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vaults")
-    guest_num = models.IntegerField(default=2, null=True, blank=True, validators=[
-            MinValueValidator(2),
-            MaxValueValidator(10)
-        ])
-    photos_per_person = models.IntegerField(default=1, null=True, blank=True, validators=[
-            MinValueValidator(1),
-            MaxValueValidator(6)
-        ])
+    max_media_items = models.PositiveIntegerField(default=5)
     qr_code = models.ImageField(upload_to='vault_qrcodes/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

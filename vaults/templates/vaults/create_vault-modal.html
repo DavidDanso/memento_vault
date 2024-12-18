@@ -17,19 +17,18 @@
           <!--  -->
           <form action="" method="POST">
             {% csrf_token %}
-            <div class="input-group d-flex justify-content-center" name="create_field" id="create_field">{{form.title}}</div>
             <div class="row">
               <div class="col-md-6">
-                <label for="exampleFormControlInput1" class="form-label">👤 Number of Guest</label>
-                <div class="input-group d-flex justify-content-center">{{form.guest_num}}</div>
-                <small>enter guest number. set limit (2-10).</small>
+                <label for="exampleFormControlInput1" class="form-label">🏷️ vault name</label>
+                <div class="input-group d-flex justify-content-center" name="create_field" id="create_field">{{form.title}}</div>
+                <small>use simple words</small>
               </div>
               <!-- end col -->
 
               <div class="col-md-6">
-                <label for="exampleFormControlInput1" class="form-label">📷 Photos per Person</label>
-                <div class="input-group d-flex justify-content-center">{{form.photos_per_person}}</div>
-                <small>maximum photos per guest (1-6).</small>
+                <label for="exampleFormControlInput1" class="form-label">📷 number of items in this vault</label>
+                <div class="input-group d-flex justify-content-center">{{form.max_media_items}}</div>
+                <small>enter max media items (2-30).</small>
               </div>
               <!-- end col -->
             </div>
