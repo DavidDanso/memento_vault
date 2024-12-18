@@ -84,13 +84,16 @@ def vault_view(request):
 
     #
     vault_count = vaults.count()
+
+    # basic plan
     vaults_to_created = 5 - vault_count
 
     # Prepare a dictionary to hold vaults and their media count
     vaults_with_media_count = []
     for vault in vaults:
         media_count = vault.media_files.count()  # Count media files for each vault
-        vaults_with_media_count.append({'vault': vault, 'media_count': media_count})
+        total_uploads_allowed = vault.photos_per_person * vault.guest_num
+        vaults_with_media_count.append({'vault': vault, 'media_count': media_count, 'total_uploads_allowed': total_uploads_allowed})
 
     form = VaultCreationForm()
     if request.method == 'POST':
