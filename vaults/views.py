@@ -92,23 +92,18 @@ def vault_view(request):
     vaults_with_media_count = []
     for vault in vaults:
         media_count = vault.media_files.count()  # Count media files for each vault
-        vaults_with_media_count.append({'vault': vault, 'media_count': media_count})
+        allowed_uploads = vault.max_media_items
+        vaults_with_media_count.append({'vault': vault, 'media_count': media_count, 
+                                        'allowed_uploads': allowed_uploads})
 
     form = VaultCreationForm()
     if request.method == 'POST':
         form = VaultCreationForm(request.POST)
         if form.is_valid():
-            guest_num = form.cleaned_data.get('guest_num')
-            photos_per_person = form.cleaned_data.get('photos_per_person')
-
-            # Check conditions for guest_num and photos_per_person
-            if guest_num > 10 or photos_per_person > 6:
-                messages.error(request, "Guest number must be 10 or less and photos per person must be 6 or less.")
-            else:
-                vault = form.save(commit=False)
-                vault.owner = profile
-                vault.save()
-                return redirect('vault-details', pk=vault.pk, title=vault.title)
+            vault = form.save(commit=False)
+            vault.owner = profile
+            vault.save()
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
 
     context = {
         'form': form, 
@@ -132,9 +127,9 @@ def vault_details_view(request, pk, title):
     # Retrieve all media files associated with the vault
     media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
 
-    vault_media_count = vault.photos_per_person * vault.guest_num
+    # vault_media_count = vault.photos_per_person * vault.guest_num
 
-    remaining_uploads = vault_media_count - media_count
+    remaining_uploads = vault.max_media_items - media_count
 
     # Categorize media files by type
     categorized_media = []
@@ -153,9 +148,9 @@ def vault_details_view(request, pk, title):
         if media_form.is_valid(): 
             files = request.FILES.getlist('file')  # Get all uploaded files
 
-            # Check if the upload exceeds the photos per person limit
-            if media_count + len(files) > vault_media_count:
-                messages.error(request, f"You can only upload up to {vault_media_count} files in total. Please reduce your upload.")
+            # Check if the upload exceeds the max_media_items limit
+            if media_count + len(files) > vault.max_media_items:
+                messages.error(request, f"You can only upload up to {vault.max_media_items} files in total. Please reduce your upload.")
             else:
                 # Save each file to the database
                 for f in files:
@@ -175,7 +170,7 @@ def vault_details_view(request, pk, title):
 
     context = {'media_count': media_count, 'vault': vault, 
         'media_files': categorized_media, 'media_form': media_form, 
-        'vault_media_count': vault_media_count, 'remaining_uploads': remaining_uploads}
+        'remaining_uploads': remaining_uploads}
     return render(request, 'vaults/vault_details.html', context)
 
 

@@ -8,13 +8,12 @@ import uuid
 from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vaults")
-    max_media_items = models.PositiveIntegerField(default=5)
+    max_media_items = models.PositiveIntegerField(default=2)
     qr_code = models.ImageField(upload_to='vault_qrcodes/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
