@@ -89,7 +89,7 @@ a:hover {
   display: flex;
   align-items: center;
   padding: 0.75rem 1rem 0.75rem 1.5rem;
-  background-color: #a2d2df;
+  background-color: #ff0000;
   color: white;
   border-radius: 0.5rem;
   opacity: 0;
@@ -238,6 +238,27 @@ a:hover {
   border: 1px solid #fff;
 }
 
+/* vault_full */
+#vault_full-btn {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+#vault_full-btn:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
+}
+#default_img {
+  margin-top: 4%;
+  width: 45%;
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   .uploads_page-intro label {
@@ -254,6 +275,9 @@ a:hover {
     /* margin-top: 16%; */
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+  }
+  #vault_full-btn {
+    margin-top: 35%;
   }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
@@ -331,5 +355,17 @@ a:hover {
   #comp_upload-btn {
     font-size: 1.2rem;
     margin-top: 2%;
+  }
+
+  /* vault_full */
+  #vault_full {
+    margin-top: 24%;
+  }
+  #vault_full-btn {
+    font-size: 1.2rem;
+  }
+  #default_img {
+    margin-top: 0%;
+    width: 11%;
   }
 }

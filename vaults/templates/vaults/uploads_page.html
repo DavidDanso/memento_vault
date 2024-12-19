@@ -39,6 +39,7 @@
 
         <div class="container-fluid">
           <div class="uploads_page-intro">
+            {% if media_count < vault.max_media_items %}
             <h2>{{vault.title}} vault - upload files</h2>
             <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
 
@@ -71,7 +72,7 @@
                 <!--  -->
                 <h6>
                   Please note:
-                  <span>You can upload a maximum of {{ uploads_remaining }} item{{ uploads_remaining|pluralize }} to this vault.</span>
+                  <span> Only {{ uploads_remaining }} upload{{ uploads_remaining|pluralize }} remaining for this vault.</span>
                 </h6>
                 <!--  -->
               </div>
@@ -83,6 +84,16 @@
               <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn">finished uploading? click me</a>
             </center>
             <!--  -->
+            {% else %}
+            <div id="vault_full">
+              <center>
+                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
+              </center>
+
+              <img src="{% static 'images/photos.png' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
+            </div>
+            <!-- end vault_full -->
+            {% endif %}
           </div>
           <!-- end uploads_page-intro -->
         </div>
