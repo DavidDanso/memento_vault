@@ -117,6 +117,7 @@ def vault_view(request):
 
 
 # Vault details view renders a page that likely displays specific details of a selected vault.
+@login_required(login_url='login')
 def vault_details_view(request, pk, title):
     # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=pk)
@@ -126,8 +127,6 @@ def vault_details_view(request, pk, title):
 
     # Retrieve all media files associated with the vault
     media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
-
-    # vault_media_count = vault.photos_per_person * vault.guest_num
 
     remaining_uploads = vault.max_media_items - media_count
 
