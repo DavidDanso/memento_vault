@@ -304,6 +304,8 @@ def uploads_view(request, vault_id):
                 # Recalculate uploads remaining after successful upload
                 uploads_remaining -= len(files)
 
+                return redirect('uploads', vault_id=vault_id)
+
     # Pass the remaining uploads count and other data to the context
     context = {
         'vault': vault,
