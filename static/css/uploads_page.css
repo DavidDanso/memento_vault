@@ -256,7 +256,7 @@ a:hover {
 }
 #default_img {
   margin-top: 4%;
-  width: 45%;
+  width: 50%;
 }
 
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
@@ -359,13 +359,13 @@ a:hover {
 
   /* vault_full */
   #vault_full {
-    margin-top: 24%;
+    margin-top: 20%;
   }
   #vault_full-btn {
     font-size: 1.2rem;
   }
   #default_img {
     margin-top: 0%;
-    width: 11%;
+    width: 21%;
   }
 }
