@@ -95,9 +95,15 @@
                     <!-- end vault_info -->
 
                     <hr id="card_line" />
+                    {% if item.media_count < item.allowed_uploads %}
                     <center>
                       <small>Limit: {{ item.uploads_left }} upload{{ item.uploads_left|pluralize }} remaining for this vault</small>
                     </center>
+                    {% else %}
+                    <center>
+                      <small>Vault is Full. No More Uploads Allowed</small>
+                    </center>
+                    {% endif %}
                   </div>
                   <!-- end card-body -->
                 </div>
