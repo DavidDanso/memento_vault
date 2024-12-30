@@ -28,7 +28,7 @@
               <div class="col-md-6">
                 <label for="exampleFormControlInput1" class="form-label">📷 number of items in this vault</label>
                 <div class="input-group d-flex justify-content-center">{{form.max_media_items}}</div>
-                <small>set max media items (2-15).</small>
+                <small>set max media items allowed (2-15).</small>
               </div>
               <!-- end col -->
             </div>
@@ -39,13 +39,11 @@
           </form>
 
           <h6 class="text-center">
-            Just a heads-up: <span>You have <strong>{{vaults_to_created}}</strong> more vaults to create.</span>
+            Just a heads-up: <span>You have <strong>{{vaults_to_created}}</strong> more vault{{vaults_to_created|pluralize}} to create.</span>
           </h6>
 
           {% else %}
           <h2>🎉 Vault Milestone Reached!</h2>
-          <p>Wow, you've created <strong>5 incredible Vaults</strong> - each a unique treasure chest of memories! 🌟 Your digital memory collection is now complete, preserving your most cherished moments in stunning detail.</p>
-          <h4>Vault Limit Reached</h4>
           <p>You've maximized your memory-saving potential! While you can't create additional Vaults right now, you can continue to:</p>
           <li>Invite contributors to your existing Vaults</li>
           <li>Upload more photos and videos to your current collections</li>

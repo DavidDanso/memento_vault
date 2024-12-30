@@ -267,10 +267,12 @@ def gallery_view(request):
     return render(request, 'vaults/gallery.html', context)
 
 
+
 # Thank you view renders a post-action thank you page, possibly shown after a successful action.
 def thankY_view(request):
     context = {}
     return render(request, 'thankY_page.html', context)
+
 
 
 # Uploads view displays a dedicated page for uploading files or media into a vault.

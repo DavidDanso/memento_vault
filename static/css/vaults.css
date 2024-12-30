@@ -560,6 +560,13 @@ main {
   font-family: var(--text-font);
   color: var(--nav-links-color);
 }
+#createVaultModal li {
+  font-size: 1.1rem;
+  font-family: var(--text-font);
+  color: #b6a28e;
+  letter-spacing: 1px;
+  margin-top: 1%;
+}
 
 /*  */
 .video-wrapper {
@@ -889,6 +896,10 @@ main {
   #createVaultModal h6 {
     font-size: 1.2rem;
     margin-top: 4%;
+  }
+  #createVaultModal li {
+    font-size: 1.2rem;
+    margin-top: 1%;
   }
 }
 
