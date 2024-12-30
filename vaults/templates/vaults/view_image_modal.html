@@ -51,7 +51,7 @@
 
                 <hr id="line_divider" />
                 <center>
-                  <a href="#">
+                  <a href="{{ media.media.file.url }}" download>
                     <img src="{% static 'images/image-.png' %}" class="img-fluid download_btn" id="modal_icon" alt="modal_icon" />
                   </a>
                   <a href="#" data-bs-toggle="modal" data-bs-target="#deleteMediaModal" onclick="setMediaId('{{ media.media.id }}')">
