@@ -48,6 +48,7 @@ class Vault(models.Model):
 class VaultMedia(models.Model):
     vault = models.ForeignKey(Vault, on_delete=models.CASCADE, related_name="media_files")
     file = models.FileField(upload_to='vault_media/')  # Supports both images and videos
+    caption = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
