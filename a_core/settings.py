@@ -16,6 +16,8 @@ SECRET_KEY = 'django-insecure-4z9z$ol)gal^i34j9)jgd*$grj7uawm18whufdwk70ath662v2
 # SECURITY WARNING: don't run with debug turned on in production!
 ENVIROMENT = config('ENVIROMENT')
 
+GEMINI_API_KEY = config('GEMINI_API_KEY')
+
 INTERNAL_IPS = [
     "127.0.0.1",
 ]

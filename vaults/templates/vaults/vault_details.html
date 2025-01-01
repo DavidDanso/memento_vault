@@ -12,15 +12,15 @@
     <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
-    <link rel="icon" href="{% static '/images/logo.svg' %}" />
+    <link rel="icon" href="{% static 'images/logo.svg' %}" />
     <title>Memento Vault | {{vault.title}} vault page</title>
 
     <!-- Preload CSS -->
     <link href="{% static '/css/normalize.css' %}" />
-    <link rel="preload" as="style" href="{% static '/css/vault_details.css' %}" />
+    <link rel="preload" as="style" href="{% static 'css/vault_details.css' %}" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static '/css/bootstrap.min.css' %}" />
-    <link rel="stylesheet" href="{% static '/css/vault_details.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/vault_details.css' %}" />
 
     <script>
       document.documentElement.className = "js";
@@ -100,6 +100,11 @@
               </div>
               <!-- end masonry-item -->
 
+              <!--  -->
+              {% if media.media.caption %}
+              <p class="caption text-white f-5">{{ media.media.caption }}</p>
+              {% endif %}
+
               <!--=========================================== view_image-Modal ===============================-->
               {% include 'vaults/view_image_modal.html' %}
               <!-- End view_image-modal-->
@@ -153,9 +158,9 @@
     <!--=============================================== JavaScript ===================================-->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
-    <script src="{% static '/js/jquery-min.js' %}"></script>
-    <script src="{% static '/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/js/vault_details.js' %}"></script>
+    <script src="{% static 'js/jquery-min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/vault_details.js' %}"></script>
 
     <script>
       // Show toasts when page loads after form submission

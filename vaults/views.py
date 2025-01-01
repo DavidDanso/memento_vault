@@ -9,6 +9,8 @@ from users.models import Profile
 from .forms import *
 from django.db.models import Exists, OuterRef
 from django.http import HttpResponse
+from .utils import generate_caption_with_gemini
+from django.conf import settings
 
 @login_required(login_url='login')
 def dashboard_view(request):
@@ -142,6 +144,11 @@ def vault_details_view(request, pk, title):
         else:
             categorized_media.append({'media': media, 'type': 'unsupported'})
 
+    
+    # Print captions for debugging purposes
+    for media in media_files:
+        print(f"Media ID: {media.id}, Caption: {media.caption}")
+
     media_form = VaultMediaForm()
     if request.method == 'POST':
         media_form = VaultMediaForm(request.POST, request.FILES)
@@ -156,6 +163,27 @@ def vault_details_view(request, pk, title):
                 for f in files:
                     media_vault = VaultMedia(file=f, vault=vault)
                     media_vault.save()
+
+                    # Determine file type and generate caption
+                    file_url = media_vault.file.url.lower()
+                    file_type = None
+                    if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', '.avif')):
+                        file_type = 'image'
+                    elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
+                        file_type = 'video'
+
+                    if file_type:
+                        try:
+                            caption = generate_caption_with_gemini(
+                                media_vault.file.path,
+                                settings.GEMINI_API_KEY,
+                                file_type
+                            )
+                            media_vault.caption = caption
+                            media_vault.save()
+                        except Exception as e:
+                            print(f"Caption generation failed for {file_type}: {e}")
+                            
                 messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
                 return redirect('vault-details', pk=pk, title=title)
         
