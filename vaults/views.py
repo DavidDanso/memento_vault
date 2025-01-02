@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.db.models import Q
@@ -9,8 +10,11 @@ from users.models import Profile
 from .forms import *
 from django.db.models import Exists, OuterRef
 from django.http import HttpResponse
-from .utils import generate_caption_with_gemini
-from django.conf import settings
+from .utils import MediaProcessor
+
+GEMINI_API_KEY = settings.GEMINI_API_KEY
+media_processor = MediaProcessor(GEMINI_API_KEY)
+
 
 @login_required(login_url='login')
 def dashboard_view(request):
@@ -122,83 +126,55 @@ def vault_view(request):
 # Vault details view renders a page that likely displays specific details of a selected vault.
 @login_required(login_url='login')
 def vault_details_view(request, pk, title):
-    # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=pk)
-
-    # Count media files for the retrieved vault
     media_count = vault.media_files.count()
-
-    # Retrieve all media files associated with the vault
-    media_files = vault.media_files.all().order_by('-updated_at')  # This gets all the uploaded media content
-
+    media_files = vault.media_files.all().order_by('-updated_at')
     remaining_uploads = vault.max_media_items - media_count
     
-    # Categorize media files by type
     categorized_media = []
     for media in media_files:
-        file_url = media.file.url.lower()  # Convert URL to lowercase for consistent checking
+        file_url = media.file.url.lower()
+        media_type = 'unsupported'
         if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif')):
-            categorized_media.append({'media': media, 'type': 'image'})
+            media_type = 'image'
         elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
-            categorized_media.append({'media': media, 'type': 'video'})
-        else:
-            categorized_media.append({'media': media, 'type': 'unsupported'})
+            media_type = 'video'
+        categorized_media.append({'media': media, 'type': media_type})
 
-    
-    # Print captions for debugging purposes
-    for media in media_files:
-        print(f"Media ID: {media.id}, Caption: {media.caption}")
-
-    media_form = VaultMediaForm()
     if request.method == 'POST':
-        media_form = VaultMediaForm(request.POST, request.FILES)
-        if media_form.is_valid(): 
-            files = request.FILES.getlist('file')  # Get all uploaded files
-
-            # Check if the upload exceeds the max_media_items limit
-            if media_count + len(files) > vault.max_media_items:
-                messages.error(request, f"Only {remaining_uploads} upload(s) left. Please cut back on your uploads.")
-            else:
-                # Save each file to the database
-                for f in files:
-                    media_vault = VaultMedia(file=f, vault=vault)
-                    media_vault.save()
-
-                    # Determine file type and generate caption
-                    file_url = media_vault.file.url.lower()
-                    file_type = None
-                    if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', '.avif')):
-                        file_type = 'image'
-                    elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
-                        file_type = 'video'
-
-                    if file_type:
-                        try:
-                            caption = generate_caption_with_gemini(
-                                media_vault.file.path,
-                                settings.GEMINI_API_KEY,
-                                file_type
-                            )
-                            media_vault.caption = caption
-                            media_vault.save()
-                        except Exception as e:
-                            print(f"Caption generation failed for {file_type}: {e}")
-                            
-                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
-                return redirect('vault-details', pk=pk, title=title)
-        
-        elif 'delete_media' in request.POST:
-            # Get the media_id from POST data and delete the specific media file
+        if 'delete_media' in request.POST:
             media_id = request.POST.get('media_id')
-            # Ensure media belongs to this vault and delete
             media_to_delete = get_object_or_404(VaultMedia, id=media_id)
             media_to_delete.delete()
             messages.success(request, 'The selected file has been permanently deleted. 🗑️')
             return redirect('vault-details', pk=pk, title=title)
 
-    context = {'media_count': media_count, 'vault': vault, 
-        'media_files': categorized_media, 'media_form': media_form, 
-        'remaining_uploads': remaining_uploads}
+        media_form = VaultMediaForm(request.POST, request.FILES)
+        if media_form.is_valid():
+            files = request.FILES.getlist('file')
+            if media_count + len(files) > vault.max_media_items:
+                messages.error(request, f"Only {remaining_uploads} upload(s) left. Please cut back on your uploads.")
+            else:
+                for f in files:
+                    media_vault = VaultMedia(file=f, vault=vault)
+                    try:
+                        caption = media_processor.get_caption(f)
+                        if caption:
+                            media_vault.caption = caption
+                            print(f"Generated caption for {f.name}: {caption}")
+                    except Exception as e:
+                        print(f"Caption generation error: {str(e)}")
+                    media_vault.save()
+                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+                return redirect('vault-details', pk=pk, title=title)
+
+    context = {
+        'media_count': media_count,
+        'vault': vault,
+        'media_files': categorized_media,
+        'media_form': VaultMediaForm(),
+        'remaining_uploads': remaining_uploads
+    }
     return render(request, 'vaults/vault_details.html', context)
 
 
