@@ -937,7 +937,7 @@ main {
 
   /*  masonry-container */
   #masonry-container {
-    column-count: 4;
+    column-count: 5;
     column-gap: 14px;
     margin-top: 2%;
   }

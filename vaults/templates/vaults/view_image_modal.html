@@ -35,10 +35,12 @@
               <!-- end div_header -->
 
               <div id="div_body">
+                {% if media.media.caption %}
                 <div id="image_description">
                   <p>{{ media.media.caption }}</p>
                 </div>
                 <!-- end image_description -->
+                {% endif %}
 
                 <!--  -->
                 <h2>
