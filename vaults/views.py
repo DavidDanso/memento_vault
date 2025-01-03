@@ -155,12 +155,12 @@ def vault_details_view(request, pk, title):
             else:
                 for f in files:
                     media_vault = VaultMedia(file=f, vault=vault)
+                    # Generate a caption for the uploaded media
                     try:
                         caption = media_processor.get_caption(f)
                         if caption:
                             media_vault.caption = caption
                     except Exception as e:
-                        print(f"Caption generation error: {str(e)}")
                         messages.error(request, f"Caption generation error: {str(e)}")
                     media_vault.save()
                 messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
@@ -170,7 +170,6 @@ def vault_details_view(request, pk, title):
         'media_count': media_count,
         'vault': vault,
         'media_files': categorized_media,
-        'media_form': VaultMediaForm(),
         'remaining_uploads': remaining_uploads
     }
     return render(request, 'vaults/vault_details.html', context)

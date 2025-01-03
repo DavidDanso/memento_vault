@@ -89,7 +89,9 @@
                           </h4>
                         </div>
                         <!-- end title -->
-                        <p>Some representative placeholder content for the first slide. Some representative placeholder.</p>
+                        {% if media.media.caption %}
+                        <p>{{ media.media.caption }}</p>
+                        {% endif %}
                       </div>
                     </div>
                     <!-- end carousel-item -->
