@@ -161,7 +161,6 @@ def vault_details_view(request, pk, title):
                         caption = media_processor.get_caption(f)
                         if caption:
                             media_vault.caption = caption
-                            print(f"Generated caption for {f.name}: {caption}")
                     except Exception as e:
                         print(f"Caption generation error: {str(e)}")
                     media_vault.save()

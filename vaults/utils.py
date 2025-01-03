@@ -25,7 +25,7 @@ class MediaProcessor:
             if img.mode != 'RGB':
                 img = img.convert('RGB')
             
-            response = self.model.generate_content(['Describe this image in a single sentence, focusing on key visual elements and details, no longer than 20 words', img])
+            response = self.model.generate_content(['Describe this image in a single sentence, focusing on key visual elements and details, no longer than 30 words', img])
             return response.text
             
         except Exception as e:
