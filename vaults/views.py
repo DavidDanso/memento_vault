@@ -76,7 +76,6 @@ def dashboard_view(request):
 
 
 
-# Retrieves the user's profile for potential customization or data display.✅
 @login_required(login_url='login')
 def vault_view(request):
     # Ensure Profile exists for the logged-in user
@@ -123,7 +122,6 @@ def vault_view(request):
 
 
 
-# Vault details view renders a page that likely displays specific details of a selected vault.
 @login_required(login_url='login')
 def vault_details_view(request, pk, title):
     vault = get_object_or_404(Vault, pk=pk)
@@ -163,6 +161,7 @@ def vault_details_view(request, pk, title):
                             media_vault.caption = caption
                     except Exception as e:
                         print(f"Caption generation error: {str(e)}")
+                        messages.error(request, f"Caption generation error: {str(e)}")
                     media_vault.save()
                 messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
                 return redirect('vault-details', pk=pk, title=title)
