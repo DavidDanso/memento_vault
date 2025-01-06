@@ -100,14 +100,6 @@
               </div>
               <!-- end masonry-item -->
 
-              {% if media.media.tags.all %}
-              <div class="tags mt-2">
-                {% for tag in media.media.tags.all %}
-                <span class="badge bg-primary me-1">{{ tag }}</span>
-                {% endfor %}
-              </div>
-              {% endif %}
-
               <!--=========================================== view_image-Modal ===============================-->
               {% include 'vaults/view_image_modal.html' %}
               <!-- End view_image-modal-->

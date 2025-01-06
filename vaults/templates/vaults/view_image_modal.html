@@ -47,8 +47,13 @@
                   MoodLens
                   <img src="{% static 'images/smile.png' %}" class="img-fluid" id="modal_icon" alt="modal_icon" />
                 </h2>
-                <span class="badge badge-pill">excited</span>
-                <span class="badge badge-pill">sad</span>
+                {% if media.media.tags.exists %}
+                <div class="tags mt-2">
+                  {% for tag in media.media.tags.all|slice:"1:" %}
+                  <span class="badge badge-pill me-1 mb-1">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+                {% endif %}
                 <!--  -->
 
                 <hr id="line_divider" />
