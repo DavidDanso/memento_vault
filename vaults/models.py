@@ -8,6 +8,7 @@ import uuid
 from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
+from taggit.managers import TaggableManager
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -49,6 +50,7 @@ class VaultMedia(models.Model):
     vault = models.ForeignKey(Vault, on_delete=models.CASCADE, related_name="media_files")
     file = models.FileField(upload_to='vault_media/')  # Supports both images and videos
     caption = models.TextField(blank=True, null=True)
+    tags = TaggableManager()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 

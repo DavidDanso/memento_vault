@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'active_link',
     'django_htmx',
     'django.contrib.humanize',
+    'taggit',
 ]
 
 SITE_ID = 1
