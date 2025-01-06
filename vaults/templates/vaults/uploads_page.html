@@ -58,7 +58,7 @@
                         <div class="input-group mb-3" id="upload_field">
                           <input type="file" name="file" multiple class="input form-control" />
                           <!-- Allow multiple uploads -->
-                          <button type="submit" id="media_btn" class="btn">Upload Media</button>
+                          <input type="submit" id="media_btn" class="btn" value="Upload Media" />
                         </div>
                         <!-- end upload_field -->
                       </form>
@@ -122,6 +122,11 @@
               hideToast(toast.id);
             }, 6000);
           }, index * 200); // Stagger multiple toasts
+        });
+        <!--  -->
+        const uploadButton = document.getElementById("media_btn");
+        uploadButton.addEventListener("click", function () {
+          uploadButton.value = "Uploading...";
         });
       });
 
