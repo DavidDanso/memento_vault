@@ -299,15 +299,17 @@ def uploads_view(request, vault_id):
             messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
         else:
             for f in files:
-                media_vault = VaultMedia(file=f, vault=vault)
-                # Generate a caption for the uploaded media
-                try:
-                    caption = media_processor.get_caption(f)
-                    if caption:
-                        media_vault.caption = caption
-                except Exception as e:
-                    messages.error(request, f"Caption generation error: {str(e)}")
-                media_vault.save()
+                    media_vault = VaultMedia(file=f, vault=vault)
+                    try:
+                        caption, tags = media_processor.get_caption_and_tags(f)
+                        if caption:
+                            media_vault.caption = caption
+                        media_vault.save()
+                        if tags:
+                            media_vault.tags.add(*tags)
+                    except Exception as e:
+                        messages.error(request, f"Processing error: {str(e)}")
+                    media_vault.save()
             messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
             # Recalculate uploads remaining after successful upload
             uploads_remaining -= len(files)
