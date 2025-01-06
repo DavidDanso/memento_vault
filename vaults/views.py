@@ -290,24 +290,26 @@ def uploads_view(request, vault_id):
     # Determine the remaining uploads for the user
     uploads_remaining = vault.max_media_items - media_count
 
-    media_form = VaultMediaForm()
-    if request.method == 'POST':
-        media_form = VaultMediaForm(request.POST, request.FILES)
-        if media_form.is_valid():
-            files = request.FILES.getlist('file')  # Get all uploaded files
-
-            # Check if the user is exceeding their allowed uploads
-            if media_count + len(files) > vault.max_media_items:
-                messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
-            else:
-                # Save each uploaded file to the database
-                for f in files:
-                    VaultMedia.objects.create(file=f, vault=vault)
-                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
-                # Recalculate uploads remaining after successful upload
-                uploads_remaining -= len(files)
-
-                return redirect('uploads', vault_id=vault_id)
+    media_form = VaultMediaForm(request.POST, request.FILES)
+    if media_form.is_valid():
+        files = request.FILES.getlist('file')
+        if media_count + len(files) > vault.max_media_items:
+            messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
+        else:
+            for f in files:
+                media_vault = VaultMedia(file=f, vault=vault)
+                # Generate a caption for the uploaded media
+                try:
+                    caption = media_processor.get_caption(f)
+                    if caption:
+                        media_vault.caption = caption
+                except Exception as e:
+                    messages.error(request, f"Caption generation error: {str(e)}")
+                media_vault.save()
+            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+            # Recalculate uploads remaining after successful upload
+            uploads_remaining -= len(files)
+            return redirect('uploads', vault_id=vault_id)
 
     # Pass the remaining uploads count and other data to the context
     context = {
