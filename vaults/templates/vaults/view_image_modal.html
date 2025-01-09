@@ -14,7 +14,8 @@
               {% if media.type == 'image' %}
               <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
               {% elif media.type == 'video' %}
-              <video class="videos" controls="controls" loading="lazy" id="modal_img">
+
+              <video class="videos" controls="controls" loading="lazy" id="modal_img" preload="auto" loop>
                 <source src="{{ media.media.file.url }}" type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
@@ -35,7 +36,7 @@
               <!-- end div_header -->
 
               <div id="div_body">
-                {% if media.media.caption %}
+                {% if media.media.caption and media.media.caption != "Video file uploaded" %}
                 <div id="image_description">
                   <p>{{ media.media.caption }}</p>
                 </div>

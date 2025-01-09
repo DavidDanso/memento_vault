@@ -84,12 +84,13 @@
                         <div id="title">
                           <h5>{{ media.media.file.name|truncate_filename:20 }}</h5>
                           <h4>
-                            <span class="badge rounded-pill">happy</span>
-                            <span class="badge rounded-pill">confused</span>
+                            {% if media.media.tags.exists %} {% for tag in media.media.tags.all|slice:"1:" %}
+                            <span class="badge badge-pill me-1 mb-1">{{ tag }}</span>
+                            {% endfor %} {% endif %}
                           </h4>
                         </div>
                         <!-- end title -->
-                        {% if media.media.caption %}
+                        {% if media.media.caption and media.media.caption != "Video file uploaded" %}
                         <p>{{ media.media.caption }}</p>
                         {% endif %}
                       </div>
