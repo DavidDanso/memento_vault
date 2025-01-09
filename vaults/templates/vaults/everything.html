@@ -70,7 +70,7 @@
             {% for media in media_files %}
             <div class="masonry-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{media.media.id}}">
               {% if media.type == 'image' %}
-              <img src="{{ media.media.file.url }}" class="img-fluid" alt="upload-img" />
+              <img src="{{ media.media.file.url }}" class="img-fluid" alt="{{ media.media.tags|slice:'1:2'|default:'upload-img' }}" />
               {% elif media.type == 'video' %}
               <!-- Wrapper div with the play icon as background -->
               <div class="video-wrapper">

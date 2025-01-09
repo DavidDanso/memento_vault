@@ -1,4 +1,3 @@
-# utils.py
 import google.generativeai as genai
 from PIL import Image
 
@@ -20,22 +19,32 @@ class MediaProcessor:
             if img.mode != 'RGB':
                 img = img.convert('RGB')
             
-            # Get caption
-            caption_response = self.model.generate_content([
-                'Describe this image in a single sentence, focusing on key visual elements and details, no longer than 30 words', 
-                img
-            ])
+            # Enhanced prompts for better search capabilities
+            caption_prompt = """
+            Describe this image in detail, including:
+            - Colors present (explicitly mention colors)
+            - Objects and their attributes
+            - Setting or environment
+            - Any notable visual characteristics
+            Limit to 50 words.
+            """
             
-            # Get emotion tags
-            tags_response = self.model.generate_content([
-                'Analyze facial expressions and emotions in this image. Return exactly 4 emotion-related tags as a comma-separated list. If no faces, return general image tags.', 
-                img
-            ])
+            tags_prompt = """
+            Analyze this image and provide tags as a comma-separated list covering:
+            - Dominant colors
+            - Emotions or mood
+            - Key objects
+            - Scene type or setting
+            Return exactly 5 descriptive tags.
+            """
             
-            tags = [tag.strip() for tag in tags_response.text.split(',')][:4]
+            caption_response = self.model.generate_content([caption_prompt, img])
+            tags_response = self.model.generate_content([tags_prompt, img])
+            
+            tags = [tag.strip().lower() for tag in tags_response.text.split(',')][:5]
             return caption_response.text, tags
             
         except Exception as e:
             print(f"Processing error: {str(e)}")
             return None, []
-    
+
