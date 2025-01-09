@@ -51,7 +51,7 @@
           <!--  -->
           <center>
             <div id="search">
-              <input id="input" class="form-control live-search-box" placeholder="search by 'mood' or vault name..." />
+              <input id="input" class="form-control live-search-box" placeholder="search by colors, object or 'emotions'..." />
               <button id="button">
                 <img src="{% static 'images/photo.png' %}" class="img-fluid" id="search_icon" alt="search_icon" />
               </button>
@@ -66,31 +66,25 @@
           <h2 id="mob_txt"><span>vault images & videos</span></h2>
           <h2 id="des_text"><span>vault images & videos</span></h2>
 
-          <div id="masonry-container">
-            {% for media in media_files %}
-            <div class="masonry-item" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{media.media.id}}">
-              {% if media.type == 'image' %}
-              <img src="{{ media.media.file.url }}" class="img-fluid" alt="{{ media.media.tags|slice:'1:2'|default:'upload-img' }}" />
-              {% elif media.type == 'video' %}
-              <!-- Wrapper div with the play icon as background -->
-              <div class="video-wrapper">
-                <video class="img-fluid" id="vid_img">
-                  <source src="{{ media.media.file.url }}" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+          <div id="masonry-container" class="live-search-list">
+            <div id="col_section">
+              {% for media in media_files %}
+              <div class="masonry-item" data-search-term="{{ media.media.caption|lower }}" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{media.media.id}}">
+                {% if media.type == 'image' %}
+                <img src="{{ media.media.file.url }}" class="img-fluid" alt="{{ media.media.tags|slice:'1:2'|default:'upload-img' }}" />
+                {% elif media.type == 'video' %}
+                <div class="video-wrapper">
+                  <video class="img-fluid" id="vid_img">
+                    <source src="{{ media.media.file.url }}" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                </div>
+                {% else %}
+                <p>Unsupported file format</p>
+                {% endif %}
               </div>
-              <!-- end video-wrapper -->
-
-              {% else %}
-              <p>Unsupported file format</p>
-              {% endif %}
+              {% include 'vaults/view_image_modal.html' %} {% endfor %}
             </div>
-            <!-- end masonry-item -->
-
-            <!--=========================================== view_image-Modal ===============================-->
-            {% include 'vaults/view_image_modal.html' %}
-            <!-- End view_image-modal-->
-            {% endfor %}
           </div>
           <!-- end masonry-container -->
         </div>
@@ -121,17 +115,16 @@
     <script src="{% static '/js/everything.js' %}"></script>
 
     <script>
-      // Show toasts when page loads after form submission
+      // Toast notifications
       document.addEventListener("DOMContentLoaded", function () {
         const toasts = document.querySelectorAll(".alert");
         toasts.forEach((toast, index) => {
           setTimeout(() => {
             toast.classList.add("show");
-            // Auto hide after 6 seconds
             setTimeout(() => {
               hideToast(toast.id);
             }, 6000);
-          }, index * 200); // Stagger multiple toasts
+          }, index * 200);
         });
       });
 
@@ -140,7 +133,6 @@
         if (toast) {
           toast.classList.add("hide");
           toast.classList.remove("show");
-          // Remove from DOM after animation
           setTimeout(() => {
             const container = toast.closest(".alert-container");
             if (container) {
@@ -149,6 +141,22 @@
           }, 300);
         }
       }
+
+      // Search functionality
+      $(document).ready(function () {
+        $(".live-search-box").on("keyup", function () {
+          var searchTerm = $(this).val().toLowerCase();
+
+          $(".masonry-item").each(function () {
+            var searchStr = $(this).data("search-term");
+            if (searchStr && searchStr.indexOf(searchTerm) !== -1) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
+      });
     </script>
   </body>
 </html>
