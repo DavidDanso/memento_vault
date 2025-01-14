@@ -12,7 +12,6 @@ from django.db.models import Exists, OuterRef
 from django.http import HttpResponse
 from .utils import MediaProcessor
 
-
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
 
