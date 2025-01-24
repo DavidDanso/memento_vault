@@ -47,11 +47,11 @@ Memento Vault is a platform designed to securely store and share photos and vide
     - Manage profile, notifications, and connected devices.
 
 ### AI-Enhanced Features (In Development)
-11. **Smart Captioning** *(In Progress)*
+11. **Smart Captioning**
     - AI-generated captions for media.
     - Editable and learnable captions.
 
-12. **Emotion Detection** *(In Progress)*
+12. **Emotion Detection**
     - Detects emotions in photos.
     - Tags media with emotion-based filters.
 
