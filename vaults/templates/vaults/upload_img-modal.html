@@ -59,11 +59,27 @@
 <!-- end uploadImageModal -->
 
 <script>
-  <!--  -->
   document.addEventListener("DOMContentLoaded", function () {
     const uploadButton = document.getElementById("media_btn");
-    uploadButton.addEventListener("click", function () {
-      uploadButton.value = "Uploading...";
+    const uploadCard = document.getElementById("upload_card");
+    const fileInput = document.querySelector('input[type="file"]');
+
+    // Always hide upload card initially
+    uploadCard.style.display = "none";
+
+    fileInput.addEventListener("change", function () {
+      if (this.files.length > 0) {
+        uploadButton.value = "Upload Media";
+      }
+    });
+
+    uploadButton.addEventListener("click", function (event) {
+      if (fileInput.files.length > 0) {
+        uploadButton.value = "Uploading...";
+        uploadCard.style.display = "block";
+      } else {
+        event.preventDefault();
+      }
     });
   });
 </script>
