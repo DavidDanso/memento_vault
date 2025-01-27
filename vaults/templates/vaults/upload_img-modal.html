@@ -66,20 +66,16 @@
     const fileInput = document.querySelector('input[type="file"]');
 
     // Check if there's an initial file count (from Django context)
-    const initialFileCount = parseInt(document.getElementById("upload_card").dataset.fileCount || "0");
+    const initialFileCount = parseInt(uploadCard.dataset.fileCount || "0");
 
-    // Show upload card if there are files being processed
+    // Show or hide the upload card based on the initial file count
     if (initialFileCount > 0) {
       uploadCard.style.display = "block";
-      const statusElement = uploadCard.querySelector(".status");
-      statusElement.innerHTML = `
-            <span class="spinner"></span>
-            Saving ${initialFileCount} ${initialFileCount === 1 ? "item" : "items"} to your vault
-        `;
     } else {
       uploadCard.style.display = "none";
     }
 
+    // Update button text when files are selected
     fileInput.addEventListener("change", function () {
       const fileCount = this.files.length;
       if (fileCount > 0) {
@@ -87,9 +83,10 @@
       }
     });
 
+    // Handle form submission
     uploadForm.addEventListener("submit", function (event) {
       if (fileInput.files.length > 0) {
-        // Show upload card and update status message
+        // Show upload card while processing
         uploadCard.style.display = "block";
         const statusElement = uploadCard.querySelector(".status");
         statusElement.innerHTML = `
@@ -97,12 +94,14 @@
                 Saving ${fileInput.files.length} ${fileInput.files.length === 1 ? "item" : "items"} to your vault
             `;
 
-        // Update button state
+        // Disable the button to prevent multiple submissions
         uploadButton.value = "Uploading...";
         uploadButton.disabled = true;
       } else {
         event.preventDefault();
       }
     });
+
+    // The upload card will automatically hide after the page reloads since the backend resets file_count.
   });
 </script>
