@@ -62,31 +62,44 @@
   document.addEventListener("DOMContentLoaded", function () {
     const uploadButton = document.getElementById("media_btn");
     const uploadCard = document.getElementById("upload_card");
+    const uploadForm = document.getElementById("uploadForm");
     const fileInput = document.querySelector('input[type="file"]');
 
-    // Check if we have an upload indicator in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const uploaded = urlParams.get("uploaded");
+    // Check if there's an initial file count (from Django context)
+    const initialFileCount = parseInt(document.getElementById("upload_card").dataset.fileCount || "0");
 
-    // Show card only if coming from a successful upload
-    if (uploaded) {
+    // Show upload card if there are files being processed
+    if (initialFileCount > 0) {
       uploadCard.style.display = "block";
-      // Clean the URL after showing the card
-      window.history.replaceState({}, document.title, window.location.pathname);
+      const statusElement = uploadCard.querySelector(".status");
+      statusElement.innerHTML = `
+            <span class="spinner"></span>
+            Saving ${initialFileCount} ${initialFileCount === 1 ? "item" : "items"} to your vault
+        `;
     } else {
       uploadCard.style.display = "none";
     }
 
     fileInput.addEventListener("change", function () {
-      if (this.files.length > 0) {
-        uploadButton.value = "Upload Media";
+      const fileCount = this.files.length;
+      if (fileCount > 0) {
+        uploadButton.value = `Upload ${fileCount} ${fileCount === 1 ? "File" : "Files"}`;
       }
     });
 
-    uploadButton.addEventListener("click", function (event) {
+    uploadForm.addEventListener("submit", function (event) {
       if (fileInput.files.length > 0) {
-        uploadButton.value = "Uploading...";
+        // Show upload card and update status message
         uploadCard.style.display = "block";
+        const statusElement = uploadCard.querySelector(".status");
+        statusElement.innerHTML = `
+                <span class="spinner"></span>
+                Saving ${fileInput.files.length} ${fileInput.files.length === 1 ? "item" : "items"} to your vault
+            `;
+
+        // Update button state
+        uploadButton.value = "Uploading...";
+        uploadButton.disabled = true;
       } else {
         event.preventDefault();
       }

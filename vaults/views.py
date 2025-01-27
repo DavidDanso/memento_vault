@@ -129,6 +129,9 @@ def vault_details_view(request, pk, title):
     media_files = vault.media_files.all().order_by('-updated_at')
     remaining_uploads = vault.max_media_items - media_count
     
+    # Get file_count from session if it exists
+    file_count = request.session.pop('file_count', 0)
+    
     categorized_media = []
     for media in media_files:
         file_url = media.file.url.lower()
@@ -150,9 +153,14 @@ def vault_details_view(request, pk, title):
         media_form = VaultMediaForm(request.POST, request.FILES)
         if media_form.is_valid():
             files = request.FILES.getlist('file')
-            if media_count + len(files) > vault.max_media_items:
+            current_file_count = len(files)
+            
+            if media_count + current_file_count > vault.max_media_items:
                 messages.error(request, f"Only {remaining_uploads} upload(s) left. Please cut back on your uploads.")
             else:
+                # Store file count in session before redirect
+                request.session['file_count'] = current_file_count
+                
                 for f in files:
                     media_vault = VaultMedia(file=f, vault=vault)
                     try:
@@ -165,14 +173,15 @@ def vault_details_view(request, pk, title):
                     except Exception as e:
                         messages.error(request, f"Processing error: {str(e)}")
                     media_vault.save()
-                messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+                messages.success(request, f"{current_file_count} file(s) successfully uploaded to this vault! 🎉")
                 return redirect('vault-details', pk=pk, title=title)
 
     context = {
         'media_count': media_count,
         'vault': vault,
         'media_files': categorized_media,
-        'remaining_uploads': remaining_uploads
+        'remaining_uploads': remaining_uploads,
+        'file_count': file_count  # This will now have the correct count from session
     }
     return render(request, 'vaults/vault_details.html', context)
 

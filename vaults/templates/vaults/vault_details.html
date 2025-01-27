@@ -149,12 +149,12 @@
       <!-- End deleteMedia-modal-->
 
       <!-- upload-card -->
-      <div id="upload_card">
+      <div id="upload_card" data-file-count="{{ file_count }}">
         <div class="card">
           <div class="card-body">
             <div class="status">
               <span class="spinner"></span>
-              Saving 4 items to your vault
+              Saving {{ file_count }} item{{ file_count|pluralize }} to your vault
             </div>
             <!-- end wrap -->
           </div>
