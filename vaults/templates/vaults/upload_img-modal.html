@@ -64,8 +64,18 @@
     const uploadCard = document.getElementById("upload_card");
     const fileInput = document.querySelector('input[type="file"]');
 
-    // Always hide upload card initially
-    uploadCard.style.display = "none";
+    // Check if we have an upload indicator in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const uploaded = urlParams.get("uploaded");
+
+    // Show card only if coming from a successful upload
+    if (uploaded) {
+      uploadCard.style.display = "block";
+      // Clean the URL after showing the card
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      uploadCard.style.display = "none";
+    }
 
     fileInput.addEventListener("change", function () {
       if (this.files.length > 0) {
