@@ -100,6 +100,22 @@
         <!-- end container-fluid -->
       </div>
       <!-- end uploads_page -->
+
+      <!-- upload-card -->
+      <div id="upload_card" data-file-count="{{ file_count }}">
+        <div class="card">
+          <div class="card-body">
+            <div class="status">
+              <span class="spinner"></span>
+              Saving {{ file_count }} item{{ file_count|pluralize }} to your vault
+            </div>
+            <!-- end wrap -->
+          </div>
+          <!-- end card-body -->
+        </div>
+        <!-- end card -->
+      </div>
+      <!-- end upload-card -->
     </main>
     <!-- end main -->
 
