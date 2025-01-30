@@ -296,7 +296,8 @@ def uploads_view(request, vault_id):
     # Get the vault object using the primary key
     vault = get_object_or_404(Vault, pk=vault_id)
 
-    # Calculate the total media upload limit for the vault
+    # Clear the file_count session value by default
+    file_count = request.session.pop('file_count', 0)
 
     # Count the currently uploaded media files
     media_count = vault.media_files.count()
@@ -307,9 +308,13 @@ def uploads_view(request, vault_id):
     media_form = VaultMediaForm(request.POST, request.FILES)
     if media_form.is_valid():
         files = request.FILES.getlist('file')
-        if media_count + len(files) > vault.max_media_items:
+        current_file_count = len(files)
+
+        if media_count + current_file_count > vault.max_media_items:
             messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
         else:
+            request.session['file_count'] = current_file_count
+
             for f in files:
                     media_vault = VaultMedia(file=f, vault=vault)
                     try:
@@ -322,9 +327,12 @@ def uploads_view(request, vault_id):
                     except Exception as e:
                         messages.error(request, f"Processing error: {str(e)}")
                     media_vault.save()
-            messages.success(request, f"{len(files)} file(s) successfully uploaded to this vault! 🎉")
+
+            # Clear the file count after successful upload
+            request.session['file_count'] = 0
+            messages.success(request, f"{current_file_count} file(s) successfully uploaded to this vault! 🎉")
             # Recalculate uploads remaining after successful upload
-            uploads_remaining -= len(files)
+            uploads_remaining -= len(files)    
             return redirect('uploads', vault_id=vault_id)
 
     # Pass the remaining uploads count and other data to the context
