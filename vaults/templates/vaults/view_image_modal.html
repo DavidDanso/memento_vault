@@ -12,7 +12,7 @@
           <div class="row">
             <div class="col-md-5 align-self-center">
               {% if media.type == 'image' %}
-              <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
+              <img src="{{ media.media.file.url }}" class="img-fluid d-flex mx-auto" id="modal_img" alt="upload-img" />
               {% elif media.type == 'video' %}
 
               <video class="videos" controls="controls" loading="lazy" id="modal_img" preload="auto" loop>
