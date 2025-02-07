@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 from PIL import Image
 import asyncio
 from functools import lru_cache
@@ -9,9 +9,9 @@ import hashlib
 
 class MediaProcessor:
     def __init__(self, api_key):
-        self.client = genai.Client(api_key=api_key)
-        self.model = 'gemini-2.0-flash'
-        self._executor = concurrent.futures.ThreadPoolExecutor(max_workers=3)
+        genai.configure(api_key=api_key)
+        self.model = genai.GenerativeModel('gemini-2.0-flash')
+        self._executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
         self._cache = {}
 
     @lru_cache(maxsize=100)
@@ -27,41 +27,70 @@ class MediaProcessor:
 
     async def _process_image(self, file) -> Tuple[Optional[str], List[str]]:
         try:
+            file.seek(0)
             file_content = file.read()
             file_hash = self._get_file_hash(file_content)
+
             if file_hash in self._cache:
                 return self._cache[file_hash]
+
             img = Image.open(io.BytesIO(file_content))
             if img.mode != 'RGB':
                 img = img.convert('RGB')
-            caption = self._get_caption(img)
-            tags = self._get_tags(img)
+
+            # Convert PIL Image to bytes for Gemini API
+            img_byte_arr = io.BytesIO()
+            img.save(img_byte_arr, format='JPEG')
+            img_data = img_byte_arr.getvalue()
+
+            loop = asyncio.get_event_loop()
+            caption_future = loop.run_in_executor(self._executor, self._get_caption, img_data)
+            tags_future = loop.run_in_executor(self._executor, self._get_tags, img_data)
+            caption, tags = await asyncio.gather(caption_future, tags_future)
+
             result = (caption, tags)
             self._cache[file_hash] = result
             return result
+
         except Exception as e:
             print(f"Processing error: {str(e)}")
             return None, []
 
-    def _get_caption(self, img) -> str:
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=[
-                "Describe this image in detail, including colors, objects, attributes, setting. 50 words max.",
-                img
-            ]
-        )
-        return response.text
+    def _get_caption(self, img_data: bytes) -> str:
+        try:
+            response = self.model.generate_content(
+                [
+                    "Describe this image in detail, including colors, objects, attributes, setting. 50 words max.",
+                    {"mime_type": "image/jpeg", "data": img_data}
+                ],
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.3,  # Slightly higher for better creativity
+                    max_output_tokens=200
+                )
+            )
+            return response.text if response.text else "No caption generated"
+        except Exception as e:
+            print(f"Caption error: {str(e)}")
+            return "Caption unavailable"
 
-    def _get_tags(self, img) -> List[str]:
-        response = self.client.models.generate_content(
-            model=self.model,
-            contents=[
-                "List 5 comma-separated tags: dominant colors, emotions, key objects, scene type.",
-                img
-            ]
-        )
-        return [tag.strip().lower() for tag in response.text.split(',')][:5]
+    def _get_tags(self, img_data: bytes) -> List[str]:
+        try:
+            response = self.model.generate_content(
+                [
+                    "List 5 comma-separated tags: dominant colors, emotions, key objects, scene type.",
+                    {"mime_type": "image/jpeg", "data": img_data}
+                ],
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.3,
+                    max_output_tokens=100
+                )
+            )
+            if not response.text:
+                return []
+            return [tag.strip().lower() for tag in response.text.split(',')][:5]
+        except Exception as e:
+            print(f"Tag error: {str(e)}")
+            return []
 
     def clear_cache(self):
         self._cache.clear()
