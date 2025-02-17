@@ -4,12 +4,14 @@ cachetools==5.5.0
 certifi==2024.8.30
 cffi==1.17.1
 charset-normalizer==3.4.0
+cloudinary==1.42.2
 cryptography==43.0.1
 dj-database-url==2.2.0
 Django==5.1.1
 django-active-link==0.2.2
 django-allauth==65.0.2
 django-cleanup==9.0.0
+django-cloudinary-storage==0.3.0
 django-htmx==1.19.0
 django-resized==1.0.3
 django-taggit==6.1.0
@@ -43,6 +45,7 @@ qrcode==8.0
 requests==2.32.3
 requests-oauthlib==2.0.0
 rsa==4.9
+six==1.17.0
 sqlparse==0.5.1
 tqdm==4.67.1
 typing_extensions==4.12.2

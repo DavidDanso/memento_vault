@@ -14,7 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4z9z$ol)gal^i34j9)jgd*$grj7uawm18whufdwk70ath662v2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-ENVIROMENT = config('ENVIROMENT')
+ENVIRONMENT = config('ENVIRONMENT')
 
 GEMINI_API_KEY = config('GEMINI_API_KEY')
 
@@ -22,7 +22,7 @@ INTERNAL_IPS = [
     "127.0.0.1",
 ]
 
-if ENVIROMENT == 'development':
+if ENVIRONMENT == 'development':
     DEBUG = True
 else:
     DEBUG = False
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 
     # my_apps
     'users.apps.UsersConfig',
@@ -103,7 +106,7 @@ DATABASES = {
 }
 
 
-# POSTGRES_LOCALLY = True
+POSTGRES_LOCALLY = True
 # if ENVIROMENT == 'production' or POSTGRES_LOCALLY == True:
 #     DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
 
@@ -146,8 +149,17 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [ BASE_DIR / 'static' ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media' 
+#
+if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+    CLOUDINARY_STORAGE = {
+        'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
+        'API_KEY': config('CLOUDINARY_API_KEY'),
+        'API_SECRET': config('CLOUDINARY_API_SECRET')
+    }
+else:
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
+    MEDIA_URL = '/media/' 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
