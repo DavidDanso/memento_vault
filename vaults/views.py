@@ -16,6 +16,11 @@ GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
 
 
+def home_view(request):
+    context = {}
+    return render(request, 'index.html', context)
+
+
 @login_required(login_url='login')
 def dashboard_view(request):
     # Ensure Profile exists for the logged-in user

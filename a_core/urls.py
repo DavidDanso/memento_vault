@@ -10,6 +10,9 @@ urlpatterns = [
     # admin
     path('admin/', admin.site.urls),
 
+    path('', home_view, name='home'),
+
+
     # user
     path('profile', include('users.urls')),
 
