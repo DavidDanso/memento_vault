@@ -75,77 +75,21 @@ a:hover {
 }
 
 /****************************************** NAVIGATION ************************************/
-/* sidebar */
-#nav_ {
-  margin-top: 13rem;
-}
-.sidebar {
-  width: 50px;
-  height: 100vh;
-  background-color: var(--main-color);
-  position: fixed;
-  left: 0;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  border-right: 1px solid #707070;
-}
-.sidebar nav ul {
-  list-style-type: none;
-}
-.sidebar nav ul li {
-  margin-bottom: 20px;
-}
-.icon_ {
-  width: 22px;
-  margin-left: -40%;
-  color: #9b9b9b;
-  transition: all 0.4s ease-in-out;
-}
-.icon_v {
-  width: 33px;
-  margin-left: -55%;
-  color: #9b9b9b;
-  transition: all 0.4s ease-in-out;
-}
-.notification_icon {
-  width: 33px;
-  margin-left: 15%;
-  color: #9b9b9b;
-  transition: all 0.4s ease-in-out;
-}
-/* hover */
-.icon_:hover,
-.icon_v:hover,
-.notification_icon:hover {
-  color: #ff5924;
-  transition: all 0.4s ease-in-out;
-}
-#user_avatar {
-  width: 35px;
-  height: 35px;
-  object-fit: cover;
-  margin-top: 25%;
-}
-.sidebar .bottom-icons {
-  margin-bottom: 35%;
-  margin-left: 15%;
-}
-
 /* top nav */
 #mainNav {
   transform: translateY(0);
   transition: padding-top 0.3s, padding-bottom 0.3s;
   padding-top: 3px;
-  padding-bottom: 0px;
+  padding-bottom: 3px;
   background: var(--main-color);
   transform: translateY(0);
   opacity: 1;
   z-index: 9;
   width: 100vw;
   border-bottom: 1px solid #707070;
+}
+#logo {
+  width: 45px;
 }
 .navbar-toggler {
   position: absolute;
@@ -199,34 +143,6 @@ a:hover {
   color: var(--text-color) !important;
 }
 
-/* header */
-header {
-  margin-bottom: 20px;
-}
-header nav {
-  display: flex;
-  align-items: center;
-  overflow-x: auto;
-}
-header nav ul {
-  list-style-type: none;
-  display: flex;
-  gap: 20px;
-}
-header nav ul li a {
-  color: #999;
-  text-decoration: none;
-  white-space: nowrap;
-}
-/*  */
-.nav-item.active a {
-  color: #ff5924 !important;
-}
-/* Add an active state for the SVG icon */
-#nav_ li.active a .icon_v {
-  fill: #ff5924 !important; /* Change SVG icon color when active */
-}
-
 /****************************************** Main-Content ************************************/
 
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
@@ -240,10 +156,6 @@ header nav ul li a {
 }
 /***************************** Medium devices (tablets, 768px and up) ********************************/
 @media (min-width: 768px) and (max-width: 991.98px) {
-  /* sidebar */
-  .sidebar {
-    width: 50px;
-  }
 }
 /********************************** Large devices (desktops, 992px and up) *********************************/
 @media (min-width: 992px) and (max-width: 1199.98px) {
