@@ -48,11 +48,9 @@
             <!--  -->
             <ul class="navbar-nav mb-2 mb-lg-0" id="rightNav">
               <li class="nav-item">
-                <a class="nav-link btn" href="{% url 'sign-up' %}">sign up</a>
+                <a class="nav-link btn" id="sign_up" href="{% url 'sign-up' %}">sign up</a>
               </li>
-              <li class="nav-item">
-                <span>|</span>
-              </li>
+
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">
                   <img src="{% static 'images/new_lock.svg' %}" class="img-fluid" id="new_lock" alt="new_lock" />
@@ -66,7 +64,22 @@
       <!--  -->
       <div id="hero">
         <div class="container-fluid">
-          <div class="hero-intro"></div>
+          <div class="hero-intro">
+            <div class="row">
+              <div class="col-md-8">
+                <h1>Memento <span></span> Vault.</h1>
+                <a class="btn" id="desktop_btn" href="{% url 'sign-up' %}">sign up</a>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-4 align-self-center">
+                <p>Preserve your special moments with Memento Vault. Our platform makes it easy to store, organize, and share your cherished memories. With advanced tools, your digital photos and videos stay safe and accessible—all in one place.</p>
+                <a class="btn" id="mob_btn" href="{% url 'sign-up' %}">sign up</a>
+              </div>
+              <!-- end col -->
+            </div>
+            <!-- end row -->
+          </div>
           <!-- end hero-intro -->
         </div>
         <!-- end container-fluid -->

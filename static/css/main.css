@@ -142,11 +142,72 @@ a:hover {
 #logout_txt {
   color: var(--text-color) !important;
 }
+#mainNav #sign_up {
+  background-color: #ffd7c4;
+  color: var(--main-color);
+  padding: 5px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  display: inline-block;
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.9vh;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+#mainNav #sign_up:hover {
+  background: #ff9874;
+  transform: scale(1.05);
+}
 
 /****************************************** Main-Content ************************************/
+#hero {
+  margin-top: 30%;
+}
+.hero-intro {
+  margin: 3%;
+}
+.hero-intro h1 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--header-font);
+  font-size: 4rem;
+  font-weight: bold;
+  margin-top: 5%;
+  line-height: 1.1;
+}
+.hero-intro p {
+  color: #9b9b9b;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.4rem;
+  line-height: 1.2;
+  margin-top: 3%;
+}
+/* Base styling for the button */
+#hero .btn {
+  background-color: #ffd7c4;
+  color: var(--main-color);
+  padding: 5px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  display: inline-block;
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.9vh;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+#hero .btn:hover {
+  background: #ff9874;
+  transform: scale(1.05);
+}
 
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
+  #desktop_btn {
+    display: none !important;
+  }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
 @media (min-width: 576px) and (max-width: 767.98px) {
@@ -165,4 +226,31 @@ a:hover {
 }
 /************************ Extra large devices (large desktops, 1200px and up) ********************************/
 @media (min-width: 1200px) {
+  /* hero */
+  #hero {
+    margin-top: 10%;
+  }
+  .hero-intro {
+    margin: 3%;
+  }
+  .hero-intro h1 {
+    font-size: 9rem;
+    margin-top: 0%;
+    line-height: 1;
+    margin-bottom: 2%;
+  }
+  .hero-intro h1 span {
+    display: block;
+  }
+  .hero-intro p {
+    font-size: 1.5rem;
+    margin-top: 0%;
+  }
+  #mob_btn {
+    display: none !important;
+  }
+  #hero .btn {
+    padding: 5px 20px;
+    font-size: 1.9vh;
+  }
 }
