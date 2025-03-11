@@ -208,7 +208,7 @@ a:hover {
 
 /****************************************** Intro ************************************/
 #intro {
-  margin-top: 5%;
+  margin-top: 2%;
 }
 .intro-intro {
   margin: 3%;
@@ -220,7 +220,7 @@ a:hover {
   font-size: 1.3rem;
 }
 .intro-intro #icon_ {
-  width: 50px;
+  width: 45px;
 }
 .intro-intro h5 {
   color: var(--text-color);
@@ -234,6 +234,9 @@ a:hover {
   font-family: var(--text-font);
   font-size: 1.4rem;
   line-height: 1.2;
+}
+.intro-intro .col-md-4 {
+  margin-top: 8%;
 }
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
@@ -284,5 +287,35 @@ a:hover {
   #hero .btn {
     padding: 5px 20px;
     font-size: 1.9vh;
+  }
+  #hero_line {
+    margin-top: 3%;
+  }
+
+  /* intro */
+  #intro {
+    margin-top: 2%;
+  }
+  .intro-intro {
+    margin: 3%;
+  }
+  .intro-intro h6 {
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+  }
+  .intro-intro #icon_ {
+    width: 45px;
+  }
+  .intro-intro h5 {
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    margin-top: 3%;
+  }
+  .intro-intro p {
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+  }
+  .intro-intro .col-md-4 {
+    margin-top: 0%;
   }
 }
