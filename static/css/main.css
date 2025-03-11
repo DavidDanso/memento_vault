@@ -159,7 +159,7 @@ a:hover {
   transform: scale(1.05);
 }
 
-/****************************************** Main-Content ************************************/
+/****************************************** Hero ************************************/
 #hero {
   margin-top: 30%;
 }
@@ -202,7 +202,39 @@ a:hover {
   background: #ff9874;
   transform: scale(1.05);
 }
+#hero_line {
+  color: var(--text-color);
+}
 
+/****************************************** Intro ************************************/
+#intro {
+  margin-top: 5%;
+}
+.intro-intro {
+  margin: 3%;
+}
+.intro-intro h6 {
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-family: var(--header-font);
+  font-size: 1.3rem;
+}
+.intro-intro #icon_ {
+  width: 50px;
+}
+.intro-intro h5 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.3rem;
+}
+.intro-intro p {
+  color: var(--nav-links-color);
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   #desktop_btn {
