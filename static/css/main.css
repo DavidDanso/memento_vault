@@ -258,6 +258,39 @@ a:hover {
   }
 }
 
+.intro-intro h2 {
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-family: var(--header-font);
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 6%;
+  margin-bottom: 2%;
+  font-weight: bold;
+}
+.intro-intro h2 span {
+  color: #ffd7c4;
+}
+/* Base styling for the button */
+.intro-intro .btn {
+  background-color: #ff9874;
+  color: var(--main-color);
+  padding: 5px 20px;
+  text-decoration: none;
+  border-radius: 25px;
+  display: inline-block;
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.9vh;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+/* Hover effect */
+.intro-intro .btn:hover {
+  background: #ffd7c4;
+  transform: scale(1.05);
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   #desktop_btn {
@@ -342,5 +375,14 @@ a:hover {
     margin-top: 2%;
     width: 45%;
     margin-left: 40%;
+  }
+  .intro-intro h2 {
+    font-size: 3rem;
+    margin-top: 3%;
+    margin-bottom: 1%;
+  }
+  .intro-intro .btn {
+    padding: 5px 20px;
+    font-size: 1.9vh;
   }
 }
