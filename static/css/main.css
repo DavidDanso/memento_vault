@@ -235,7 +235,7 @@ a:hover {
   font-size: 1.4rem;
   line-height: 1.2;
 }
-.intro-intro .col-md-4 {
+.intro-intro .col-md-3 {
   margin-top: 8%;
 }
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
@@ -315,7 +315,7 @@ a:hover {
     letter-spacing: 1px;
     font-size: 1.4rem;
   }
-  .intro-intro .col-md-4 {
+  .intro-intro .col-md-3 {
     margin-top: 0%;
   }
 }
