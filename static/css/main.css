@@ -238,6 +238,26 @@ a:hover {
 .intro-intro .col-md-3 {
   margin-top: 8%;
 }
+
+#hero_banner {
+  margin-top: 8%;
+  border: 3px solid #707070;
+  border-radius: 5px;
+  animation: pulse 3s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   #desktop_btn {
@@ -317,5 +337,10 @@ a:hover {
   }
   .intro-intro .col-md-3 {
     margin-top: 0%;
+  }
+  #hero_banner {
+    margin-top: 2%;
+    width: 45%;
+    margin-left: 40%;
   }
 }
