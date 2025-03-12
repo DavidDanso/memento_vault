@@ -1,7 +1,7 @@
 # Memento Vault
 
 ## Overview
-Memento Vault is a platform designed to securely store and share photos and videos from special events, enhanced with AI-driven features for seamless organization and content management.
+Memento Vault is a platform designed to securely store photos and videos from special events, enhanced with AI-driven features for seamless organization and content management.
 
 ## Features
 
@@ -13,15 +13,14 @@ Memento Vault is a platform designed to securely store and share photos and vide
 2. **Vault Creation with QR Code**
    - Create vaults for events.
    - Automatic QR code generation.
-   - Customizable QR code appearance.
 
 3. **Photo/Video Upload via QR Code**
    - Scan QR codes to access upload pages.
-   - Multiple file upload with progress indicators.
+   - Multiple file upload with progress indicator.
 
 4. **Timeline View**
    - Chronological display of media with infinite scroll.
-   - Thumbnail grid with date separators.
+   - Thumbnail grid view.
 
 5. **Basic Media Editing**
    - Add/edit captions and tags.
@@ -45,21 +44,65 @@ Memento Vault is a platform designed to securely store and share photos and vide
 
 10. **Account Settings**
     - Manage profile, notifications, and connected devices.
+   
 
-### AI-Enhanced Features (In Development)
+
+## App Preview:
+
+<table width="100%"> 
+<tr>
+<td width="50%">      
+&nbsp; 
+<br>
+<p align="center">
+  Landing Page
+</p>
+<img src="https://github.com/DavidDanso/memento_vault/blob/main/static/images/ui/landing_page.png" />
+</td> 
+<td width="50%">
+<br>
+<p align="center">
+  Dashboard(login)
+</p>
+<img src="https://github.com/DavidDanso/memento_vault/blob/main/static/images/ui/dashboard.png" />
+</td>
+</table>
+
+<table width="100%"> 
+<tr>
+<td width="50%">      
+&nbsp; 
+<br>
+<p align="center">
+  Empty Vault Page
+</p>
+<img src="https://github.com/DavidDanso/memento_vault/blob/main/static/images/ui/empty_vault.png" />
+</td> 
+<td width="50%">
+<br>
+<p align="center">
+  Vault Details Page
+</p>
+<img src="https://github.com/DavidDanso/memento_vault/blob/main/static/images/ui/vault_details.png" />
+</td>
+</table>
+
+
+
+### AI-Enhanced Features
 11. **Smart Captioning**
     - AI-generated captions for media.
-    - Editable and learnable captions.
+    - Editable and learnable captions.(In Development)
 
 12. **Emotion Detection**
     - Detects emotions in photos.
     - Tags media with emotion-based filters.
 
-13. **Similar Photo Grouping** *(In Progress)*
+13. **Similar Photo Grouping** *(In Development)*
     - Groups similar photos.
     - Suggests best photo, with option to keep/discard duplicates.
 
-14. **Personalized Content Surfacing** *(In Progress)*
+14. **Personalized Content Surfacing** *(In Development)*
     - Highlights favorite memories.
     - Suggests collections based on preferences.
 
@@ -74,14 +117,14 @@ Memento Vault is a platform designed to securely store and share photos and vide
    - Clean forms with social media login options.
 
 3. **User Dashboard**
-   - Overview of vaults, recent uploads, and AI suggestions.
+   - Overview of vaults, and recent uploads.
 
 4. **Vault Creation Page**
    - Form to name and describe vaults.
-   - QR code generation and sharing options.
+   - Automatic QR code generation.
 
 5. **Vault Detail Page**
-   - Media timeline, upload button, and sharing controls.
+   - Media timeline, and upload button.
 
 6. **Media Upload Page**
    - Drag-and-drop interface with file progress bars.
@@ -89,30 +132,21 @@ Memento Vault is a platform designed to securely store and share photos and vide
 7. **Individual Media View**
    - Full-size media with AI-generated captions and emotion tags.
 
-8. **Media Editing Page**
-   - Tools for editing captions, tags, and privacy.
-
-9. **Sharing Management**
-   - Overview of shared links and permission settings.
-
-10. **Account Settings**
+8. **Account Settings**
     - Manage personal information, storage, and notifications.
-
-11. **Help/FAQ Page**
-    - User guide, tutorials, and support options.
 
 ## Installation
 
 ### Prerequisites
 - Python 3.x
 - Django
-- AWS SDK (boto3)
+- Cloudinary Python SDK
 - PostgreSQL
 
 ### Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/memento-vault.git
+   git clone https://github.com/DavidDanso/memento-vault.git
    cd memento-vault
 
 
