@@ -46,6 +46,12 @@ INSTALLED_APPS = [
     'cloudinary_storage',
     'cloudinary',
 
+    # allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+
     # my_apps
     'users.apps.UsersConfig',
     'vaults.apps.VaultsConfig',
@@ -60,6 +66,33 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+OAUTH_GOOGLE_CLIENT_ID = config('OAUTH_GOOGLE_CLIENT_ID')
+OAUTH_GOOGLE_SECRET = config('OAUTH_GOOGLE_SECRET')
+
+# Allauth Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': config('OAUTH_GOOGLE_CLIENT_ID'),
+            'secret': config('OAUTH_GOOGLE_SECRET'),
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -70,6 +103,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
+
+    # Add the account middleware:
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = 'a_core.urls'
@@ -170,3 +206,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
+
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+# SOCIALACCOUNT_AUTO_SIGNUP = True
+# ACCOUNT_UNIQUE_EMAIL = True
+# SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+# SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+# SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
