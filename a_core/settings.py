@@ -72,10 +72,7 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-OAUTH_GOOGLE_CLIENT_ID = config('OAUTH_GOOGLE_CLIENT_ID')
-OAUTH_GOOGLE_SECRET = config('OAUTH_GOOGLE_SECRET')
-
-# Allauth Provider settings
+# Allauth Provider specific settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'SCOPE': [
@@ -203,10 +200,13 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
-
+# Allauth settings
 SOCIALACCOUNT_LOGIN_ON_GET = True
 # SOCIALACCOUNT_AUTO_SIGNUP = True
 # ACCOUNT_UNIQUE_EMAIL = True
 # SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
 # SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
 # SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
+
+# Redirect to dashboard after login
+LOGIN_REDIRECT_URL = '/dashboard'
