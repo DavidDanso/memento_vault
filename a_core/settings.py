@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
 
     # cloudinary
     'cloudinary_storage',
@@ -74,14 +75,9 @@ AUTHENTICATION_BACKENDS = [
 OAUTH_GOOGLE_CLIENT_ID = config('OAUTH_GOOGLE_CLIENT_ID')
 OAUTH_GOOGLE_SECRET = config('OAUTH_GOOGLE_SECRET')
 
-# Allauth Provider specific settings
+# Allauth Provider settings
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        'APP': {
-            'client_id': config('OAUTH_GOOGLE_CLIENT_ID'),
-            'secret': config('OAUTH_GOOGLE_SECRET'),
-            'key': ''
-        },
         'SCOPE': [
             'profile',
             'email',
