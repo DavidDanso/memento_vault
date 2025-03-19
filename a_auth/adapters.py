@@ -8,10 +8,13 @@ User = get_user_model()
 
 class CustomAccountAdapter(DefaultAccountAdapter):
     def get_signup_redirect_url(self, request):
-        return resolve_url("profile") 
+        return resolve_url("profile")  # Keep this as profile
     
     
 class SocialAccountAdapter(DefaultSocialAccountAdapter):
+    def get_login_redirect_url(self, request):
+        return resolve_url("dashboard")  # Social login redirects to dashboard
+    
     def pre_social_login(self, request, sociallogin):
         email = sociallogin.account.extra_data.get("email")
         
