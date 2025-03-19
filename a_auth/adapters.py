@@ -8,7 +8,7 @@ User = get_user_model()
 
 class CustomAccountAdapter(DefaultAccountAdapter):
     def get_signup_redirect_url(self, request):
-        return resolve_url("profile-onboarding") 
+        return resolve_url("dashboard") 
     
     
 class SocialAccountAdapter(DefaultSocialAccountAdapter):

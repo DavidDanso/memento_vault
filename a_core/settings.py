@@ -81,6 +81,7 @@ SOCIALACCOUNT_PROVIDERS = {
         ],
         'AUTH_PARAMS': {
             'access_type': 'online',
+            'prompt': 'consent',
         }
     }
 }
@@ -209,4 +210,6 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 # SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 
 # Redirect to dashboard after login
-LOGIN_REDIRECT_URL = '/dashboard'
+# LOGIN_REDIRECT_URL = '/dashboard'
+
+ACCOUNT_ADAPTER = "a_auth.adapters.CustomAccountAdapter"
