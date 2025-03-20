@@ -94,7 +94,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django_htmx.middleware.HtmxMiddleware',
 
-    # Add the account middleware:
     "allauth.account.middleware.AccountMiddleware",
 ]
 
@@ -207,3 +206,6 @@ SOCIALACCOUNT_EMAIL_VERIFICATION = "none"
 
 ACCOUNT_ADAPTER = "a_auth.adapters.CustomAccountAdapter"
 SOCIALACCOUNT_ADAPTER = "a_auth.adapters.SocialAccountAdapter"
+
+
+LOGIN_REDIRECT_URL = '/dashboard/'
