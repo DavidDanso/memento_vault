@@ -16,6 +16,8 @@ SECRET_KEY = 'django-insecure-4z9z$ol)gal^i34j9)jgd*$grj7uawm18whufdwk70ath662v2
 # SECURITY WARNING: don't run with debug turned on in production!
 ENVIRONMENT = config('ENVIRONMENT')
 
+print(f"ENVIRONMENT: {ENVIRONMENT}")
+
 GEMINI_API_KEY = config('GEMINI_API_KEY')
 
 INTERNAL_IPS = [
@@ -131,9 +133,8 @@ DATABASES = {
 }
 
 #
-POSTGRES_LOCALLY = True
-# if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
-#     DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
+if ENVIRONMENT == 'production':
+    DATABASES['default'] = dj_database_url.parse(config('DATABASE_URL'))
 
 
 # Password validation
@@ -175,7 +176,7 @@ STATICFILES_DIRS = [ BASE_DIR / 'static' ]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 #
-if ENVIRONMENT == 'production' or POSTGRES_LOCALLY == True:
+if ENVIRONMENT == 'production':
     DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
     CLOUDINARY_STORAGE = {
         'CLOUD_NAME': config('CLOUDINARY_CLOUD_NAME'),
