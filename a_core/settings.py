@@ -179,7 +179,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-POSTGRES_LOCALLY = True
+POSTGRES_LOCALLY = False
 #
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
     STORAGES = {
