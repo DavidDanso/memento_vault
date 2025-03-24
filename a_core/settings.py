@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'django_htmx',
     'django.contrib.humanize',
     'taggit',
+    'storages',
 ]
 
 SITE_ID = 1
@@ -178,7 +179,7 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-POSTGRES_LOCALLY = False
+POSTGRES_LOCALLY = True
 #
 if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
     STORAGES = {
@@ -194,7 +195,7 @@ if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
     AWS_SECRET_ACCESS_KEY=config('AWS_SECRET_ACCESS_KEY')
     AWS_STORAGE_BUCKET_NAME=config('AWS_STORAGE_BUCKET_NAME')
     AWS_S3_REGION_NAME=config('AWS_S3_REGION_NAME')
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
+    AWS_S3_CUSTOM_DOMAIN = "dveoqgw29229x.cloudfront.net"
     AWS_S3_FILE_OVERWRITE = False
     AWS_LOCATION = 'media'
 else:

@@ -1,5 +1,7 @@
 annotated-types==0.7.0
 asgiref==3.8.1
+boto3==1.37.18
+botocore==1.37.18
 cachetools==5.5.0
 certifi==2024.8.30
 cffi==1.17.1
@@ -14,6 +16,7 @@ django-cleanup==9.0.0
 django-cloudinary-storage==0.3.0
 django-htmx==1.19.0
 django-resized==1.0.3
+django-storages==1.14.5
 django-taggit==6.1.0
 google-ai-generativelanguage==0.6.10
 google-api-core==2.24.0
@@ -28,6 +31,7 @@ grpcio-status==1.68.1
 httplib2==0.22.0
 humanize==4.11.0
 idna==3.10
+jmespath==1.0.1
 oauthlib==3.2.2
 pillow==10.4.0
 proto-plus==1.25.0
@@ -40,11 +44,13 @@ pydantic==2.10.4
 pydantic_core==2.27.2
 PyJWT==2.9.0
 pyparsing==3.2.1
+python-dateutil==2.9.0.post0
 python-decouple==3.8
 qrcode==8.0
 requests==2.32.3
 requests-oauthlib==2.0.0
 rsa==4.9
+s3transfer==0.11.4
 six==1.17.0
 sqlparse==0.5.1
 tqdm==4.67.1
