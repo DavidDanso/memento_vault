@@ -224,3 +224,6 @@ SOCIALACCOUNT_ADAPTER = "a_auth.adapters.SocialAccountAdapter"
 
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+
+
+
