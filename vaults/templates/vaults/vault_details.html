@@ -156,7 +156,9 @@
               <span class="spinner"></span>
               Saving {{ file_count }} item{{ file_count|pluralize }} to your vault
             </div>
-            <!-- end wrap -->
+            <!-- end status -->
+            <div class="timer">0s</div>
+            <!-- end timer -->
           </div>
           <!-- end card-body -->
         </div>
@@ -171,7 +173,6 @@
     <!-- Custom Links -->
     <script src="{% static 'js/jquery-min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/vault_details.js' %}"></script>
 
     <script>
       // Show toasts when page loads after form submission

@@ -805,6 +805,16 @@ main {
   }
 }
 
+/*  */
+.timer {
+  color: #ff5f8d;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 17px;
+  margin-left: 75px;
+  font-weight: bolder;
+}
+
 /********************** Extra small devices (portrait phones, less than 576px) ****************************/
 @media (max-width: 575.98px) {
   header,
@@ -1163,5 +1173,14 @@ main {
   #upload_card .status {
     font-size: 15px;
     padding: 0;
+    margin-top: -3%;
+  }
+
+  /*  */
+  .timer {
+    font-size: 16px;
+    margin-left: 75px;
+    margin-top: -2%;
+    margin-bottom: -3%;
   }
 }
