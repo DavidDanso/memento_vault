@@ -109,7 +109,9 @@
               <span class="spinner"></span>
               Saving {{ file_count }} item{{ file_count|pluralize }} to your {{vault.title}} vault
             </div>
-            <!-- end wrap -->
+            <!-- end status -->
+            <div class="timer">0s</div>
+            <!-- end timer -->
           </div>
           <!-- end card-body -->
         </div>
@@ -124,7 +126,6 @@
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
-    <script src="{% static '/js/uploads_page.js' %}"></script>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -132,10 +133,9 @@
         const uploadCard = document.getElementById("upload_card");
         const uploadForm = document.getElementById("uploadForm");
         const fileInput = document.querySelector('input[type="file"]');
+        const timerElement = uploadCard.querySelector(".timer");
 
-        const vaultTitle = uploadCard.dataset.vaultTitle || "your"; // Default fallback
-
-        // Check if there's an initial file count (from Django context)
+        const vaultTitle = uploadCard.dataset.vaultTitle || "your";
         const initialFileCount = parseInt(uploadCard.dataset.fileCount || "0");
 
         // Show or hide the upload card based on the initial file count
@@ -149,15 +149,27 @@
           }
         });
 
+        // We'll start the timer only upon form submission
+        let timerInterval;
+        let seconds = 0;
+
         // Handle form submission
         uploadForm.addEventListener("submit", function (event) {
           if (fileInput.files.length > 0) {
             uploadCard.style.display = "block";
             const statusElement = uploadCard.querySelector(".status");
             statusElement.innerHTML = `
-                    <span class="spinner"></span>
-                    Saving ${fileInput.files.length} ${fileInput.files.length === 1 ? "item" : "items"} to ${vaultTitle} vault
-                `;
+              <span class="spinner"></span>
+              Saving ${fileInput.files.length} ${fileInput.files.length === 1 ? "item" : "items"} to ${vaultTitle} vault
+            `;
+
+            // Reset and start the timer from 0s
+            seconds = 0;
+            timerElement.textContent = "0s";
+            timerInterval = setInterval(() => {
+              seconds++;
+              timerElement.textContent = `${seconds}s`;
+            }, 1000);
 
             uploadButton.value = "Uploading...";
             uploadButton.disabled = true;
