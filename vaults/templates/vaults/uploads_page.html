@@ -110,7 +110,7 @@
               Saving {{ file_count }} item{{ file_count|pluralize }} to your {{vault.title}} vault
             </div>
             <!-- end status -->
-            <div class="timer">0s</div>
+            <div class="timer">1s</div>
             <!-- end timer -->
           </div>
           <!-- end card-body -->
@@ -151,7 +151,7 @@
 
         // We'll start the timer only upon form submission
         let timerInterval;
-        let seconds = 0;
+        let seconds = 1;
 
         // Handle form submission
         uploadForm.addEventListener("submit", function (event) {
@@ -163,9 +163,9 @@
               Saving ${fileInput.files.length} ${fileInput.files.length === 1 ? "item" : "items"} to ${vaultTitle} vault
             `;
 
-            // Reset and start the timer from 0s
-            seconds = 0;
-            timerElement.textContent = "0s";
+            // Reset and start the timer from 1s
+            seconds = 1;
+            timerElement.textContent = "1s";
             timerInterval = setInterval(() => {
               seconds++;
               timerElement.textContent = `${seconds}s`;

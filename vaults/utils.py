@@ -38,7 +38,19 @@ class MediaProcessor:
             if img.mode != 'RGB':
                 img = img.convert('RGB')
 
-            # Convert PIL Image to bytes for Gemini API
+            # Resize image to max 1024px on longest side
+            max_size = 1024
+            width, height = img.size
+            if max(width, height) > max_size:
+                if width > height:
+                    new_width = max_size
+                    new_height = int(height * (max_size / width))
+                else:
+                    new_height = max_size
+                    new_width = int(width * (max_size / height))
+                img = img.resize((new_width, new_height), Image.LANCZOS)
+
+            # Convert resized image to JPEG bytes
             img_byte_arr = io.BytesIO()
             img.save(img_byte_arr, format='JPEG')
             img_data = img_byte_arr.getvalue()
@@ -64,7 +76,7 @@ class MediaProcessor:
                     {"mime_type": "image/jpeg", "data": img_data}
                 ],
                 generation_config=genai.types.GenerationConfig(
-                    temperature=0.3,  # Slightly higher for better creativity
+                    temperature=0.3,
                     max_output_tokens=200
                 )
             )
