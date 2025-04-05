@@ -22,6 +22,7 @@ GEMINI_API_KEY = config('GEMINI_API_KEY')
 
 INTERNAL_IPS = [
     "127.0.0.1",
+    "localhost",
 ]
 
 if ENVIRONMENT == 'development':
@@ -46,8 +47,8 @@ INSTALLED_APPS = [
     'django.contrib.sites',
 
     # cloudinary
-    'cloudinary_storage',
-    'cloudinary',
+    # 'cloudinary_storage',
+    # 'cloudinary',
 
     # allauth
     'allauth',
@@ -66,6 +67,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'taggit',
     'storages',
+    'debug_toolbar',
 ]
 
 SITE_ID = 1
@@ -98,6 +100,7 @@ MIDDLEWARE = [
     'django_htmx.middleware.HtmxMiddleware',
 
     "allauth.account.middleware.AccountMiddleware",
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'a_core.urls'
