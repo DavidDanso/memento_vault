@@ -72,10 +72,8 @@ class VaultMedia(models.Model):
         return f'{self.vault.title} vault media [ {self.vault.owner} ]'
 
     class Meta:
-        ordering = ['-updated_at']
         indexes = [
-            models.Index(fields=['-updated_at']),  # For the default ordering
-            models.Index(fields=['vault', '-updated_at']),  # For vault-related queries
+            models.Index(fields=['vault', '-updated_at']),
         ]
 
 
