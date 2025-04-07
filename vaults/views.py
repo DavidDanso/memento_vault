@@ -200,7 +200,7 @@ def vault_details_view(request, pk, title):
             files = request.FILES.getlist('file')
             current_file_count = len(files)
             
-            if media_count + current_file_count > vault.max_media_items:
+            if media_count + current_file_count > PHOTOS_PER_USER:
                 messages.error(request, f"Only {remaining_uploads} upload(s) left. Please cut back on your uploads.")
             else:
                 request.session['file_count'] = current_file_count
