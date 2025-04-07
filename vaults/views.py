@@ -18,6 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
+PHOTOS_PER_USER = 10
 
 def home_view(request):
     context = {}
@@ -112,7 +113,7 @@ def vault_view(request):
         # Prepare data for template directly from the annotated queryset
         vaults_data = []
         for vault in vaults_qs:
-            allowed_uploads = vault.max_media_items
+            allowed_uploads = PHOTOS_PER_USER
             uploads_left = allowed_uploads - vault.media_count
             vaults_data.append({
                 'vault': vault,
@@ -165,7 +166,7 @@ def vault_details_view(request, pk, title):
     # Get media files from the prefetched queryset
     media_files = vault.media_files.all()
     media_count = len(media_files)
-    remaining_uploads = vault.max_media_items - media_count
+    remaining_uploads = PHOTOS_PER_USER - media_count
     
     # Clear the file_count session value by default
     file_count = request.session.pop('file_count', 0)
@@ -234,7 +235,8 @@ def vault_details_view(request, pk, title):
         'vault': vault,
         'media_files': categorized_media,
         'remaining_uploads': remaining_uploads,
-        'file_count': file_count
+        'file_count': file_count,
+        'PHOTOS_PER_USER': PHOTOS_PER_USER,
     }
     return render(request, 'vaults/vault_details.html', context)
 

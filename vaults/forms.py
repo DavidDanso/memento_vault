@@ -8,8 +8,8 @@ class VaultCreationForm(forms.ModelForm):
         fields = ['title', 'max_media_items']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'name your new vault...'}),
-            'max_media_items': forms.NumberInput(attrs={'placeholder': 'enter max media items (2-15)...',
-                                                        'min': 2, 'max': 15, 'step': 1,}),
+            'max_media_items': forms.NumberInput(attrs={'placeholder': 'enter max media items (2-25)...',
+                                                        'min': 2, 'max': 25, 'step': 1,}),
         }
 
     def __init__(self, *args, **kwargs):
