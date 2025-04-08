@@ -14,7 +14,7 @@ class Vault(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=100, db_index=True)  # Added index for faster lookups
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vaults")
-    max_media_items = models.PositiveIntegerField(default=2)
+    uploads_per_person = models.PositiveIntegerField(default=2)
     qr_code = models.ImageField(upload_to='vault_qrcodes/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)  # Added index for sorting
     updated_at = models.DateTimeField(auto_now=True, db_index=True)  # Added index for sorting

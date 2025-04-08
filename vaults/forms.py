@@ -5,10 +5,10 @@ from .models import Vault, VaultMedia
 class VaultCreationForm(forms.ModelForm):
     class Meta:
         model = Vault
-        fields = ['title', 'max_media_items']
+        fields = ['title', 'uploads_per_person']
         widgets = {
             'title': forms.TextInput(attrs={'placeholder': 'name your new vault...'}),
-            'max_media_items': forms.NumberInput(attrs={'placeholder': 'enter max media items (2-25)...',
+            'uploads_per_person': forms.NumberInput(attrs={'placeholder': 'enter max media items (2-25)...',
                                                         'min': 2, 'max': 25, 'step': 1,}),
         }
 

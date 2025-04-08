@@ -18,7 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-PHOTOS_PER_USER = 10
+PHOTOS_PER_USER = 2
 
 def home_view(request):
     context = {}
@@ -337,7 +337,6 @@ def thankY_view(request):
     return render(request, 'thankY_page.html', context)
 
 
-@login_required(login_url='login')
 def uploads_view(request, vault_id):
     # Get the vault with its media files in a single query
     vault = get_object_or_404(
@@ -349,7 +348,7 @@ def uploads_view(request, vault_id):
     file_count = request.session.pop('file_count', 0)
     
     # Calculate remaining uploads
-    uploads_remaining = vault.max_media_items - vault.media_count
+    uploads_remaining = vault.uploads_per_person - vault.media_count
     
     if request.method == 'POST':
         media_form = VaultMediaForm(request.POST, request.FILES)
@@ -357,7 +356,7 @@ def uploads_view(request, vault_id):
             files = request.FILES.getlist('file')
             current_file_count = len(files)
             
-            if vault.media_count + current_file_count > vault.max_media_items:
+            if vault.media_count + current_file_count > vault.uploads_per_person:
                 messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
             else:
                 request.session['file_count'] = current_file_count
