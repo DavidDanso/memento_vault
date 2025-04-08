@@ -18,7 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-VAULT_LIMIT = 7
+VAULT_LIMIT = 10
 
 def home_view(request):
     context = {}
@@ -453,8 +453,9 @@ def uploads_view(request, vault_id):
         'media_form': media_form,
         'user_upload_count': user_upload_count, # How many this user uploaded
         'uploads_allowed': uploads_allowed, # The limit per person
-        # Optional: You might still want the total count for display purposes
-        'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count()
+        'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
+        'vaut_limit': VAULT_LIMIT, # Total vault limit
+        'media_files': vault.media_files.all(), # All media files in this vault
     }
     return render(request, 'vaults/uploads_page.html', context)
 

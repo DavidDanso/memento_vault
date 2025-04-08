@@ -64,7 +64,7 @@ class VaultMedia(models.Model):
     # Link to the logged-in user's Profile who uploaded this
     uploader_profile = models.ForeignKey(
         Profile,
-        on_delete=models.SET_NULL, # Keep media even if uploader profile deleted
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name='uploaded_media'
