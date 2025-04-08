@@ -408,12 +408,18 @@ def uploads_view(request, vault_id):
                         uploader_session_key=session_key # Will be None if logged in
                     )
                     try:
-                        caption, tags = media_processor.get_caption_and_tags(f)
-                        if caption:
-                            media_instance.caption = caption
+                        # --- Optional: Your media processing ---
+                        # caption, tags = media_processor.get_caption_and_tags(f)
+                        # if caption:
+                        #     media_instance.caption = caption
+                        # --- End Optional ---
+
                         media_instance.save() # Save the media instance
-                        if tags:
-                           media_instance.tags.add(*tags)
+
+                        # --- Optional: Add tags after saving if using TaggableManager ---
+                        # if tags:
+                        #    media_instance.tags.add(*tags)
+                        # --- End Optional ---
 
                         saved_count += 1
                     except Exception as e:
@@ -424,13 +430,15 @@ def uploads_view(request, vault_id):
 
                 if saved_count > 0:
                     messages.success(request, f"{saved_count} file(s) successfully uploaded to this vault! 🎉")
-                    # Clear the file count after successful upload
-                    cache.delete_many([
-                        f"dashboard_data_{vault.owner_id}",
-                        f"user_vaults_{vault.owner_id}",
-                        f"gallery_view_{vault.owner_id}",
-                        f"everything_view_{vault.owner_id}",
-                    ])
+
+                    # --- Optional: Cache Clearing ---
+                    # cache.delete_many([
+                    #     f"dashboard_data_{vault.owner_id}",
+                    #     f"user_vaults_{vault.owner_id}",
+                    #     f"gallery_view_{vault.owner_id}",
+                    #     f"everything_view_{vault.owner_id}",
+                    # ])
+                    # --- End Optional ---
 
                 # Redirect back to the same page after POST to prevent re-submission
                 return redirect('uploads', vault_id=vault_id) # Use the name of your upload URL pattern
