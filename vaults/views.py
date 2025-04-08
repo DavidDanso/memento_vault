@@ -18,7 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-PHOTOS_PER_USER = 5
+VAULT_LIMIT = 7
 
 def home_view(request):
     context = {}
@@ -113,7 +113,7 @@ def vault_view(request):
         # Prepare data for template directly from the annotated queryset
         vaults_data = []
         for vault in vaults_qs:
-            allowed_uploads = PHOTOS_PER_USER
+            allowed_uploads = vault.uploads_per_person
             uploads_left = allowed_uploads - vault.media_count
             vaults_data.append({
                 'vault': vault,
@@ -166,7 +166,7 @@ def vault_details_view(request, pk, title):
     # Get media files from the prefetched queryset
     media_files = vault.media_files.all()
     media_count = len(media_files)
-    remaining_uploads = PHOTOS_PER_USER - media_count
+    remaining_uploads = VAULT_LIMIT - media_count
     
     # Clear the file_count session value by default
     file_count = request.session.pop('file_count', 0)
@@ -200,7 +200,7 @@ def vault_details_view(request, pk, title):
             files = request.FILES.getlist('file')
             current_file_count = len(files)
             
-            if media_count + current_file_count > PHOTOS_PER_USER:
+            if media_count + current_file_count > VAULT_LIMIT:
                 messages.error(request, f"Only {remaining_uploads} upload(s) left. Please cut back on your uploads.")
             else:
                 request.session['file_count'] = current_file_count
@@ -236,7 +236,7 @@ def vault_details_view(request, pk, title):
         'media_files': categorized_media,
         'remaining_uploads': remaining_uploads,
         'file_count': file_count,
-        'PHOTOS_PER_USER': PHOTOS_PER_USER,
+        'VAULT_LIMIT': VAULT_LIMIT,
     }
     return render(request, 'vaults/vault_details.html', context)
 
@@ -355,7 +355,7 @@ def uploads_view(request, vault_id):
             # Handle case where logged-in user doesn't have a Profile (shouldn't happen ideally)
             messages.error(request, "Could not identify your profile.")
             # Redirect or return an error response appropriate for your app
-            return redirect('some_error_page_or_home') # Example redirect
+            return redirect('some_error_page_or_home')
     else:
         # For anonymous users, use the session key
         # Ensure session exists
@@ -372,7 +372,6 @@ def uploads_view(request, vault_id):
     uploads_allowed = vault.uploads_per_person
     uploads_remaining = max(0, uploads_allowed - user_upload_count) # Ensure non-negative
 
-    # --- Handle POST Request (File Upload) ---
     if request.method == 'POST':
         # Check if the user has any uploads remaining *before* processing the form
         if uploads_remaining <= 0:
@@ -381,10 +380,10 @@ def uploads_view(request, vault_id):
             media_form = VaultMediaForm() # Show an empty form again
             context = {
                 'vault': vault,
-                'uploads_remaining': 0, # Explicitly set to 0
+                'uploads_remaining': 0,
                 'media_form': media_form,
-                'user_upload_count': user_upload_count, # Pass current count
-                'uploads_allowed': uploads_allowed, # Pass allowed count
+                'user_upload_count': user_upload_count,
+                'uploads_allowed': uploads_allowed,
             }
             return render(request, 'vaults/uploads_page.html', context)
 
