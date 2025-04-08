@@ -18,7 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-PHOTOS_PER_USER = 2
+PHOTOS_PER_USER = 5
 
 def home_view(request):
     context = {}
@@ -338,63 +338,116 @@ def thankY_view(request):
 
 
 def uploads_view(request, vault_id):
-    # Get the vault with its media files in a single query
-    vault = get_object_or_404(
-        Vault.objects.annotate(media_count=Count('media_files')),
-        pk=vault_id
-    )
-    
-    # Clear the file_count session value by default
-    file_count = request.session.pop('file_count', 0)
-    
-    # Calculate remaining uploads
-    uploads_remaining = vault.uploads_per_person - vault.media_count
-    
+    # Get the vault object
+    vault = get_object_or_404(Vault, pk=vault_id)
+
+    # --- User Identification ---
+    uploader_profile = None
+    session_key = None
+    user_identifier_filter = {} # Filter criteria for counting user's uploads
+
+    if request.user.is_authenticated:
+        try:
+            # Assumes a logged-in user has a related Profile object
+            uploader_profile = request.user.profile
+            user_identifier_filter = {'uploader_profile': uploader_profile}
+        except Profile.DoesNotExist:
+            # Handle case where logged-in user doesn't have a Profile (shouldn't happen ideally)
+            messages.error(request, "Could not identify your profile.")
+            # Redirect or return an error response appropriate for your app
+            return redirect('some_error_page_or_home') # Example redirect
+    else:
+        # For anonymous users, use the session key
+        # Ensure session exists
+        if not request.session.session_key:
+            request.session.create()
+        session_key = request.session.session_key
+        user_identifier_filter = {'uploader_session_key': session_key}
+
+    # --- Calculate User's Upload Count & Remaining ---
+    # Count how many files *this specific user/session* has already uploaded to *this* vault
+    user_upload_count = VaultMedia.objects.filter(vault=vault, **user_identifier_filter).count()
+
+    # Calculate how many more uploads this user is allowed
+    uploads_allowed = vault.uploads_per_person
+    uploads_remaining = max(0, uploads_allowed - user_upload_count) # Ensure non-negative
+
+    # --- Handle POST Request (File Upload) ---
     if request.method == 'POST':
+        # Check if the user has any uploads remaining *before* processing the form
+        if uploads_remaining <= 0:
+            messages.error(request, "You have reached your upload limit for this vault.")
+            # Re-render the page showing the limit message
+            media_form = VaultMediaForm() # Show an empty form again
+            context = {
+                'vault': vault,
+                'uploads_remaining': 0, # Explicitly set to 0
+                'media_form': media_form,
+                'user_upload_count': user_upload_count, # Pass current count
+                'uploads_allowed': uploads_allowed, # Pass allowed count
+            }
+            return render(request, 'vaults/uploads_page.html', context)
+
         media_form = VaultMediaForm(request.POST, request.FILES)
         if media_form.is_valid():
-            files = request.FILES.getlist('file')
-            current_file_count = len(files)
-            
-            if vault.media_count + current_file_count > vault.uploads_per_person:
-                messages.error(request, f"Only {uploads_remaining} upload(s) left. Please cut back on your uploads.")
+            files = request.FILES.getlist('file') # Get all uploaded files
+            files_to_upload_count = len(files)
+
+            # Check if uploading these files exceeds the user's limit
+            if user_upload_count + files_to_upload_count > uploads_allowed:
+                messages.error(request, f"You can only upload {uploads_remaining} more file(s). You tried to upload {files_to_upload_count}.")
             else:
-                request.session['file_count'] = current_file_count
-                
-                # Process files in bulk
+                # Proceed with saving files
+                saved_count = 0
                 for f in files:
-                    media_vault = VaultMedia(file=f, vault=vault)
+                    media_instance = VaultMedia(
+                        file=f,
+                        vault=vault,
+                        # Assign the uploader based on whether user is logged in or anonymous
+                        uploader_profile=uploader_profile, # Will be None if anonymous
+                        uploader_session_key=session_key # Will be None if logged in
+                    )
                     try:
                         caption, tags = media_processor.get_caption_and_tags(f)
                         if caption:
-                            media_vault.caption = caption
-                        media_vault.save()
+                            media_instance.caption = caption
+                        media_instance.save() # Save the media instance
                         if tags:
-                            media_vault.tags.add(*tags)
+                           media_instance.tags.add(*tags)
+
+                        saved_count += 1
                     except Exception as e:
-                        messages.error(request, f"Processing error: {str(e)}")
-                
-                # Clear the file count after successful upload
-                request.session['file_count'] = 0
-                messages.success(request, f"{current_file_count} file(s) successfully uploaded to this vault! 🎉")
-                # Clear caches related to this vault
-                cache.delete_many([
-                    f"dashboard_data_{vault.owner_id}",
-                    f"user_vaults_{vault.owner_id}",
-                    f"gallery_view_{vault.owner_id}",
-                    f"everything_view_{vault.owner_id}",
-                ])
-                # Recalculate uploads remaining
-                uploads_remaining -= current_file_count
-                return redirect('uploads', vault_id=vault_id)
+                        # Log the error e
+                        print(f"Error saving file: {e}") # Basic logging
+                        messages.error(request, f"An error occurred while saving one of your files: {e}")
+                        # Decide if you want to stop or continue processing other files
+
+                if saved_count > 0:
+                    messages.success(request, f"{saved_count} file(s) successfully uploaded to this vault! 🎉")
+                    # Clear the file count after successful upload
+                    cache.delete_many([
+                        f"dashboard_data_{vault.owner_id}",
+                        f"user_vaults_{vault.owner_id}",
+                        f"gallery_view_{vault.owner_id}",
+                        f"everything_view_{vault.owner_id}",
+                    ])
+
+                # Redirect back to the same page after POST to prevent re-submission
+                return redirect('uploads', vault_id=vault_id) # Use the name of your upload URL pattern
+
+    # --- Handle GET Request or Invalid POST ---
     else:
-        media_form = VaultMediaForm()
-    
+        media_form = VaultMediaForm() # Create an empty form for GET requests
+
+    # --- Prepare Context for Template ---
     context = {
         'vault': vault,
-        'uploads_remaining': uploads_remaining,
+        'uploads_remaining': uploads_remaining, # User-specific remaining uploads
         'media_form': media_form,
-        'media_count': vault.media_count,
+        'user_upload_count': user_upload_count, # How many this user uploaded
+        'uploads_allowed': uploads_allowed, # The limit per person
+        # Optional: You might still want the total count for display purposes
+        'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count()
     }
     return render(request, 'vaults/uploads_page.html', context)
 

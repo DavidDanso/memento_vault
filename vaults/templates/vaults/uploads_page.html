@@ -39,7 +39,7 @@
 
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            {% if media_count < vault.max_media_items %}
+            {% if uploads_remaining > 0 %}
             <h2>{{vault.title}} vault - upload files</h2>
             <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
 
