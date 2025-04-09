@@ -39,7 +39,16 @@
 
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            {% if uploads_remaining > 0 %}
+            {% if total_vault_media_count == vault_limit %}
+            <div id="vault_full">
+              <center>
+                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
+              </center>
+
+              <img src="{% static 'images/side-projects.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
+            </div>
+            <!-- end vault_full -->
+            {% elif uploads_remaining > 0 %}
             <h2>{{vault.title}} vault - upload files</h2>
             <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
 
@@ -85,14 +94,7 @@
             </center>
             <!--  -->
             {% else %}
-            <div id="vault_full">
-              <center>
-                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
-              </center>
-
-              <img src="{% static 'images/side-projects.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
-            </div>
-            <!-- end vault_full -->
+            <!-- This else block is empty, you may want to add content for when neither condition is met -->
             {% endif %}
           </div>
           <!-- end uploads_page-intro -->
