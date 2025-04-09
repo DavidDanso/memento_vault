@@ -36,32 +36,28 @@
         <!-- django messages -->
         {% include 'toast.html' %}
         <!--  end django message -->
-
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            {% if total_vault_media_count == vault_limit %}
+            {% if total_vault_media_count == vaut_limit %}
             <div id="vault_full">
               <center>
                 <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
               </center>
-
               <img src="{% static 'images/side-projects.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
             </div>
             <!-- end vault_full -->
-            {% elif uploads_remaining > 0 %}
+            {% else %}
             <h2>{{vault.title}} vault - upload files</h2>
             <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
-
-            <!--  -->
+            <!-- -->
             <div class="card d-flex mx-auto" id="main_card">
               <div class="card-body">
-                <!--  -->
+                <!-- -->
                 <div id="upload_div">
                   <div class="card" id="uploads_card">
                     <div class="card-body">
                       <img src="{% static 'images/upload.png' %}" class="img-fluid d-flex mx-auto" id="uploads_img" alt="uploads_img" />
-
-                      <!--  -->
+                      <!-- -->
                       <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
                         {% csrf_token %}
                         <div class="input-group mb-3" id="upload_field">
@@ -78,23 +74,21 @@
                   <!-- end uploads_card -->
                 </div>
                 <!-- end upload_div -->
-                <!--  -->
+                <!-- -->
                 <h6>
                   Please note:
                   <span> Only {{ uploads_remaining }} upload{{ uploads_remaining|pluralize }} remaining for this vault.</span>
                 </h6>
-                <!--  -->
+                <!-- -->
               </div>
               <!-- end card-body -->
             </div>
             <!-- end card -->
-            <!--  -->
+            <!-- -->
             <center>
               <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn">finished uploading? click me</a>
             </center>
-            <!--  -->
-            {% else %}
-            <!-- This else block is empty, you may want to add content for when neither condition is met -->
+            <!-- -->
             {% endif %}
           </div>
           <!-- end uploads_page-intro -->

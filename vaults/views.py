@@ -341,6 +341,8 @@ def uploads_view(request, vault_id):
     # Get the vault object
     vault = get_object_or_404(Vault, pk=vault_id)
 
+    vaut_limit = VAULT_LIMIT
+
     # --- User Identification ---
     uploader_profile = None
     session_key = None
@@ -446,10 +448,6 @@ def uploads_view(request, vault_id):
     else:
         media_form = VaultMediaForm() # Create an empty form for GET requests
 
-    x =  VaultMedia.objects.filter(vault=vault).count()
-    y = vault.media_files.all().count()
-    print(y <= VAULT_LIMIT)
-
     # --- Prepare Context for Template ---
     context = {
         'vault': vault,
@@ -458,7 +456,7 @@ def uploads_view(request, vault_id):
         'user_upload_count': user_upload_count, # How many this user uploaded
         'uploads_allowed': uploads_allowed, # The limit per person
         'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
-        'vaut_limit': VAULT_LIMIT, # Total vault limit
+        'vaut_limit': vaut_limit, # Total vault limit
     }
     return render(request, 'vaults/uploads_page.html', context)
 

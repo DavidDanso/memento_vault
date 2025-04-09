@@ -3,13 +3,12 @@ from django.db import models
 import qrcode
 from django.core.files.base import ContentFile
 from io import BytesIO
-from users.models import Profile # Assuming 'Profile' is your effective user identifier model
+from users.models import Profile
 import uuid
 from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from taggit.managers import TaggableManager
-from django.conf import settings # For referencing the User model if needed
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
