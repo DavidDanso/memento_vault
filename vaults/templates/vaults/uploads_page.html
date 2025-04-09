@@ -38,7 +38,7 @@
         <!--  end django message -->
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            {% if total_vault_media_count == vaut_limit %}
+            {% if total_vault_media_count == vaut_limit or uploads_remaining <= 0 %}
             <div id="vault_full">
               <center>
                 <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
@@ -47,6 +47,7 @@
             </div>
             <!-- end vault_full -->
             {% else %}
+            <!--  -->
             <h2>{{vault.title}} vault - upload files</h2>
             <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
             <!-- -->

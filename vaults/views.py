@@ -114,7 +114,7 @@ def vault_view(request):
         vaults_data = []
         for vault in vaults_qs:
             allowed_uploads = vault.uploads_per_person
-            uploads_left = allowed_uploads - vault.media_count
+            uploads_left = VAULT_LIMIT - vault.media_count
             vaults_data.append({
                 'vault': vault,
                 'media_count': vault.media_count,
