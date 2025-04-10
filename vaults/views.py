@@ -19,6 +19,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
 VAULT_LIMIT = 20
+USER_VAULT_CAP = 6
 
 def home_view(request):
     context = {}
@@ -34,8 +35,11 @@ def dashboard_view(request):
     # Fetch all vaults with prefetched media in one query to avoid N+1 problem
     vaults = Vault.objects.filter(owner=profile).prefetch_related('media_files')
     
+    
     # Get vault count
     vault_count = len(vaults)
+    vaults_to_create = max(0, USER_VAULT_CAP - vault_count)
+
     
     # Get first vault title if available
     new_vault = vaults[0].title if vault_count > 0 else "📂 No Vaults Available - Create your first vault"
@@ -57,8 +61,6 @@ def dashboard_view(request):
     image_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in image_extensions))
     video_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in video_extensions))
     
-    vaults_to_created = 5 - vault_count
-    
     # Process form submission
     form = VaultCreationForm()
     if request.method == 'POST':
@@ -76,8 +78,9 @@ def dashboard_view(request):
         'video_count': video_count,
         'new_vault_id': new_vault_id,
         'recent_media': recent_media,
-        'vaults_to_created': vaults_to_created,
         'form': form,
+        'vaults_to_create': vaults_to_create,
+        'user_vault_cap': USER_VAULT_CAP,
     }
     return render(request, 'dashboard.html', context)
 
@@ -104,7 +107,7 @@ def vault_view(request):
         })
 
     vault_count = vaults_qs.count()
-    vaults_to_create = max(0, 5 - vault_count)
+    vaults_to_create = max(0, USER_VAULT_CAP - vault_count)
 
     # Form handling
     form = VaultCreationForm()

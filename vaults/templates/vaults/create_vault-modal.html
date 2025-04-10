@@ -9,7 +9,7 @@
         </div>
         <!-- end modal-header -->
         <div class="modal-body">
-          {% if vault_count < 5 %}
+          {% if vault_count < user_vault_cap %}
           <img src="{% static 'images/marker.png' %}" class="img-fluid d-flex mx-auto" id="marker_img" alt="marker_img" />
           <h1>Create new Vault</h1>
           <p>Securely store your memories. Upload photos and videos or invite others via QR code. The vault holds up to 50 items.</p>
@@ -39,7 +39,7 @@
           </form>
 
           <h6 class="text-center">
-            Just a heads-up: <span>You have <strong>{{vaults_to_created}}</strong> more vault{{vaults_to_created|pluralize}} to create.</span>
+            Just a heads-up: <span>You have <strong>{{vaults_to_create}}</strong> more vault{{vaults_to_create|pluralize}} to create.</span>
           </h6>
 
           {% else %}
