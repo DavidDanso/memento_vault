@@ -18,66 +18,48 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-VAULT_LIMIT = 10
+VAULT_LIMIT = 20
 
 def home_view(request):
     context = {}
     return render(request, 'index.html', context)
 
 
+
 @login_required(login_url='login')
 def dashboard_view(request):
-    # Get current user profile - this avoids multiple DB hits
+    # Get current user profile
     profile = request.user.profile if hasattr(request.user, 'profile') else get_object_or_404(Profile, user=request.user)
     
-    # Cache key for user dashboard data
-    cache_key = f"dashboard_data_{profile.id}"
-    dashboard_data = cache.get(cache_key)
+    # Fetch all vaults with prefetched media in one query to avoid N+1 problem
+    vaults = Vault.objects.filter(owner=profile).prefetch_related('media_files')
     
-    if not dashboard_data:
-        # Fetch all vaults with prefetched media in one query to avoid N+1 problem
-        vaults = Vault.objects.filter(owner=profile).prefetch_related('media_files')
-        
-        # Get vault count
-        vault_count = len(vaults)
-        
-        # Get first vault title if available
-        new_vault = vaults[0].title if vault_count > 0 else "📂 No Vaults Available - Create your first vault"
-        new_vault_id = vaults[0].id if vault_count > 0 else None
-        
-        # Prepare vaults with recent media
-        # Using Python to filter instead of another DB query
-        vaults_with_media = [v for v in vaults if v.media_files.all()]
-        recent_media = vaults_with_media[:3]
-        
-        # File extensions for filtering
-        image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
-        video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
-        
-        # Count media by type
-        media_files = []
-        for vault in vaults:
-            media_files.extend(vault.media_files.all())
-        
-        # Count images and videos
-        image_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in image_extensions))
-        video_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in video_extensions))
-        
-        vaults_to_created = 5 - vault_count
-        
-        # Cache the data
-        dashboard_data = {
-            'vault_count': vault_count,
-            'new_vault': new_vault,
-            'image_count': image_count,
-            'video_count': video_count,
-            'new_vault_id': new_vault_id,
-            'recent_media': recent_media,
-            'vaults_to_created': vaults_to_created,
-        }
-        
-        cache.set(cache_key, dashboard_data, CACHE_TTL)
+    # Get vault count
+    vault_count = len(vaults)
     
+    # Get first vault title if available
+    new_vault = vaults[0].title if vault_count > 0 else "📂 No Vaults Available - Create your first vault"
+    new_vault_id = vaults[0].id if vault_count > 0 else None
+    
+    # Get vaults with recent media
+    recent_media = [v for v in vaults if v.media_files.all()][:3]
+    
+    # File extensions for filtering
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
+    video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
+    
+    # Collect all media files
+    media_files = []
+    for vault in vaults:
+        media_files.extend(vault.media_files.all())
+    
+    # Count images and videos using list comprehension for better performance
+    image_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in image_extensions))
+    video_count = sum(1 for m in media_files if any(m.file.name.lower().endswith(ext) for ext in video_extensions))
+    
+    vaults_to_created = 5 - vault_count
+    
+    # Process form submission
     form = VaultCreationForm()
     if request.method == 'POST':
         form = VaultCreationForm(request.POST)
@@ -85,15 +67,20 @@ def dashboard_view(request):
             vault = form.save(commit=False)
             vault.owner = profile
             vault.save()
-            # Clear cache when data changes
-            cache.delete(cache_key)
-            # Redirect to the newly created vault's detail view
             return redirect('vault-details', pk=vault.pk, title=vault.title)
-    
-    context = dashboard_data.copy()
-    context['form'] = form
-    
+    # Prepare context
+    context = {
+        'vault_count': vault_count,
+        'new_vault': new_vault,
+        'image_count': image_count,
+        'video_count': video_count,
+        'new_vault_id': new_vault_id,
+        'recent_media': recent_media,
+        'vaults_to_created': vaults_to_created,
+        'form': form,
+    }
     return render(request, 'dashboard.html', context)
+
 
 
 @login_required(login_url='login')
@@ -139,12 +126,6 @@ def vault_view(request):
         'now': timezone.now(),
     }
     return render(request, 'vaults/vaults.html', context)
-
-
-
-
-
-
 
 
 @login_required(login_url='login')
@@ -235,6 +216,7 @@ def vault_details_view(request, pk, title):
     return render(request, 'vaults/vault_details.html', context)
 
 
+
 # Everything view renders a page that might showcase all vault-related items or records.
 def everything_view(request):
     # Ensure Profile exists for the logged-in user
@@ -286,6 +268,7 @@ def everything_view(request):
     return render(request, 'vaults/everything.html', context)
 
 
+
 # Gallery view loads a gallery page to display media or files related to vaults.
 def gallery_view(request):
     # Ensure Profile exists for the logged-in user
@@ -326,9 +309,11 @@ def gallery_view(request):
     return render(request, 'vaults/gallery.html', context)
 
 
+
 def thankY_view(request):
     context = {}
     return render(request, 'thankY_page.html', context)
+
 
 
 def uploads_view(request, vault_id):
@@ -453,6 +438,7 @@ def uploads_view(request, vault_id):
         'vaut_limit': vaut_limit, # Total vault limit
     }
     return render(request, 'vaults/uploads_page.html', context)
+
 
 
 def download_qr_code(request, vault_id):
