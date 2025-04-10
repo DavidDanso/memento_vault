@@ -100,41 +100,28 @@ def dashboard_view(request):
 def vault_view(request):
     profile = get_object_or_404(Profile, user=request.user)
 
-    cache_key = f"user_vaults_{profile.id}"
-    cached_data = cache.get(cache_key)
+    # Always fetch and process data from the database
+    vaults_qs = Vault.objects.filter(
+        owner=profile
+    ).annotate(
+        media_count=Count('media_files')
+    ).order_by('-updated_at')
 
-    if cached_data is None:
-        vaults_qs = Vault.objects.filter(
-            owner=profile
-        ).annotate(
-            media_count=Count('media_files')
-        ).order_by('-updated_at')
-
-        # Prepare data for template directly from the annotated queryset
-        vaults_data = []
-        for vault in vaults_qs:
-            allowed_uploads = vault.uploads_per_person
-            uploads_left = VAULT_LIMIT - vault.media_count
-            vaults_data.append({
-                'vault': vault,
-                'media_count': vault.media_count,
-                'allowed_uploads': allowed_uploads,
-                'uploads_left': uploads_left,
-            })
-
-        vault_count = len(vaults_data) # Get count after processing
-        vaults_to_create = max(0, 3 - vault_count) # Ensure non-negative
-
-        # Data to cache
-        cached_data = {
-            'vaults_with_media_count': vaults_data,
-            'vault_count': vault_count,
-            'vaults_to_created': vaults_to_create,
+    # Prepare data for template directly from the annotated queryset
+    vaults_data = []
+    for vault in vaults_qs:
+        uploads_left = VAULT_LIMIT - vault.media_count
+        vaults_data.append({
+            'vault': vault,
+            'media_count': vault.media_count,
+            'uploads_left': uploads_left,
             'vault_limit': VAULT_LIMIT,
-        }
-        cache.set(cache_key, cached_data, CACHE_TTL)
+        })
 
-    # Form handling remains the same
+    vault_count = len(vaults_data)
+    vaults_to_create = max(0, 5 - vault_count)
+
+    # Form handling
     form = VaultCreationForm()
     if request.method == 'POST':
         form = VaultCreationForm(request.POST)
@@ -142,16 +129,23 @@ def vault_view(request):
             vault = form.save(commit=False)
             vault.owner = profile
             vault.save()
-            cache.delete(cache_key) # Invalidate cache on change
-            # Consider passing slug instead of title if title can change or has special chars
             return redirect('vault-details', pk=vault.pk, title=vault.title) # Ensure 'vault-details' URL is defined
 
-    # Prepare context for rendering
-    context = cached_data.copy() # Use the cached or freshly generated data
-    context['form'] = form
-    context['now'] = timezone.now()
-
+    # Prepare context for rendering directly from calculated variables
+    context = {
+        'vaults_with_media_count': vaults_data,
+        'vault_count': vault_count,
+        'vaults_to_create': vaults_to_create,
+        'form': form,
+        'now': timezone.now(),
+    }
     return render(request, 'vaults/vaults.html', context)
+
+
+
+
+
+
 
 
 @login_required(login_url='login')

@@ -95,7 +95,7 @@
                     <!-- end vault_info -->
 
                     <hr id="card_line" />
-                    {% if item.media_count < vault_limit %}
+                    {% if item.media_count < item.vault_limit %}
                     <center>
                       <small>Remaining: {{ item.uploads_left }} upload{{ item.uploads_left|pluralize }} for this vault</small>
                     </center>
