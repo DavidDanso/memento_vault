@@ -620,7 +620,7 @@ main {
 
 #createVaultModal li {
   list-style: none;
-  color: var(--text-color);
+  color: #b6a28e;
   font-family: var(--text-font);
   letter-spacing: 1px;
   font-size: 1.2rem;

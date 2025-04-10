@@ -19,7 +19,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
 VAULT_LIMIT = 20
-USER_VAULT_CAP = 6
+USER_VAULT_CAP = 3
 
 def home_view(request):
     context = {}
@@ -127,6 +127,7 @@ def vault_view(request):
         'vaults_to_create': vaults_to_create,
         'form': form,
         'now': timezone.now(),
+        'user_vault_cap': USER_VAULT_CAP,
     }
     return render(request, 'vaults/vaults.html', context)
 
