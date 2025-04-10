@@ -100,14 +100,12 @@ def dashboard_view(request):
 def vault_view(request):
     profile = get_object_or_404(Profile, user=request.user)
 
-    # Always fetch and process data from the database
     vaults_qs = Vault.objects.filter(
         owner=profile
-    ).annotate(
+    ).select_related('owner').annotate(
         media_count=Count('media_files')
-    ).order_by('-updated_at')
+    ).order_by('-updated_at') 
 
-    # Prepare data for template directly from the annotated queryset
     vaults_data = []
     for vault in vaults_qs:
         uploads_left = VAULT_LIMIT - vault.media_count
@@ -118,7 +116,7 @@ def vault_view(request):
             'vault_limit': VAULT_LIMIT,
         })
 
-    vault_count = len(vaults_data)
+    vault_count = vaults_qs.count()
     vaults_to_create = max(0, 5 - vault_count)
 
     # Form handling
@@ -129,11 +127,12 @@ def vault_view(request):
             vault = form.save(commit=False)
             vault.owner = profile
             vault.save()
-            return redirect('vault-details', pk=vault.pk, title=vault.title) # Ensure 'vault-details' URL is defined
+            # Redirect might use vault.title, ensure title is fetched (default)
+            return redirect('vault-details', pk=vault.pk, title=vault.title)
 
-    # Prepare context for rendering directly from calculated variables
+    # Prepare context
     context = {
-        'vaults_with_media_count': vaults_data,
+        'vaults_with_media_count': vaults_data, # List contains vault objects and counts
         'vault_count': vault_count,
         'vaults_to_create': vaults_to_create,
         'form': form,
