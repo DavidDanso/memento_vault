@@ -130,6 +130,7 @@ def vault_view(request):
             'vaults_with_media_count': vaults_data,
             'vault_count': vault_count,
             'vaults_to_created': vaults_to_create,
+            'vault_limit': VAULT_LIMIT,
         }
         cache.set(cache_key, cached_data, CACHE_TTL)
 
