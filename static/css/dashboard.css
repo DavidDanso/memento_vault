@@ -618,6 +618,13 @@ main {
   border: 1px solid #fff;
 }
 
+#createVaultModal li {
+  list-style: none;
+  color: var(--text-color);
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+  font-size: 1.2rem;
+}
 /********************** Mobile Devices Portrait and less ****************************/
 @media (max-width: 380px) {
   /* CSS rules here */
@@ -942,6 +949,9 @@ main {
   #createVaultModal h6 {
     font-size: 1.2rem;
     margin-top: 4%;
+  }
+  #createVaultModal li {
+    font-size: 1.2rem;
   }
 }
 
