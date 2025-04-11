@@ -18,7 +18,7 @@ media_processor = MediaProcessor(GEMINI_API_KEY)
 
 # Cache settings
 CACHE_TTL = 60 * 15  # 15 minutes
-VAULT_LIMIT = 20
+VAULT_LIMIT = 10
 USER_VAULT_CAP = 3
 
 def home_view(request):
