@@ -4,11 +4,13 @@ from django.contrib import messages
 from .forms import ProfileForm
 from vaults.models import Vault
 
+USER_VAULT_CAP = 3
+
 @login_required
 def profile_view(request):
     profile = request.user.profile
     vault_count = Vault.objects.filter(owner=profile).count()
-    remaining_vaults = 5 - vault_count
+    remaining_vaults = max(0, USER_VAULT_CAP - vault_count)
 
     if request.method == 'POST':
         if 'delete_account' in request.POST:
