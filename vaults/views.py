@@ -222,6 +222,7 @@ def vault_details_view(request, pk, title):
 
 
 # Everything view renders a page that might showcase all vault-related items or records.
+@login_required(login_url='login')
 def everything_view(request):
     # Ensure Profile exists for the logged-in user
     profile = get_object_or_404(Profile, user=request.user)
@@ -274,6 +275,7 @@ def everything_view(request):
 
 
 # Gallery view loads a gallery page to display media or files related to vaults.
+@login_required(login_url='login')
 def gallery_view(request):
     # Ensure Profile exists for the logged-in user
     profile = get_object_or_404(Profile, user=request.user)
@@ -444,7 +446,7 @@ def uploads_view(request, vault_id):
     return render(request, 'vaults/uploads_page.html', context)
 
 
-
+@login_required(login_url='login')
 def download_qr_code(request, vault_id):
     # Use select_related to avoid extra query
     vault = get_object_or_404(Vault, id=vault_id)

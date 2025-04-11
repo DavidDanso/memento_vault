@@ -4,15 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta
-      name="description"
-      content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features."
-    />
+    <meta name="description" content="Organize and relive your memories with Memento Vault, a collaborative photo and video sharing app with AI-powered features." />
 
-    <meta
-      name="keywords"
-      content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault"
-    />
+    <meta name="keywords" content="photo sharing app, video sharing, collaborative memory organizer, AI-powered photo organization, memory vault" />
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
@@ -30,30 +24,12 @@
       var supportsCssVars = function () {
         var e,
           t = document.createElement("style");
-        return (
-          (t.innerHTML = "root: { --tmp-var: bold; }"),
-          document.head.appendChild(t),
-          (e = !!(
-            window.CSS &&
-            window.CSS.supports &&
-            window.CSS.supports("font-weight", "var(--tmp-var)")
-          )),
-          t.parentNode.removeChild(t),
-          e
-        );
+        return (t.innerHTML = "root: { --tmp-var: bold; }"), document.head.appendChild(t), (e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)"))), t.parentNode.removeChild(t), e;
       };
-      supportsCssVars() ||
-        alert(
-          "Please view this work in a modern browser that supports CSS Variables."
-        );
+      supportsCssVars() || alert("Please view this work in a modern browser that supports CSS Variables.");
     </script>
   </head>
-  <body
-    id="pageTop"
-    class="page-content"
-    data-spy="scroll"
-    data-target="#mainNav"
-  >
+  <body id="pageTop" class="page-content" data-spy="scroll" data-target="#mainNav">
     <!--======================== Main-Section ================================-->
     <main>
       <div id="thankY">
@@ -61,40 +37,19 @@
           <div class="thankY-intro">
             <div class="card d-flex mx-auto" id="main_card">
               <div class="card-body">
-                <img
-                  src="{% static 'images/exhibitions.svg' %}"
-                  class="img-fluid d-flex mx-auto"
-                  id="exhibition_img"
-                  alt="exhibition_img"
-                />
+                <img src="{% static 'images/exhibitions.svg' %}" class="img-fluid d-flex mx-auto" id="exhibition_img" alt="exhibition_img" />
 
                 <h2>Congratulations - <span>upload complete🎉</span></h2>
-                <p>
-                  Thanks for adding your memories to this vault. Your shared
-                  moments are now part of the collection.
-                </p>
+                <p>Thanks for adding your memories to this vault. Your shared moments are now part of the collection.</p>
 
                 <!--  -->
                 <div class="card" id="msg">
                   <div class="card-body">
-                    <h6>
-                      Enjoyed the experience? Create your own Memento Vault to
-                      preserve more memories. Sign up now and start sharing!
-                    </h6>
+                    <h6>Enjoyed the experience? Create your own Memento Vault to preserve more memories. Sign up now and start sharing!</h6>
                     <div id="action_btns">
-                      <a href="#" class="btn" id="create_acc_btn"
-                        >create new account</a
-                      >
-                      <a href="#" class="btn" id="back_home_btn">
-                        <span
-                          ><img
-                            src="{% static 'images/home.svg' %}"
-                            class="img-fluid"
-                            id="home_svg"
-                            alt="home_svg"
-                          />
-                          go to home</span
-                        ></a
+                      <a href="{% url 'sign-up' %}" class="btn" id="create_acc_btn">create new account</a>
+                      <a href="{% url 'home' %}" class="btn" id="back_home_btn">
+                        <span><img src="{% static 'images/home.svg' %}" class="img-fluid" id="home_svg" alt="home_svg" /> go to home</span></a
                       >
                     </div>
                     <!-- end action_btns -->
@@ -116,11 +71,7 @@
     <!-- end main -->
 
     <!--=============================================== JavaScript ===================================-->
-    <script
-      src="https://code.jquery.com/jquery-3.6.4.min.js"
-      integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <!-- Custom Links -->
     <script src="{% static '/js/jquery-min.js' %}"></script>
     <script src="{% static '/js/bootstrap.min.js' %}"></script>
