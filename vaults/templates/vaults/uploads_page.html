@@ -10,7 +10,7 @@
 
     <meta name="author" content="the_desiinger" />
     <link rel="icon" href="{% static '/images/logo.svg' %}" />
-    <title>Memento Vault | Uploads Page</title>
+    <title>Memento Vault | {{vault.title}} Uploads Page</title>
 
     <!-- Preload CSS -->
     <link href="{% static '/css/normalize.css' %}" />
@@ -33,40 +33,49 @@
     <!--======================== Main-Section ================================-->
     <main>
       <div id="uploads_page">
-        <!-- django messages -->
+        <!--  -->
         {% include 'toast.html' %}
-        <!--  end django message -->
         <div class="container-fluid">
           <div class="uploads_page-intro">
-            {% if total_vault_media_count == vaut_limit %}
-            <div id="vault_full">
-              <center>
-                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
-              </center>
-              <img src="{% static 'images/side-projects.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
-            </div>
-            <!-- end vault_full -->
-            {% elif uploads_remaining <= 0 %}
-            <div id="vault_full">
-              <center>
-                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">upload limit reached, click me</a>
-              </center>
-              <img src="{% static 'images/icon_one.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="default_img" />
-            </div>
-            <!-- end vault_full -->
+            {% if is_expired %}
+            <h2>{{ vault.title }} Vault - Upload Period Expired</h2>
+            <p>The time limit for uploading files to this vault has passed.</p>
+            <img src="{% static 'images/icon_one.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="Expired" />
+            <center><a href="{% url 'home' %}" class="btn" id="vault_full-btn">Return Home</a></center>
+
             {% else %}
             <!--  -->
+            {# Check if the entire vault is full #}
+            <!--  -->
+            {% if total_vault_media_count >= vault_limit %}
+            <div id="vault_full">
+              <center>
+                <h2>{{ vault.title }} Vault - Full</h2>
+                <p>This vault has reached its total capacity. No more uploads are possible.</p>
+                <a href="{% url 'thank_u' %}" class="btn" id="vault_full-btn">{{vault.title}} vault full, click me</a>
+              </center>
+              <img src="{% static 'images/side-projects.svg' %}" class="img-fluid d-flex mx-auto" id="default_img" alt="Vault Full" />
+            </div>
+            {# Check if the specific user has reached their upload limit #}
+            <!--  -->
+            {% elif uploads_remaining <= 0 %}
+            <div id="user_limit_reached">
+              <center>
+                <h2>{{ vault.title }} Vault - Your Limit Reached</h2>
+                <p>You have already uploaded the maximum number of files allowed ({{ uploads_allowed }}) for this vault.</p>
+                <a href="{% url 'thank_u' %}" class="btn" id="limit_reached-btn">Upload Limit Reached, click me</a>
+              </center>
+              <img src="{% static 'images/empty-set.png' %}" class="img-fluid d-flex mx-auto" id="empty_set" alt="Limit Reached" />
+            </div>
+            {% else %}
             <h2>{{vault.title}} vault - upload files</h2>
-            <p>Share your best moments with us. Upload your <span></span> favorite videos and images.</p>
-            <!-- -->
+            <p>Share your best moments with us. Upload your favorite videos and images.</p>
             <div class="card d-flex mx-auto" id="main_card">
               <div class="card-body">
-                <!-- -->
                 <div id="upload_div">
                   <div class="card" id="uploads_card">
                     <div class="card-body">
                       <img src="{% static 'images/upload.png' %}" class="img-fluid d-flex mx-auto" id="uploads_img" alt="uploads_img" />
-                      <!-- -->
                       <form action="" method="POST" enctype="multipart/form-data" id="uploadForm">
                         {% csrf_token %}
                         <div class="input-group mb-3" id="upload_field">
@@ -78,49 +87,41 @@
                       </form>
                       <!-- end uploadForm -->
                     </div>
-                    <!-- end card-body -->
                   </div>
-                  <!-- end uploads_card -->
                 </div>
-                <!-- end upload_div -->
-                <!-- -->
                 <h6>
                   Please note:
-                  <span> Only {{ uploads_remaining }} upload{{ uploads_remaining|pluralize }} remaining for this vault.</span>
+                  <span> You can upload {{ uploads_remaining }} more file{{ uploads_remaining|pluralize }}. (Limit per person: {{ uploads_allowed }})</span>
                 </h6>
-                <!-- -->
               </div>
-              <!-- end card-body -->
             </div>
-            <!-- end card -->
-            <!-- -->
+            <!-- end main_card -->
             <center>
-              <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn">finished uploading? click me</a>
+              <a href="{% url 'thank_u' %}" class="btn" id="comp_upload-btn">Finished uploading? Click me</a>
             </center>
-            <!-- -->
             {% endif %}
+            <!--  -->
+            {# Ends the inner if/elif/else for vault_full / limit_reached / allow_upload #}
+            <!--  -->
+            {% endif %} {# --- END: Added Timer Logic --- #}
           </div>
-          <!-- end uploads_page-intro -->
+          <!-- end container-fluid -->
         </div>
-        <!-- end container-fluid -->
+        <!-- end uploads_page -->
       </div>
-      <!-- end uploads_page -->
-
-      <!-- upload-card -->
-      <div id="upload_card" data-file-count="{{ file_count }}" data-vault-title="{{vault.title}}" style="display: none">
+      <!--  -->
+      {% if not is_expired and total_vault_media_count < vault_limit and uploads_remaining > 0 %}
+      <div id="upload_card" data-file-count="{{ file_count|default:0 }}" data-vault-title="{{vault.title}}" style="display: none">
         <div class="card">
           <div class="card-body">
             <div class="status">
               <span class="spinner"></span>
-              Saving {{ file_count }} item{{ file_count|pluralize }} to your {{vault.title}} vault
+              Saving <span id="upload-count">0</span> item(s) to your {{vault.title}} vault
             </div>
-            <!-- end status -->
           </div>
-          <!-- end card-body -->
         </div>
-        <!-- end card -->
       </div>
-      <!-- end upload-card -->
+      {% endif %}
     </main>
     <!-- end main -->
 

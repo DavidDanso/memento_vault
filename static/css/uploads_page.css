@@ -258,6 +258,10 @@ a:hover {
   margin-top: 4%;
   width: 50%;
 }
+#empty_set {
+  margin-top: 3%;
+  width: 20%;
+}
 
 /****************************************** Upload_Card ************************************/
 #upload_card .card {
@@ -418,6 +422,10 @@ a:hover {
   #default_img {
     margin-top: 0%;
     width: 21%;
+  }
+  #empty_set {
+    margin-top: 0%;
+    width: 6%;
   }
 
   /* upload_card */

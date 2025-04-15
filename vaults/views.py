@@ -12,12 +12,16 @@ from django.http import HttpResponse
 from .utils import MediaProcessor
 from django.db.models import F
 from django.core.cache import cache
+from django.utils import timezone 
+from datetime import timedelta   
+
 
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
+VAULT_EXPIRATION_DURATION = timedelta(minutes=60)
 
 # Cache settings
-CACHE_TTL = 60 * 15  # 15 minutes
+CACHE_TTL = 60 * 15
 VAULT_LIMIT = 10
 USER_VAULT_CAP = 3
 
@@ -321,12 +325,30 @@ def thankY_view(request):
     return render(request, 'thankY_page.html', context)
 
 
-
+# TODO - add expiring timer to the page; eg: 2mins to prevent uploads after a certain time.
 def uploads_view(request, vault_id):
     # Get the vault object
     vault = get_object_or_404(Vault, pk=vault_id)
+    vault_limit = VAULT_LIMIT # Use consistent variable name
 
-    vaut_limit = VAULT_LIMIT
+    # --- Timer Check ---
+    now = timezone.now()
+    expiration_time = vault.created_at + VAULT_EXPIRATION_DURATION
+    
+    is_expired = now > expiration_time
+
+    # If the vault's upload period has expired, block access
+    if is_expired:
+        messages.error(request, f"The upload period for this vault expired {VAULT_EXPIRATION_DURATION.total_seconds() / 60:.0f} minutes after creation.")
+        # Render a simplified context indicating expiration
+        context = {
+            'vault': vault,
+            'is_expired': True,
+            'vault_limit': vault_limit,
+            # Add other necessary context variables if needed by the base template
+        }
+        # You might want a specific template snippet or just the standard page showing the error
+        return render(request, 'vaults/uploads_page.html', context)
 
     # --- User Identification ---
     uploader_profile = None
@@ -339,10 +361,9 @@ def uploads_view(request, vault_id):
             uploader_profile = request.user.profile
             user_identifier_filter = {'uploader_profile': uploader_profile}
         except Profile.DoesNotExist:
-            # Handle case where logged-in user doesn't have a Profile (shouldn't happen ideally)
+            # Handle case where logged-in user doesn't have a Profile
             messages.error(request, "Could not identify your profile.")
-            # Redirect or return an error response appropriate for your app
-            return redirect('some_error_page_or_home')
+            return redirect('sign-up')
     else:
         # For anonymous users, use the session key
         # Ensure session exists
@@ -360,6 +381,11 @@ def uploads_view(request, vault_id):
     uploads_remaining = max(0, uploads_allowed - user_upload_count) # Ensure non-negative
 
     if request.method == 'POST':
+        # Double check expiration just before processing POST, though unlikely to change mid-request
+        if timezone.now() > expiration_time:
+             messages.error(request, "The upload period for this vault expired while you were on the page.")
+             return redirect('uploads', vault_id=vault_id) # Redirect to show the expired message
+
         # Check if the user has any uploads remaining *before* processing the form
         if uploads_remaining <= 0:
             messages.error(request, "You have reached your upload limit for this vault.")
@@ -371,6 +397,9 @@ def uploads_view(request, vault_id):
                 'media_form': media_form,
                 'user_upload_count': user_upload_count,
                 'uploads_allowed': uploads_allowed,
+                'is_expired': False, # Vault is not expired if we reached here
+                'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
+                'vault_limit': vault_limit,
             }
             return render(request, 'vaults/uploads_page.html', context)
 
@@ -382,6 +411,18 @@ def uploads_view(request, vault_id):
             # Check if uploading these files exceeds the user's limit
             if user_upload_count + files_to_upload_count > uploads_allowed:
                 messages.error(request, f"You can only upload {uploads_remaining} more file(s). You tried to upload {files_to_upload_count}.")
+                # Need to pass the invalid form back to the template
+                context = {
+                    'vault': vault,
+                    'uploads_remaining': uploads_remaining,
+                    'media_form': media_form, # Pass the form with errors
+                    'user_upload_count': user_upload_count,
+                    'uploads_allowed': uploads_allowed,
+                    'is_expired': False,
+                    'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
+                    'vault_limit': vault_limit,
+                }
+                return render(request, 'vaults/uploads_page.html', context) # Re-render with error
             else:
                 # Proceed with saving files
                 saved_count = 0
@@ -394,19 +435,7 @@ def uploads_view(request, vault_id):
                         uploader_session_key=session_key # Will be None if logged in
                     )
                     try:
-                        # --- Optional: Your media processing ---
-                        # caption, tags = media_processor.get_caption_and_tags(f)
-                        # if caption:
-                        #     media_instance.caption = caption
-                        # --- End Optional ---
-
                         media_instance.save() # Save the media instance
-
-                        # --- Optional: Add tags after saving if using TaggableManager ---
-                        # if tags:
-                        #    media_instance.tags.add(*tags)
-                        # --- End Optional ---
-
                         saved_count += 1
                     except Exception as e:
                         # Log the error e
@@ -417,31 +446,27 @@ def uploads_view(request, vault_id):
                 if saved_count > 0:
                     messages.success(request, f"{saved_count} file(s) successfully uploaded to this vault! 🎉")
 
-                    # --- Optional: Cache Clearing ---
-                    # cache.delete_many([
-                    #     f"dashboard_data_{vault.owner_id}",
-                    #     f"user_vaults_{vault.owner_id}",
-                    #     f"gallery_view_{vault.owner_id}",
-                    #     f"everything_view_{vault.owner_id}",
-                    # ])
-                    # --- End Optional ---
-
                 # Redirect back to the same page after POST to prevent re-submission
+                # And to refresh the upload count/remaining display
                 return redirect('uploads', vault_id=vault_id) # Use the name of your upload URL pattern
 
-    # --- Handle GET Request or Invalid POST ---
-    else:
-        media_form = VaultMediaForm() # Create an empty form for GET requests
+        # If form is invalid, fall through to render the page again with errors below
 
-    # --- Prepare Context for Template ---
+    # --- Handle GET Request or Invalid POST ---
+    # Create an empty form for GET requests or use the invalid form from POST
+    if request.method != 'POST' or not media_form.is_valid():
+        media_form = VaultMediaForm()
+
+    # --- Prepare Context for Template (for GET or invalid POST) ---
     context = {
         'vault': vault,
-        'uploads_remaining': uploads_remaining, # User-specific remaining uploads
-        'media_form': media_form,
-        'user_upload_count': user_upload_count, # How many this user uploaded
-        'uploads_allowed': uploads_allowed, # The limit per person
+        'uploads_remaining': uploads_remaining,
+        'media_form': media_form, # Pass the form (empty or with errors)
+        'user_upload_count': user_upload_count,
+        'uploads_allowed': uploads_allowed,
         'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
-        'vaut_limit': vaut_limit, # Total vault limit
+        'is_expired': False, # Vault is not expired if we reached here
+        'vault_limit': vault_limit,
     }
     return render(request, 'vaults/uploads_page.html', context)
 
