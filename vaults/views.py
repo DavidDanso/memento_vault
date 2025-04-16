@@ -1,3 +1,4 @@
+from urllib import request
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
@@ -18,7 +19,7 @@ from datetime import timedelta
 
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
-VAULT_EXPIRATION_DURATION = timedelta(minutes=60)
+VAULT_EXPIRATION_DURATION = timedelta(minutes=10)
 
 # Cache settings
 CACHE_TTL = 60 * 15
@@ -325,151 +326,6 @@ def thankY_view(request):
     return render(request, 'thankY_page.html', context)
 
 
-# TODO - add expiring timer to the page; eg: 2mins to prevent uploads after a certain time.
-def uploads_view(request, vault_id):
-    # Get the vault object
-    vault = get_object_or_404(Vault, pk=vault_id)
-    vault_limit = VAULT_LIMIT # Use consistent variable name
-
-    # --- Timer Check ---
-    now = timezone.now()
-    expiration_time = vault.created_at + VAULT_EXPIRATION_DURATION
-    
-    is_expired = now > expiration_time
-
-    # If the vault's upload period has expired, block access
-    if is_expired:
-        messages.error(request, f"The upload period for this vault expired {VAULT_EXPIRATION_DURATION.total_seconds() / 60:.0f} minutes after creation.")
-        # Render a simplified context indicating expiration
-        context = {
-            'vault': vault,
-            'is_expired': True,
-            'vault_limit': vault_limit,
-            # Add other necessary context variables if needed by the base template
-        }
-        # You might want a specific template snippet or just the standard page showing the error
-        return render(request, 'vaults/uploads_page.html', context)
-
-    # --- User Identification ---
-    uploader_profile = None
-    session_key = None
-    user_identifier_filter = {} # Filter criteria for counting user's uploads
-
-    if request.user.is_authenticated:
-        try:
-            # Assumes a logged-in user has a related Profile object
-            uploader_profile = request.user.profile
-            user_identifier_filter = {'uploader_profile': uploader_profile}
-        except Profile.DoesNotExist:
-            # Handle case where logged-in user doesn't have a Profile
-            messages.error(request, "Could not identify your profile.")
-            return redirect('sign-up')
-    else:
-        # For anonymous users, use the session key
-        # Ensure session exists
-        if not request.session.session_key:
-            request.session.create()
-        session_key = request.session.session_key
-        user_identifier_filter = {'uploader_session_key': session_key}
-
-    # --- Calculate User's Upload Count & Remaining ---
-    # Count how many files *this specific user/session* has already uploaded to *this* vault
-    user_upload_count = VaultMedia.objects.filter(vault=vault, **user_identifier_filter).count()
-
-    # Calculate how many more uploads this user is allowed
-    uploads_allowed = vault.uploads_per_person
-    uploads_remaining = max(0, uploads_allowed - user_upload_count) # Ensure non-negative
-
-    if request.method == 'POST':
-        # Double check expiration just before processing POST, though unlikely to change mid-request
-        if timezone.now() > expiration_time:
-             messages.error(request, "The upload period for this vault expired while you were on the page.")
-             return redirect('uploads', vault_id=vault_id) # Redirect to show the expired message
-
-        # Check if the user has any uploads remaining *before* processing the form
-        if uploads_remaining <= 0:
-            messages.error(request, "You have reached your upload limit for this vault.")
-            # Re-render the page showing the limit message
-            media_form = VaultMediaForm() # Show an empty form again
-            context = {
-                'vault': vault,
-                'uploads_remaining': 0,
-                'media_form': media_form,
-                'user_upload_count': user_upload_count,
-                'uploads_allowed': uploads_allowed,
-                'is_expired': False, # Vault is not expired if we reached here
-                'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
-                'vault_limit': vault_limit,
-            }
-            return render(request, 'vaults/uploads_page.html', context)
-
-        media_form = VaultMediaForm(request.POST, request.FILES)
-        if media_form.is_valid():
-            files = request.FILES.getlist('file') # Get all uploaded files
-            files_to_upload_count = len(files)
-
-            # Check if uploading these files exceeds the user's limit
-            if user_upload_count + files_to_upload_count > uploads_allowed:
-                messages.error(request, f"You can only upload {uploads_remaining} more file(s). You tried to upload {files_to_upload_count}.")
-                # Need to pass the invalid form back to the template
-                context = {
-                    'vault': vault,
-                    'uploads_remaining': uploads_remaining,
-                    'media_form': media_form, # Pass the form with errors
-                    'user_upload_count': user_upload_count,
-                    'uploads_allowed': uploads_allowed,
-                    'is_expired': False,
-                    'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
-                    'vault_limit': vault_limit,
-                }
-                return render(request, 'vaults/uploads_page.html', context) # Re-render with error
-            else:
-                # Proceed with saving files
-                saved_count = 0
-                for f in files:
-                    media_instance = VaultMedia(
-                        file=f,
-                        vault=vault,
-                        # Assign the uploader based on whether user is logged in or anonymous
-                        uploader_profile=uploader_profile, # Will be None if anonymous
-                        uploader_session_key=session_key # Will be None if logged in
-                    )
-                    try:
-                        media_instance.save() # Save the media instance
-                        saved_count += 1
-                    except Exception as e:
-                        # Log the error e
-                        print(f"Error saving file: {e}") # Basic logging
-                        messages.error(request, f"An error occurred while saving one of your files: {e}")
-                        # Decide if you want to stop or continue processing other files
-
-                if saved_count > 0:
-                    messages.success(request, f"{saved_count} file(s) successfully uploaded to this vault! 🎉")
-
-                # Redirect back to the same page after POST to prevent re-submission
-                # And to refresh the upload count/remaining display
-                return redirect('uploads', vault_id=vault_id) # Use the name of your upload URL pattern
-
-        # If form is invalid, fall through to render the page again with errors below
-
-    # --- Handle GET Request or Invalid POST ---
-    # Create an empty form for GET requests or use the invalid form from POST
-    if request.method != 'POST' or not media_form.is_valid():
-        media_form = VaultMediaForm()
-
-    # --- Prepare Context for Template (for GET or invalid POST) ---
-    context = {
-        'vault': vault,
-        'uploads_remaining': uploads_remaining,
-        'media_form': media_form, # Pass the form (empty or with errors)
-        'user_upload_count': user_upload_count,
-        'uploads_allowed': uploads_allowed,
-        'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
-        'is_expired': False, # Vault is not expired if we reached here
-        'vault_limit': vault_limit,
-    }
-    return render(request, 'vaults/uploads_page.html', context)
-
 
 @login_required(login_url='login')
 def download_qr_code(request, vault_id):
@@ -489,3 +345,149 @@ def download_qr_code(request, vault_id):
         return response
     else:
         return HttpResponse("QR code not found.", status=404)
+    
+
+
+def uploads_view(request, vault_id):
+    vault = get_object_or_404(Vault, pk=vault_id)
+    vault_limit = VAULT_LIMIT
+    
+    # Check if vault is expired
+    if _is_vault_expired(vault):
+        return _handle_expired_vault(request, vault, vault_limit)
+    
+    # Get user identification (profile or session)
+    uploader_profile, session_key, user_identifier_filter = _get_user_identification(request)
+    if uploader_profile is None and session_key is None:
+        messages.error(request, "Could not identify your profile.")
+        return redirect('sign-up')
+    
+    # Calculate uploads remaining for this user
+    user_upload_count = VaultMedia.objects.filter(vault=vault, **user_identifier_filter).count()
+    uploads_allowed = vault.uploads_per_person
+    uploads_remaining = max(0, uploads_allowed - user_upload_count)
+    
+    # Process POST request (file uploads)
+    if request.method == 'POST':
+        # Double-check expiration again
+        if _is_vault_expired(vault):
+            messages.error(request, "The upload period for this vault expired while you were on the page.")
+            return redirect('uploads', vault_id=vault_id)
+        
+        # Check upload limits
+        if uploads_remaining <= 0:
+            messages.error(request, "You have reached your upload limit for this vault.")
+            return _render_uploads_page(request, vault, 0, VaultMediaForm(), user_upload_count, 
+                                       uploads_allowed, vault_limit)
+        
+        # Process the form submission
+        return _process_upload_form(request, vault, vault_id, user_upload_count, uploads_allowed,
+                                   uploads_remaining, uploader_profile, session_key, vault_limit)
+    
+    # Handle GET request
+    media_form = VaultMediaForm()
+    return _render_uploads_page(request, vault, uploads_remaining, media_form, 
+                               user_upload_count, uploads_allowed, vault_limit)
+
+
+def _is_vault_expired(vault):
+    """Check if a vault's upload period has expired."""
+    now = timezone.now()
+    expiration_time = vault.created_at + VAULT_EXPIRATION_DURATION
+    return now > expiration_time
+
+
+def _handle_expired_vault(request, vault, vault_limit):
+    """Handle response for expired vaults."""
+    minutes = VAULT_EXPIRATION_DURATION.total_seconds() / 60
+    messages.error(request, f"The upload period for this vault expired {minutes:.0f} minutes after creation.")
+    context = {
+        'vault': vault,
+        'is_expired': True,
+        'vault_limit': vault_limit,
+    }
+    return render(request, 'vaults/uploads_page.html', context)
+
+
+def _get_user_identification(request):
+    """Get user identification based on authentication status."""
+    uploader_profile = None
+    session_key = None
+    user_identifier_filter = {}
+    
+    if request.user.is_authenticated:
+        try:
+            uploader_profile = request.user.profile
+            user_identifier_filter = {'uploader_profile': uploader_profile}
+        except Profile.DoesNotExist:
+            return None, None, {}
+    else:
+        if not request.session.session_key:
+            request.session.create()
+        session_key = request.session.session_key
+        user_identifier_filter = {'uploader_session_key': session_key}
+    
+    return uploader_profile, session_key, user_identifier_filter
+
+
+def _render_uploads_page(request, vault, uploads_remaining, media_form, user_upload_count, 
+                        uploads_allowed, vault_limit, is_expired=False):
+    """Render the uploads page with the given context."""
+    context = {
+        'vault': vault,
+        'uploads_remaining': uploads_remaining,
+        'media_form': media_form,
+        'user_upload_count': user_upload_count,
+        'uploads_allowed': uploads_allowed,
+        'is_expired': is_expired,
+        'total_vault_media_count': VaultMedia.objects.filter(vault=vault).count(),
+        'vault_limit': vault_limit,
+    }
+    return render(request, 'vaults/uploads_page.html', context)
+
+
+def _process_upload_form(request, vault, vault_id, user_upload_count, uploads_allowed, 
+                        uploads_remaining, uploader_profile, session_key, vault_limit):
+    """Process file upload form submissions."""
+    media_form = VaultMediaForm(request.POST, request.FILES)
+    
+    if not media_form.is_valid():
+        return _render_uploads_page(request, vault, uploads_remaining, media_form,
+                                   user_upload_count, uploads_allowed, vault_limit)
+    
+    files = request.FILES.getlist('file')
+    files_to_upload_count = len(files)
+    
+    # Check if uploading these files exceeds the user's limit
+    if user_upload_count + files_to_upload_count > uploads_allowed:
+        messages.error(request, f"You can only upload {uploads_remaining} more file(s). You tried to upload {files_to_upload_count}.")
+        return _render_uploads_page(request, vault, uploads_remaining, media_form,
+                                   user_upload_count, uploads_allowed, vault_limit)
+    
+    # Save the files
+    saved_count = _save_uploaded_files(files, vault, uploader_profile, session_key)
+    
+    if saved_count > 0:
+        messages.success(request, f"{saved_count} file(s) successfully uploaded to this vault! 🎉")
+    
+    return redirect('uploads', vault_id=vault_id)
+
+
+def _save_uploaded_files(files, vault, uploader_profile, session_key):
+    """Save uploaded files to the vault."""
+    saved_count = 0
+    for f in files:
+        media_instance = VaultMedia(
+            file=f,
+            vault=vault,
+            uploader_profile=uploader_profile,
+            uploader_session_key=session_key
+        )
+        try:
+            media_instance.save()
+            saved_count += 1
+        except Exception as e:
+            print(f"Error saving file: {e}")
+            messages.error(request, f"An error occurred while saving one of your files: {e}")
+    
+    return saved_count
