@@ -89,7 +89,7 @@
                 <div class="card" id="sub_card">
                   <div class="card-body">
                     <div id="vault_info">
-                      <h3>{{item.vault.title}} vault</h3>
+                      <h3>{{item.vault.title|truncatechars:20}}</h3>
                       <p>{{ item.vault.updated_at|naturaltime }}</p>
                     </div>
                     <!-- end vault_info -->
