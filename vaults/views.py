@@ -19,10 +19,8 @@ from datetime import timedelta
 
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
-VAULT_EXPIRATION_DURATION = timedelta(minutes=10)
-VAULT_LIMIT = 10
-USER_VAULT_CAP = 3
-
+VAULT_LIMIT = 20
+USER_VAULT_CAP = 5
 
 # Cache settings
 CACHE_TTL = 60 * 15
@@ -390,12 +388,18 @@ def uploads_view(request, vault_id):
     vault = get_object_or_404(Vault, pk=vault_id)
     now = timezone.now()
 
-    # --- 1. Check Vault Expiration (Based on creation time) ---
-    expiration_time = vault.created_at + VAULT_EXPIRATION_DURATION
+    # Get the number of days from the specific vault instance's field
+    active_days = vault.qr_code_active_days
+
+    # Convert to timedelta
+    vault_specific_duration = timedelta(days=active_days)
+
+    # --- Check Vault Expiration (Based on creation time) ---
+    expiration_time = vault.created_at + vault_specific_duration
     is_expired = now > expiration_time
 
     if is_expired:
-        messages.error(request, f"The upload period for this vault expired {VAULT_EXPIRATION_DURATION.total_seconds() / 60:.0f} minutes after creation.")
+        messages.error(request, f"The upload period for this vault expired {active_days} day(s) after creation.")
         context = _prepare_upload_context(vault, VAULT_LIMIT, is_expired=True)
         return render(request, 'vaults/uploads_page.html', context)
 

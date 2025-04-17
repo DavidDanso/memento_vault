@@ -12,13 +12,13 @@
           {% if vault_count < user_vault_cap %}
           <img src="{% static 'images/marker.png' %}" class="img-fluid d-flex mx-auto" id="marker_img" alt="marker_img" />
           <h1>Create new Vault</h1>
-          <p>Securely store your memories. Upload photos and videos or invite others via QR code. The vault holds up to 50 items.</p>
+          <p>Store your memories securely—upload photos and videos or invite others with a QR code. Each vault holds up to 20 items, and its QR code expires 4 days after creation.</p>
 
           <!--  -->
           <form action="" method="POST">
             {% csrf_token %}
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <label for="exampleFormControlInput1" class="form-label">🏷️ vault name</label>
                 <div class="input-group d-flex justify-content-center" name="create_field" id="create_field">{{form.title}}</div>
                 <small>use simple words</small>
@@ -29,6 +29,13 @@
                 <label for="exampleFormControlInput1" class="form-label">📷 photos per person</label>
                 <div class="input-group d-flex justify-content-center">{{form.uploads_per_person}}</div>
                 <small>set max uploads allowed (2-25).</small>
+              </div>
+              <!-- end col -->
+
+              <div class="col-md-6">
+                <label for="exampleFormControlInput2" class="form-label">⏳ qr_code active days</label>
+                <div class="input-group d-flex justify-content-center">{{form.qr_code_active_days}}</div>
+                <small>set QR code expiration timer (1-4 days)</small>
               </div>
               <!-- end col -->
             </div>
