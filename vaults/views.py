@@ -20,7 +20,7 @@ from datetime import timedelta
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
 VAULT_LIMIT = 20
-USER_VAULT_CAP = 5
+USER_VAULT_CAP = 3
 
 # Cache settings
 CACHE_TTL = 60 * 15
