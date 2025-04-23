@@ -258,9 +258,22 @@ a:hover {
   margin-top: 4%;
   width: 50%;
 }
-#empty_set {
-  margin-top: 3%;
-  width: 20%;
+
+/* limit_reached-btn */
+#limit_reached-btn {
+  font-family: var(--text-font);
+  color: var(--text-color);
+  letter-spacing: 1px;
+  font-size: 1.1rem;
+  background-color: #2b2d3c;
+  border-radius: 25px;
+  text-align: center;
+  transition: all 0.4s ease-in-out;
+}
+#limit_reached-btn:hover {
+  background-color: #2b2d3cbd;
+  transition: all 0.4s ease-in-out;
+  border: 1px solid #fff;
 }
 
 /****************************************** Upload_Card ************************************/
@@ -333,6 +346,13 @@ a:hover {
   }
   #vault_full-btn {
     margin-top: 35%;
+  }
+  #limit_reached-btn {
+    margin-top: 5%;
+  }
+  #empty_set {
+    margin-top: 3%;
+    width: 20%;
   }
 }
 /************************ Small devices (landscape phones, 576px and up) *****************************/
@@ -423,9 +443,17 @@ a:hover {
     margin-top: 0%;
     width: 21%;
   }
+
+  /* limit_reached-btn */
+  #limit_reached-btn {
+    margin-top: 20%;
+  }
+  #limit_reached-btn-btn {
+    font-size: 1.2rem;
+  }
   #empty_set {
-    margin-top: 0%;
-    width: 6%;
+    margin-top: 3% !important;
+    width: 5% !important;
   }
 
   /* upload_card */
