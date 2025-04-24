@@ -30,7 +30,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'memento-vault.onrender.com']
 
 CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
 
@@ -227,6 +227,11 @@ SOCIALACCOUNT_ADAPTER = "a_auth.adapters.SocialAccountAdapter"
 
 
 LOGIN_REDIRECT_URL = '/dashboard/'
+
+
+# CORS settings
+CORS_ALLOWED_ORIGINS = ['https://memento-vault.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://memento-vault.onrender.com']
 
 
 
