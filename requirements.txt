@@ -41,6 +41,7 @@ google-generativeai==0.8.3
 googleapis-common-protos==1.66.0
 grpcio==1.68.1
 grpcio-status==1.68.1
+gunicorn==23.0.0
 httplib2==0.22.0
 humanize==4.11.0
 idna==3.10
@@ -48,6 +49,7 @@ jmespath==1.0.1
 kombu==5.5.1
 multidict==6.2.0
 oauthlib==3.2.2
+packaging==25.0
 pillow==10.4.0
 prompt_toolkit==3.0.50
 propcache==0.3.1
