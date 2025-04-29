@@ -9,6 +9,9 @@ from django.utils import timezone
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from taggit.managers import TaggableManager
+from django.conf import settings
+
+ENVIRONMENT = settings.ENVIRONMENT
 
 class Vault(models.Model):
     id = models.UUIDField(primary_key=True, unique=True, default=uuid.uuid4, editable=False)
@@ -34,7 +37,13 @@ class Vault(models.Model):
     def generate_qr_code(self):
         if self.qr_code:
             return
-        upload_url = f"http://127.0.0.1:8000/user-uploads/{self.id}" # Placeholder
+        
+        if ENVIRONMENT == 'production':
+            # In production, use the actual URL for the upload
+            upload_url = f"https://memento-vault.onrender.com/user-uploads/{self.id}"
+        else:
+            # In development, use a local URL
+            upload_url = f"http://127.0.0.1:8000/user-uploads/{self.id}"
 
         qr = qrcode.QRCode(version=1, box_size=10, border=4)
         qr.add_data(upload_url)
