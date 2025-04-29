@@ -190,8 +190,8 @@ if ENVIRONMENT == 'production' or POSTGRES_LOCALLY:
             "BACKEND": "storages.backends.s3.S3Storage",
         },
         "staticfiles": {
-            # "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
-            "BACKEND": "storages.backends.s3.S3Storage",
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+            # "BACKEND": "storages.backends.s3.S3Storage",
         },
     }
     
