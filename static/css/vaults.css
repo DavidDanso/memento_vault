@@ -771,12 +771,12 @@ main {
     margin-bottom: 1%;
   }
   #hero h1 {
-    font-size: 2.7rem;
+    font-size: 1.9rem;
     font-weight: bold;
   }
   #hero button {
-    font-size: 1.2rem;
-    padding: 5px 15px;
+    font-size: 1rem;
+    padding: 3px 12px;
     margin-right: 3%;
     margin-top: 0;
   }
@@ -784,13 +784,13 @@ main {
     width: 25px;
   }
   #hero h6 {
-    font-size: 1.3rem;
+    font-size: 1rem;
     margin-top: 5%;
   }
 
   /* main_card */
   #hero h2 {
-    font-size: 2.7rem;
+    font-size: 1.9rem;
     margin-top: 22%;
   }
   #space_ {
@@ -806,7 +806,7 @@ main {
     width: 27px;
   }
   #vault_count span {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   /* sub_card */
@@ -823,17 +823,17 @@ main {
     align-items: center;
   }
   #hero h3 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 1%;
   }
   #hero p {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     margin-top: 0;
     margin-bottom: 0;
   }
   #hero small {
     letter-spacing: 1px;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     margin-bottom: 0;
   }
 
@@ -845,61 +845,84 @@ main {
     background-color: #222222;
   }
   #close_svg {
-    width: 7%;
-    height: 7%;
+    width: 6%;
+    height: 6%;
   }
   #marker_img {
     width: 6%;
     height: 6%;
   }
   #createVaultModal h1 {
-    font-size: 1.8rem;
+    font-size: 1.2rem;
     margin-bottom: 1%;
   }
   #createVaultModal h2 {
-    font-size: 1.6rem;
+    font-size: 1.1rem;
     margin-bottom: 1%;
   }
   #createVaultModal h4 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     margin-bottom: 1%;
     margin-top: 5%;
   }
   #createVaultModal p {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     line-height: 1.2;
+    margin-bottom: 1%;
   }
   /*  */
   #createVaultModal .input {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   #createVaultModal .input::placeholder {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
 
   /*  */
   #createVaultModal label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 6%;
   }
   #createVaultModal small {
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     letter-spacing: 1px;
   }
   /*  */
 
   #createVaultModal #button_ {
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding: 5px 15px;
     margin-top: 3%;
   }
   #createVaultModal h6 {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 4%;
   }
   #createVaultModal li {
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 1%;
+  }
+
+  /* no_vault */
+  #no_vault {
+    margin-top: 20%;
+  }
+  #no_vault #icon_img {
+    width: 4%;
+    margin-top: 25%;
+  }
+  #no_vault h4 {
+    font-size: 2vh;
+    margin-top: 1%;
+  }
+  #no_vault #button_ {
+    margin-top: 2px;
+    font-size: 1rem;
+    padding: 3px 13px;
+  }
+  #no_vault #create_img {
+    width: 25px;
+    margin-right: 2px;
   }
 }
 
@@ -948,26 +971,4 @@ main {
     background-size: 80px 80px;
   }
   /*  */
-
-  /* no_vault */
-  #no_vault {
-    margin-top: 20%;
-  }
-  #no_vault #icon_img {
-    width: 5%;
-    margin-top: 25%;
-  }
-  #no_vault h4 {
-    font-size: 2vh;
-    margin-top: 1%;
-  }
-  #no_vault #button_ {
-    margin-top: 2px;
-    font-size: 1.2rem;
-    padding: 5px 15px;
-  }
-  #no_vault #create_img {
-    width: 25px;
-    margin-right: 2px;
-  }
 }

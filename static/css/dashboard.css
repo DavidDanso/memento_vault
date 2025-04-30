@@ -738,7 +738,7 @@ main {
 
   /* top nav */
   #logo {
-    max-width: 90%;
+    width: 40px;
     height: auto;
     margin-top: 10%;
     margin-bottom: 10%;
