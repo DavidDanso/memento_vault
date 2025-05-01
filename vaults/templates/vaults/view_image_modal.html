@@ -44,10 +44,10 @@
                 {% endif %}
 
                 <!--  -->
-                <h2>
+                <h3>
                   MoodLens
                   <img src="{% static 'images/smile.png' %}" class="img-fluid" id="modal_icon" alt="modal_icon" />
-                </h2>
+                </h3>
                 {% if media.media.tags.exists %}
                 <div class="tags mt-2">
                   {% for tag in media.media.tags.all|slice:"1:" %}

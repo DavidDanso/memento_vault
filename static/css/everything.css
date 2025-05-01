@@ -311,7 +311,7 @@ a:hover {
   font-family: var(--text-font);
   color: var(--nav-links-color);
   letter-spacing: 1px;
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: normal;
   transition: all 0.4s ease-in-out;
 }
@@ -616,7 +616,7 @@ main {
   margin-bottom: 0;
   line-height: 1.2;
 }
-#div_body h2 {
+#div_body h3 {
   color: var(--nav-links-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
@@ -879,10 +879,10 @@ main {
     padding: 0.1em 0.1em 0.1em 1em;
     width: 650px;
     margin-top: 1%;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   #search input::placeholder {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
   #search button {
     margin-right: 2%;
@@ -897,7 +897,7 @@ main {
     margin-top: 8%;
   }
   #vault_objs h2 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-bottom: -1%;
   }
   #vault_objs h2 span::after {
@@ -908,48 +908,48 @@ main {
   }
 
   /* create_form */
-  #create_form {
-    background: #0a0b0e;
-    margin-bottom: 3%;
-  }
-  #create_form h5 {
-    font-family: var(--text-font);
-    color: var(--text-color);
-    letter-spacing: 1px;
-    font-size: 1.3rem;
-    text-align: left;
-    margin-top: 1%;
-  }
-  #create_form .input {
-    color: var(--text-color);
-    letter-spacing: 1px;
-    font-family: var(--text-font);
-    font-size: 1.1rem;
-    border: 1px solid #707070;
-    background: transparent;
-    margin-top: 2%;
-    margin-bottom: -8px;
-  }
-  #create_form .input:focus {
-    box-shadow: none !important;
-    outline: 0px !important;
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-  }
-  #create_form .input::placeholder {
-    color: var(--nav-links-color);
-    font-size: 1.1rem;
-  }
-  #submit--img {
-    width: 27px;
-    margin-top: 4%;
-    margin-bottom: -14px;
-  }
-  #create_form button {
-    background: transparent;
-    border: none;
-    margin-left: 3%;
-  }
+  /* #create_form { */
+  /* background: #0a0b0e; */
+  /* margin-bottom: 3%; */
+  /* } */
+  /* #create_form h5 { */
+  /* font-family: var(--text-font); */
+  /* color: var(--text-color); */
+  /* letter-spacing: 1px; */
+  /* font-size: 1.3rem; */
+  /* text-align: left; */
+  /* margin-top: 1%; */
+  /* } */
+  /* #create_form .input { */
+  /* color: var(--text-color); */
+  /* letter-spacing: 1px; */
+  /* font-family: var(--text-font); */
+  /* font-size: 1.1rem; */
+  /* border: 1px solid #707070; */
+  /* background: transparent; */
+  /* margin-top: 2%; */
+  /* margin-bottom: -8px; */
+  /* } */
+  /* #create_form .input:focus { */
+  /* box-shadow: none !important; */
+  /* outline: 0px !important; */
+  /* border: 1px solid var(--text-color); */
+  /* color: var(--text-color); */
+  /* } */
+  /* #create_form .input::placeholder { */
+  /* color: var(--nav-links-color); */
+  /* font-size: 1.1rem; */
+  /* } */
+  /* #submit--img { */
+  /* width: 27px; */
+  /* margin-top: 4%; */
+  /* margin-bottom: -14px; */
+  /* } */
+  /* #create_form button { */
+  /* background: transparent; */
+  /* border: none; */
+  /* margin-left: 3%; */
+  /* } */
 
   /*  masonry-container */
   #masonry-container {
@@ -978,12 +978,12 @@ main {
     padding: 3%;
   }
   #viewImageModal h1 {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     margin-bottom: 1px;
   }
   #viewImageModal small {
     letter-spacing: 1px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   #close_svg {
     width: 8%;
@@ -1000,21 +1000,21 @@ main {
     border-image-repeat: stretch;
   }
   #image_description p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-top: 1%;
     margin-bottom: 0;
   }
-  #div_body h2 {
-    font-size: 1.3rem;
+  #div_body h3 {
+    font-size: 1.2rem;
     margin-top: 4%;
     margin-bottom: 1%;
   }
   #div_body #modal_icon {
-    width: 8%;
+    width: 7%;
   }
   #div_body .badge-pill {
     letter-spacing: 1px;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
 
   /*  */
@@ -1023,7 +1023,7 @@ main {
   }
   #div_body .download_btn,
   .delete_btn {
-    width: 7% !important;
+    width: 6% !important;
     margin: 3%;
     margin-bottom: -5px;
   }
@@ -1046,21 +1046,21 @@ main {
   }
   #delete-media-modal h3 {
     letter-spacing: 1px;
-    font-size: 1.9vh;
+    font-size: 1.8vh;
     padding: 3%;
   }
   #delete-media-modal h4 {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 6%;
   }
   #delete-media-modal h6 {
     letter-spacing: 1px;
-    font-size: 1.8vh;
+    font-size: 1.7vh;
   }
   #delete_media {
     letter-spacing: 1px;
-    font-size: 2vh;
+    font-size: 1.7vh;
     margin-left: 10px;
   }
   #delete-media-modal .modal-footer {
@@ -1085,5 +1085,45 @@ main {
   #no_media h4 {
     font-size: 2vh;
     margin-top: 1%;
+  }
+}
+/************************ Extra large devices (large desktops, 1400px and up) ********************************/
+@media only screen and (min-width: 1400px) {
+  /* CSS rules here */
+  #nav_ {
+    margin-top: 15rem;
+  }
+  .sidebar {
+    width: 58px;
+  }
+  .icon_ {
+    width: 22px;
+    margin-left: -50%;
+  }
+  .icon_v {
+    width: 30px;
+  }
+  .notification_icon {
+    width: 28px;
+  }
+  #user_avatar {
+    width: 35px;
+    object-fit: cover;
+    margin-top: 25%;
+  }
+  .sidebar .bottom-icons {
+    margin-bottom: 35%;
+  }
+
+  #logout_img {
+    width: 18px;
+  }
+
+  /* top nav */
+  #logo {
+    width: 40px;
+    height: auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
   }
 }
