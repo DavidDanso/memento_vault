@@ -74,82 +74,6 @@ a:hover {
   border-radius: 6px;
 }
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html,
-body {
-  box-sizing: border-box;
-  font-size: 14px;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-  background: var(--main-color);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
-}
-a {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
-
-/* Fonts */
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-  font-family: "NeueHaasGrotesk-55Roman";
-  src: url("../fonts/NeueHaasGroteskText-55Roman-Web.woff2");
-}
-@font-face {
-  font-weight: normal;
-  font-style: normal;
-  font-family: "NeueHaasGroteskText-65Regular";
-  src: url("../fonts/regular.woff2");
-}
-.page-content {
-  --main-color: #222222;
-  --text-color: #eeeeee;
-  --nav-links-color: #9b9b9b;
-  --header-font: "NeueHaasGrotesk-55Roman";
-  --text-font: "NeueHaasGroteskText-65Regular";
-}
-a {
-  text-decoration: none;
-  color: var(--accent-color);
-}
-a:hover {
-  text-decoration: none;
-  color: var(--accent-color);
-}
-
-/*change color of text highlight*/
-::-moz-selection {
-  color: var(--main-color);
-  background: var(--text-color);
-}
-
-::selection {
-  color: var(--main-color);
-  background: var(--text-color);
-}
-
-::-webkit-scrollbar {
-  width: 5px;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 6px;
-}
-
 /****************************************** alert-style ************************************/
 .alert-container {
   position: absolute;
@@ -185,7 +109,7 @@ a:hover {
 }
 
 .alert-content {
-  font-size: 1.125rem;
+  font-size: 0.9rem;
 }
 
 .close-button {
@@ -199,7 +123,7 @@ a:hover {
   border: 1px solid #c3e2c2 !important;
 }
 #close_ {
-  width: 25px;
+  width: 20px;
 }
 
 /****************************************** NAVIGATION ************************************/
@@ -311,7 +235,7 @@ a:hover {
   font-family: var(--text-font);
   color: var(--nav-links-color);
   letter-spacing: 1px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   line-height: normal;
   transition: all 0.4s ease-in-out;
 }

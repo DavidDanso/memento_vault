@@ -109,7 +109,7 @@ a:hover {
 }
 
 .alert-content {
-  font-size: 1.125rem;
+  font-size: 0.9rem;
 }
 
 .close-button {
@@ -135,7 +135,7 @@ a:hover {
   border: 1px solid #c3e2c2 !important;
 }
 #close_ {
-  width: 25px;
+  width: 20px;
 }
 
 /****************************************** NAVIGATION ************************************/

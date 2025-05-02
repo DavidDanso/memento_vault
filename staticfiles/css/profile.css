@@ -109,7 +109,7 @@ a:hover {
 }
 
 .alert-content {
-  font-size: 1.125rem;
+  font-size: 0.9rem;
 }
 
 .close-button {
@@ -123,7 +123,7 @@ a:hover {
   border: 1px solid #a2d2df !important;
 }
 #close_ {
-  width: 25px;
+  width: 20px;
 }
 
 /****************************************** NAVIGATION ************************************/
@@ -563,6 +563,12 @@ main {
   border: 1px solid var(--text-color);
   color: var(--text-color);
 }
+#profile_settings .input::placeholder {
+  color: #9b9b9b;
+  font-size: 0.9rem;
+  font-family: var(--text-font);
+  letter-spacing: 1px;
+}
 #img_field {
   display: flex;
   justify-content: center;
@@ -859,13 +865,13 @@ main {
     height: 65px;
   }
   #settings p {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
     margin-top: 2px;
   }
   #settings button {
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 12%;
-    padding: 5px 15px;
+    padding: 3px 13px;
   }
   #settings #edit_pen {
     margin-right: 3%;
@@ -879,10 +885,10 @@ main {
     width: 50rem;
   }
   #settings-card h5 {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   #settings-card h6 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: right;
   }
 
@@ -892,9 +898,9 @@ main {
     margin-top: 2%;
   }
   #whats_new_banner a {
-    font-size: 1.1rem;
-    width: 23%; /* Set button width */
-    padding: 5px 15px;
+    font-size: 1rem;
+    width: 18%;
+    padding: 3px 13px;
   }
 
   /* delete_account_card */
@@ -902,21 +908,18 @@ main {
     margin-top: 1%;
     width: 55%;
   }
-  #delete_account_card h2 {
-    font-size: 1.2rem;
-  }
   #delete_account_card #volunteer_img {
-    width: 75%;
+    width: 70%;
     margin-top: 1%;
     float: right;
   }
   #delete_account_card h2 {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-top: 2%;
   }
   #delete_account_card h2 a {
-    font-size: 1.3rem;
+    font-size: 1rem;
   }
 
   /* delete-modal */
@@ -931,12 +934,12 @@ main {
   }
   #delete-account-modal h3 {
     letter-spacing: 1px;
-    font-size: 1.9vh;
+    font-size: 1.8vh;
     padding: 3%;
   }
   #delete-account-modal h4 {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 6%;
   }
   #delete-account-modal h6 {
@@ -945,7 +948,7 @@ main {
   }
   #delete_account {
     letter-spacing: 1px;
-    font-size: 2vh;
+    font-size: 1.7vh;
     margin-left: 10px;
   }
   #delete-account-modal .modal-footer {
@@ -971,23 +974,23 @@ main {
   }
   #profile_settings h6 {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-bottom: 2%;
   }
   #profile_settings label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     letter-spacing: 1px;
   }
   #profile_settings .input {
     letter-spacing: 1px;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
   }
   #img_field {
     margin-bottom: 5%;
   }
   #img_field input {
     letter-spacing: 1px;
-    font-size: 1.8vh;
+    font-size: 1.4vh;
     max-width: 40%;
   }
   #profile_settings .col-md-6 {
@@ -995,7 +998,7 @@ main {
   }
   #update_profile {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1rem;
     margin-left: 10px;
   }
   #profile_settings .modal-footer {
