@@ -427,7 +427,7 @@ main {
   }
   #hero h1 {
     letter-spacing: 1px;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
   }
   #hero h1 span::after {
     content: "";
@@ -440,7 +440,7 @@ main {
 
   /* carousel */
   #hero #main_card {
-    width: 65%;
+    width: 68%;
     margin-top: 5%;
   }
   #hero .carousel-indicators {
@@ -456,7 +456,7 @@ main {
     height: 55vh;
     object-fit: contain;
     margin-top: 3%;
-    margin-bottom: 16%;
+    margin-bottom: 24%;
   }
   #hero .carousel-caption {
     right: 15%;
@@ -470,7 +470,7 @@ main {
   }
   #hero .carousel-caption h5 {
     letter-spacing: 1px;
-    font-size: 1.4rem;
+    font-size: 1rem;
     font-weight: bold;
     margin-left: 2%;
   }
@@ -483,19 +483,20 @@ main {
   #title .badge {
     margin-top: 0%;
     letter-spacing: 1px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 200;
   }
   #hero .carousel-caption p {
     letter-spacing: 1px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-left: 2%;
-    color: var(--text-color);
+    color: #9b9b9b;
     letter-spacing: 1px;
     font-family: var(--text-font);
     margin-bottom: 0;
     margin-top: 2%;
-    font-weight: 200;
+    font-weight: 100;
+    line-height: 1.3;
   }
 
   /*  */
