@@ -549,7 +549,7 @@ main {
 }
 #row_cards h1 {
   font-family: var(--header-font);
-  color: #b6a28e;
+  color: var(--text-color);
   letter-spacing: 1px;
   font-size: 3rem;
   margin-top: 14%;
@@ -838,7 +838,7 @@ main {
     margin-top: 0%;
   }
   #row_cards h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-top: 20%;
   }
   #dashboard #line_divider {

@@ -60,6 +60,7 @@
                     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}" aria-current="{% if forloop.first %}true{% endif %}" aria-label="Slide {{ forloop.counter }}"></button>
                     {% endfor %}
                   </div>
+                  <!-- end carousel-indicators -->
 
                   <!-- Carousel Inner -->
                   <div class="carousel-inner">
@@ -75,7 +76,6 @@
                           Your browser does not support the video tag.
                         </video>
                       </div>
-                      <!-- end video-wrapper -->
                       {% else %}
                       <p>Unsupported file format</p>
                       {% endif %}
