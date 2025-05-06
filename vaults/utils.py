@@ -197,7 +197,7 @@ Return the result ONLY as a valid JSON object with keys "caption" and "tags" (wh
                     caption = result_json.get("caption", "Caption not found in JSON")
                     tags_list = result_json.get("tags", [])
                     if isinstance(caption, str) and isinstance(tags_list, list):
-                        return caption.strip(), [str(tag).strip().lower() for tag in tags_list][:5]
+                        return caption.strip(), [str(tag).strip().lower() for tag in tags_list][:4]
                     else:
                         logging.warning("Parsed JSON has unexpected types. Caption: %s, Tags: %s", type(caption), type(tags_list))
                         return "Failed to parse JSON (type error)", []

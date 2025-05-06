@@ -80,20 +80,19 @@
                       <p>Unsupported file format</p>
                       {% endif %}
 
-                      <div class="carousel-caption">
-                        <div id="title">
-                          <h5>{{ media.media.file.name|truncate_filename:20 }}</h5>
-                          <h4>
-                            {% if media.media.tags.exists %} {% for tag in media.media.tags.all|slice:":4" %}
-                            <span class="badge badge-pill me-1 mb-1">{{ tag }}</span>
-                            {% endfor %} {% endif %}
-                          </h4>
-                        </div>
-                        <!-- end title -->
-                        {% if media.media.caption and media.media.caption != "Video file uploaded" %}
-                        <p>{{ media.media.caption }}</p>
-                        {% endif %}
-                      </div>
+                      <!-- <div class="carousel-caption"> -->
+                      <!-- <div id="title"> -->
+                      <!-- <h5>{{ media.media.file.name|truncate_filename:20 }}</h5> -->
+                      <!-- <h4> -->
+                      <!-- {% if media.media.tags.exists %} {% for tag in media.media.tags.all|slice:":3" %} -->
+                      <!-- <span class="badge badge-pill me-1 mb-1">{{ tag }}</span> -->
+                      <!-- {% endfor %} {% endif %} -->
+                      <!-- </h4> -->
+                      <!-- </div> -->
+                      <!-- {% if media.media.caption and media.media.caption != "Video file uploaded" %} -->
+                      <!-- <p>{{ media.media.caption }}</p> -->
+                      <!-- {% endif %} -->
+                      <!-- </div> -->
                     </div>
                     <!-- end carousel-item -->
                     {% endfor %}

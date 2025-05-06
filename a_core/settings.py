@@ -20,17 +20,19 @@ print(f"ENVIRONMENT: {ENVIRONMENT}")
 
 GEMINI_API_KEY = config('GEMINI_API_KEY')
 
+USER_VAULT_CAP = 3
+
 INTERNAL_IPS = [
     "127.0.0.1",
     "localhost",
 ]
 
-DEBUG = True
+# DEBUG = True
 
-# if ENVIRONMENT == 'development':
-#     DEBUG = True
-# else:
-#     DEBUG = False
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'memento-vault.onrender.com']
 

@@ -806,7 +806,7 @@ main {
     font-size: 1rem;
   }
   #search input::placeholder {
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   #search button {
     margin-right: 2%;

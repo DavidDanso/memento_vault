@@ -453,10 +453,17 @@ main {
   }
   #hero .carousel img {
     width: 100%;
-    height: 55vh;
+    height: 65vh;
     object-fit: contain;
     margin-top: 3%;
-    margin-bottom: 20%;
+    margin-bottom: 1%;
+  }
+  #hero .carousel video {
+    width: 100%;
+    height: 65vh;
+    object-fit: contain;
+    margin-top: 8%;
+    margin-bottom: 1%;
   }
   #hero .carousel-caption {
     right: 15%;

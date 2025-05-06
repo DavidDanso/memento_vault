@@ -3,8 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ProfileForm
 from vaults.models import Vault
+from django.conf import settings
 
-USER_VAULT_CAP = 3
+
+USER_VAULT_CAP = settings.USER_VAULT_CAP
 
 @login_required
 def profile_view(request):
