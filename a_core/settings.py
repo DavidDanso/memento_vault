@@ -34,7 +34,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'memento-vault.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'memento-vault.onrender.com', 'vault-memento.onrender.com']
 
 CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
 
@@ -235,8 +235,8 @@ LOGIN_REDIRECT_URL = '/dashboard/'
 
 
 # CORS settings
-CORS_ALLOWED_ORIGINS = ['https://memento-vault.onrender.com']
-CSRF_TRUSTED_ORIGINS = ['https://memento-vault.onrender.com']
+CORS_ALLOWED_ORIGINS = ['https://memento-vault.onrender.com', 'https://vault-memento.onrender.com']
+CSRF_TRUSTED_ORIGINS = ['https://memento-vault.onrender.com', 'https://vault-memento.onrender.com']
 
 
 

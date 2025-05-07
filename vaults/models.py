@@ -40,7 +40,7 @@ class Vault(models.Model):
         
         if ENVIRONMENT == 'production':
             # In production, use the actual URL for the upload
-            upload_url = f"https://memento-vault.onrender.com/user-uploads/{self.id}"
+            upload_url = f"https://vault-memento.onrender.com/user-uploads/{self.id}"
         else:
             # In development, use a local URL
             upload_url = f"http://127.0.0.1:8000/user-uploads/{self.id}"
