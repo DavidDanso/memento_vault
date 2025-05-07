@@ -19,7 +19,7 @@ class Vault(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="vaults")
     # The maximum number of uploads allowed per individual user/session
     uploads_per_person = models.PositiveIntegerField(default=2)
-    qr_code_active_days = models.PositiveIntegerField(default=1)
+    qr_code_active_days = models.PositiveIntegerField(default=2)
     qr_code = models.ImageField(upload_to='vault_qrcodes/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True, db_index=True)

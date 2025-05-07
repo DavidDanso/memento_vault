@@ -12,7 +12,7 @@ class VaultCreationForm(forms.ModelForm):
             'uploads_per_person': forms.NumberInput(attrs={'placeholder': 'enter max media items (2-25)...',
                                                         'min': 2, 'max': 25, 'step': 1,}),
             'qr_code_active_days': forms.NumberInput(attrs={'placeholder': 'enter QR code active minutes...',
-                                                              'min': 1, 'max': 4, 'step': 1}),
+                                                              'min': 2, 'max': 4, 'step': 1}),
         }
 
     def __init__(self, *args, **kwargs):
