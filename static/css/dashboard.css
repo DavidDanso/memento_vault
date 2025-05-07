@@ -845,7 +845,8 @@ main {
     width: 90%;
   }
   .no_vault-txt {
-    font-size: 1.2rem !important;
+    font-size: 1rem !important;
+    text-align: center !important;
   }
 
   /* recent_uploads */

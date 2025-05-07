@@ -27,12 +27,12 @@ INTERNAL_IPS = [
     "localhost",
 ]
 
-DEBUG = True
+# DEBUG = True
 
-# if ENVIRONMENT == 'development':
-#     DEBUG = True
-# else:
-#     DEBUG = False
+if ENVIRONMENT == 'development':
+    DEBUG = True
+else:
+    DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'vault-memento.onrender.com']
 
