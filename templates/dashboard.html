@@ -137,7 +137,9 @@
                   <!-- end card_header -->
 
                   <h1>{{ vault_count }}</h1>
+                  {% if vault_count > 0 %}
                   <a href="{% url 'vaults' %}"><span>view all vaults</span></a>
+                  {% endif %}
                 </div>
                 <!-- end card-body -->
               </div>
