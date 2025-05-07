@@ -89,7 +89,7 @@ a:hover {
   border-bottom: 1px solid #707070;
 }
 #logo {
-  width: 45px;
+  width: 40px;
 }
 .navbar-toggler {
   position: absolute;
@@ -322,7 +322,7 @@ a:hover {
     margin: 3%;
   }
   .hero-intro h1 {
-    font-size: 8rem;
+    font-size: 6rem;
     margin-top: 0%;
     line-height: 1;
     margin-bottom: 2%;
@@ -331,7 +331,7 @@ a:hover {
     display: block;
   }
   .hero-intro p {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     margin-top: 0%;
   }
   #mob_btn {
@@ -354,19 +354,19 @@ a:hover {
   }
   .intro-intro h6 {
     letter-spacing: 1px;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
   .intro-intro #icon_ {
-    width: 45px;
+    width: 42px;
   }
   .intro-intro h5 {
     letter-spacing: 1px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     margin-top: 3%;
   }
   .intro-intro p {
     letter-spacing: 1px;
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
   .intro-intro .col-md-3 {
     margin-top: 0%;
@@ -377,7 +377,7 @@ a:hover {
     margin-left: 40%;
   }
   .intro-intro h2 {
-    font-size: 3rem;
+    font-size: 2.2rem;
     margin-top: 3%;
     margin-bottom: 1%;
   }
