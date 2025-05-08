@@ -446,14 +446,15 @@ a:hover {
 
   /* limit_reached-btn */
   #limit_reached-btn {
-    margin-top: 20%;
+    margin-top: 1px;
   }
   #limit_reached-btn-btn {
     font-size: 1.2rem;
   }
   #empty_set {
-    margin-top: 3% !important;
-    width: 5% !important;
+    margin-top: 1px !important;
+    width: 20% !important;
+    margin-bottom: -10px;
   }
 
   /* upload_card */

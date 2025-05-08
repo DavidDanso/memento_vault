@@ -15,11 +15,12 @@ from django.db.models import F
 from django.core.cache import cache
 from django.utils import timezone 
 from datetime import timedelta   
+import os
 
 
 GEMINI_API_KEY = settings.GEMINI_API_KEY
 media_processor = MediaProcessor(GEMINI_API_KEY)
-VAULT_LIMIT = 20
+VAULT_LIMIT = 15
 USER_VAULT_CAP = settings.USER_VAULT_CAP
 
 # Cache settings
@@ -296,39 +297,61 @@ def gallery_view(request):
     profile = get_object_or_404(Profile, user=request.user)
 
     # Retrieve all vaults associated with the logged-in user's profile
+    # Assuming profile.vaults is a RelatedManager or similar QuerySet
     vaults = profile.vaults.all()
 
-    # Collect and sort media files from all vaults associated with the user
-    media_files = VaultMedia.objects.filter(vault__in=vaults).order_by('-updated_at')
+    # Base queryset for media files from all vaults associated with the user
+    # This QuerySet is used for counting and then for fetching objects for display
+    base_media_query = VaultMedia.objects.filter(vault__in=vaults)
 
-    # Categorize media files by type
-    categorized_media = []
-    for media in media_files:
-        file_url = media.file.url.lower()
-        if file_url.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif')):
-            categorized_media.append({'media': media, 'type': 'image'})
-        elif file_url.endswith(('.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv')):
-            categorized_media.append({'media': media, 'type': 'video'})
-        else:
-            categorized_media.append({'media': media, 'type': 'unsupported'})
-
-    # File extension groups
-    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', 'avif']
+    # Define file extension groups. Ensure extensions are lowercase and start with a dot.
+    image_extensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.svg', '.webp', '.avif']
     video_extensions = ['.mp4', '.webm', '.ogg', '.mov', '.avi', '.mkv']
 
-    # Count images and videos with OR logic for extensions
-    image_count = media_files.filter(
-        reduce(or_, (Q(file__endswith=ext) for ext in image_extensions))
-    ).count()
+    # Create Q objects for case-insensitive filtering on the 'file' field
+    # This assumes 'file' is a FileField in VaultMedia and stores a path/name like 'uploads/file.JPG'
+    # Using __iendswith ensures that '.JPG' matches '.jpg', critical for consistency.
+    image_filter = reduce(or_, [Q(file__iendswith=ext) for ext in image_extensions])
+    video_filter = reduce(or_, [Q(file__iendswith=ext) for ext in video_extensions])
 
-    video_count = media_files.filter(
-    reduce(or_, (Q(file__endswith=ext) for ext in video_extensions))
-    ).count()
+    # Get the total number of images and videos using efficient database counts
+    image_count = base_media_query.filter(image_filter).count()
+    video_count = base_media_query.filter(video_filter).count()
 
-    context = {'image_count': image_count, 
-               'video_count': video_count, 'media_files': categorized_media}
+    # Retrieve and sort media files for display in the gallery
+    media_files_for_display = base_media_query.order_by('-updated_at')
+
+    # Categorize media files by type for the template.
+    # This uses Python to iterate through the fetched media objects.
+    categorized_media = []
+    # Convert extension lists to tuples for slightly more efficient 'in' checks.
+    image_ext_tuple = tuple(image_extensions)
+    video_ext_tuple = tuple(video_extensions)
+
+    for media in media_files_for_display:
+        media_type = 'unsupported'
+        try:
+            # os.path.splitext reliably extracts the extension (e.g., '.jpg', '.PNG') from the file path.
+            # media.file.name should give the path as stored in the FileField.
+            _, file_extension_with_dot = os.path.splitext(media.file.name)
+            file_extension_lower = file_extension_with_dot.lower() # Convert to lowercase for comparison
+        except AttributeError:
+            # Handle cases where media.file or media.file.name might be None or invalid.
+            file_extension_lower = "" 
+        
+        if file_extension_lower in image_ext_tuple:
+            media_type = 'image'
+        elif file_extension_lower in video_ext_tuple:
+            media_type = 'video'
+        
+        categorized_media.append({'media': media, 'type': media_type})
+
+    context = {
+        'image_count': image_count,
+        'video_count': video_count,
+        'media_files': categorized_media,
+    }
     return render(request, 'vaults/gallery.html', context)
-
 
 
 def thankY_view(request):

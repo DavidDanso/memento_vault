@@ -63,9 +63,9 @@
               <center>
                 <h2>{{ vault.title }} Vault - Your Limit Reached</h2>
                 <p>You have already uploaded the maximum number of files allowed ({{ uploads_allowed }}) for this vault.</p>
+                <img src="{% static 'images/icon_one.svg' %}" class="img-fluid d-flex mx-auto" id="empty_set" alt="Limit Reached" />
                 <a href="{% url 'thank_u' %}" class="btn" id="limit_reached-btn">Upload Limit Reached, click me</a>
               </center>
-              <!-- <img src="{% static 'images/empty-set.png' %}" class="img-fluid d-flex mx-auto" id="empty_set" alt="Limit Reached" /> -->
             </div>
             {% else %}
             <h2>{{vault.title}} vault - upload files</h2>
