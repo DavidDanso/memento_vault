@@ -90,7 +90,7 @@
                   <div class="card-body">
                     <div id="vault_info">
                       <h3>{{item.vault.title|truncatechars:15}}</h3>
-                      <p>{{ item.vault.updated_at|naturaltime }}</p>
+                      <p>{{ item.vault.updated_at|naturaltime|truncatechars:15 }}</p>
                     </div>
                     <!-- end vault_info -->
 
