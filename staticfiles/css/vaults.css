@@ -307,18 +307,18 @@ main {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 #hero button {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 5px 15px;
+  padding: 3px 15px;
   text-align: center;
   transition: all 0.4s ease-in-out;
   margin-top: 2%;
@@ -338,7 +338,7 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin-top: 17%;
 }
 
@@ -363,8 +363,8 @@ main {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 2.3rem;
-  margin-top: 10%;
+  font-size: 2rem;
+  margin-top: 25%;
   text-align: center;
   font-weight: bold;
   font-style: italic;
@@ -382,13 +382,13 @@ main {
   padding-bottom: 1px;
 }
 #count_icon {
-  width: 36px;
+  width: 33px;
 }
 #vault_count span {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   font-weight: bold;
   vertical-align: middle;
 }
@@ -411,7 +411,7 @@ main {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   margin-top: 2%;
 }
@@ -419,7 +419,7 @@ main {
   font-family: var(--text-font);
   color: #878787;
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: -4px;
   margin-bottom: 10%;
 }
@@ -430,7 +430,7 @@ main {
   font-family: var(--text-font);
   color: #b6a28e;
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-bottom: 0;
   text-align: center;
 }
@@ -464,7 +464,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.2rem;
   margin-bottom: 1%;
   text-align: center;
 }
@@ -472,7 +472,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.1rem;
   margin-bottom: 2%;
   text-align: center;
 }
@@ -480,7 +480,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   margin-bottom: 2%;
   text-align: center;
   margin-top: 5%;
@@ -489,7 +489,7 @@ main {
   color: var(--nav-links-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   line-height: 1.2;
 }
@@ -512,7 +512,7 @@ main {
   color: #707070;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 /*  */
@@ -524,7 +524,7 @@ main {
   margin-top: 6%;
 }
 #createVaultModal small {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: var(--text-font);
   color: #b6a28e;
   letter-spacing: 1px;
@@ -535,11 +535,11 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 5px 15px;
+  padding: 3px 15px;
   text-align: center;
   transition: all 0.4s ease-in-out;
   margin-top: 5%;
@@ -550,7 +550,7 @@ main {
   border: 1px solid #fff;
 }
 #createVaultModal h6 {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: var(--header-font);
   color: #ff5924;
   letter-spacing: 1px;
@@ -561,7 +561,7 @@ main {
   color: var(--nav-links-color);
 }
 #createVaultModal li {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-family: var(--text-font);
   color: #b6a28e;
   letter-spacing: 1px;
@@ -597,10 +597,10 @@ main {
 
 /* no_vault */
 #no_vault {
-  margin-top: 80%;
+  margin-top: 100%;
 }
 #no_vault #icon_img {
-  width: 25%;
+  width: 22%;
   margin-top: 40%;
 }
 #no_vault h4 {
@@ -615,17 +615,17 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 5px 15px;
+  padding: 3px 15px;
   text-align: center;
   transition: all 0.4s ease-in-out;
   margin-top: 2%;
 }
 #no_vault #create_img {
-  width: 25px;
+  width: 22px;
   margin-right: 2px;
 }
 #no_vault #button_:hover {
