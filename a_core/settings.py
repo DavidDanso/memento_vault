@@ -34,7 +34,7 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'vault-memento.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'vault-memento.onrender.com']
 
 CSRF_TRUSTED_ORIGINS = [ 'https://*' ]
 

@@ -308,7 +308,7 @@ main {
   font-family: var(--text-font);
   color: var(--main-color);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   font-weight: 100;
 }
 #dashboard h6 span {
@@ -319,7 +319,7 @@ main {
   font-family: var(--text-font);
   color: #8f9aab;
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1rem;
   line-height: 1.2;
   margin-top: 1rem;
 }
@@ -327,11 +327,11 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 5px 15px;
+  padding: 2px 10px;
   text-align: center;
   transition: all 0.4s ease-in-out;
 }
@@ -373,7 +373,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1.2rem;
   margin-bottom: 1%;
   text-align: center;
 }
@@ -381,7 +381,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.9rem;
+  font-size: 1rem;
   margin-bottom: 2%;
   text-align: center;
 }
@@ -389,7 +389,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   margin-bottom: 2%;
   text-align: center;
   margin-top: 5%;
@@ -398,7 +398,7 @@ main {
   color: var(--nav-links-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.4rem;
+  font-size: 1rem;
   text-align: center;
   line-height: 1.2;
 }
@@ -421,19 +421,19 @@ main {
   color: #707070;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 /*  */
 #createVaultModal label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-family: var(--header-font);
   color: var(--nav-links-color);
   letter-spacing: 1px;
   margin-top: 6%;
 }
 #createVaultModal small {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   font-family: var(--text-font);
   color: #b6a28e;
   letter-spacing: 1px;
@@ -444,11 +444,11 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 5px 15px;
+  padding: 2px 13px;
   text-align: center;
   transition: all 0.4s ease-in-out;
   margin-top: 3%;
@@ -459,7 +459,7 @@ main {
   border: 1px solid #fff;
 }
 #createVaultModal h6 {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-family: var(--header-font);
   color: #ff5924;
   letter-spacing: 1px;
@@ -472,21 +472,21 @@ main {
 
 /* row_cards */
 #row_cards {
-  margin-top: 7%;
+  margin-top: 5%;
 }
 #row_cards .card {
   background: transparent;
   border: 2px dashed #8787877a;
-  margin-bottom: 4%;
+  margin-bottom: 3%;
 }
 #row_cards #user_img {
-  width: 30px;
+  width: 20px;
 }
 #row_cards h5 {
   font-family: var(--text-font);
   color: #8f9aab;
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   text-align: center;
   margin-top: 2px;
 }
@@ -494,7 +494,7 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-top: 1px;
 }
 #div_pills {
@@ -504,13 +504,13 @@ main {
   align-items: center;
 }
 #pill_img {
-  width: 25px;
+  width: 18px;
 }
 #div_pills span {
   font-family: var(--text-font);
   color: var(--main-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   background: var(--text-color);
   border-radius: 25px;
   vertical-align: middle;
@@ -521,14 +521,14 @@ main {
   font-family: var(--text-font);
   color: #8f9aab;
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-top: 2px;
 }
 #row_cards h4 span {
   color: var(--text-color);
 }
 #row_cards #default_img {
-  width: 50px;
+  width: 35px;
   margin-top: 20%;
   margin-bottom: 3%;
 }
@@ -536,7 +536,7 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1rem;
   margin-top: 14%;
   transition: all 0.4s ease-in-out;
 }
@@ -551,7 +551,7 @@ main {
   font-family: var(--header-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 3rem;
+  font-size: 2rem;
   margin-top: 14%;
 }
 #dashboard #line_divider {
@@ -559,11 +559,14 @@ main {
 }
 
 /* recent_uploads */
+/* #recent_uploads { */
+/* margin-bottom: 20%; */
+/* } */
 #dashboard h3 {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 #recent_uploads .card {
   margin-top: 1px;
@@ -573,7 +576,7 @@ main {
   color: var(--main-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   margin-top: 4%;
   margin-bottom: 6%;
 }
@@ -581,7 +584,7 @@ main {
   color: #ff5924;
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
   border: 1px solid #707070;
   padding: 3%;
@@ -604,11 +607,11 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
-  padding: 3px 12px;
+  padding: 2px 10px;
   text-align: center;
   transition: all 0.4s ease-in-out;
 }
