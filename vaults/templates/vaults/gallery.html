@@ -67,14 +67,18 @@
                     {% for media in media_files %}
                     <div class="carousel-item {% if forloop.first %}active{% endif %}">
                       {% if media.type == 'image' %}
-                      <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
+                      <center>
+                        <img src="{{ media.media.file.url }}" class="img-fluid" id="modal_img" alt="upload-img" />
+                      </center>
                       {% elif media.type == 'video' %}
                       <!-- Wrapper div with the play icon as background -->
                       <div class="video-wrapper">
-                        <video class="videos" id="vid_img" playsinline preload="metadata" loop>
-                          <source src="{{ media.media.file.url }}" type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
+                        <center>
+                          <video class="videos" id="vid_img" playsinline preload="metadata" loop>
+                            <source src="{{ media.media.file.url }}" type="video/mp4" />
+                            Your browser does not support the video tag.
+                          </video>
+                        </center>
                       </div>
                       {% else %}
                       <p>Unsupported file format</p>

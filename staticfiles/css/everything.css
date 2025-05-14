@@ -497,7 +497,7 @@ main {
   color: #8f9aab;
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.6rem;
+  font-size: 1.2rem;
   margin-bottom: 1%;
 }
 #viewImageModal h1 img {
@@ -534,7 +534,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   text-align: center;
   margin-top: 1%;
   margin-bottom: 0;
@@ -544,19 +544,19 @@ main {
   color: var(--nav-links-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-top: 6%;
   margin-bottom: 3%;
 }
 #div_body #modal_icon {
-  width: 11%;
+  width: 10%;
 }
 #div_body .badge-pill {
   background: #2b2d3c;
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 100;
   border-radius: 25px;
 }
@@ -626,7 +626,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.9vh;
+  font-size: 1.7vh;
   text-align: center;
   padding: 3%;
 }
@@ -634,7 +634,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 2.1vh;
+  font-size: 1.8vh;
   margin-bottom: 6%;
   text-align: center;
   line-height: 1.1;
@@ -643,7 +643,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.8vh;
+  font-size: 1.7vh;
   text-align: center;
 }
 #delete-media-modal h6 span {
@@ -654,7 +654,7 @@ main {
   background: #951c2f;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 2vh;
+  font-size: 1.8vh;
   transition: all 0.5s ease-in-out;
   margin-left: 10px;
 }
@@ -685,7 +685,7 @@ main {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 2vh;
+  font-size: 1.8vh;
   text-align: center;
   margin-top: 3%;
 }

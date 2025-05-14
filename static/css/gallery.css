@@ -246,7 +246,7 @@ main {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--header-font);
-  font-size: 1.7rem;
+  font-size: 1.5rem;
 }
 #hero h1 span {
   position: relative;
@@ -283,10 +283,18 @@ main {
 }
 #hero .carousel img {
   height: 39vh;
+  width: 100%;
   object-fit: contain;
   border-radius: 6px;
-  margin-top: 8%;
-  margin-bottom: 13%;
+  margin-top: 10%;
+  margin-bottom: 1%;
+}
+#hero .carousel video {
+  width: 100%;
+  height: 39vh;
+  object-fit: contain;
+  margin-top: 10%;
+  margin-bottom: 0;
 }
 #hero .carousel-caption {
   position: absolute;
