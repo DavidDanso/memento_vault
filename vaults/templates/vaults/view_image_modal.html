@@ -15,10 +15,12 @@
               <img src="{{ media.media.file.url }}" class="img-fluid d-flex mx-auto" id="modal_img" alt="upload-img" />
               {% elif media.type == 'video' %}
 
-              <video class="videos" controls="controls" loading="lazy" id="modal_img" preload="auto" loop>
-                <source src="{{ media.media.file.url }}" type="video/mp4" />
-                Your browser does not support the video tag.
-              </video>
+              <center>
+                <video class="videos" controls="controls" loading="lazy" id="modal_img" preload="auto" loop>
+                  <source src="{{ media.media.file.url }}" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </center>
               {% else %}
               <p>Unsupported file format</p>
               {% endif %}
@@ -28,7 +30,7 @@
             <div class="col-md-7">
               <div id="div_header">
                 <h1 class="modal-title">
-                  {{ media.media.file.name|truncate_filename:12 }}
+                  {{ media.media.file.name|truncate_filename:10 }}
                   <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
                 </h1>
                 <small id="modal_timestamp">{{ media.media.created_at|naturaltime }}</small>

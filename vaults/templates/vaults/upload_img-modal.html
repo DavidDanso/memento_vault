@@ -1,11 +1,13 @@
 {% load static %}
+<!--  -->
+{% load humanize %}
 <!--=========================================== uploadImageModal--layout ===============================-->
 <div id="uploadImageModal">
   <div class="modal fade" id="uploadImg" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h1>{{vault.title}} - Vault</h1>
+          <h1>{{vault.title|truncatechars:15}} - Vault</h1>
           <img src="{% static 'images/close-icon.png' %}" class="img-fluid btn-close" id="close_svg" data-bs-dismiss="modal" aria-label="Close" alt="close_svg" />
         </div>
         <!-- end modal-header -->
