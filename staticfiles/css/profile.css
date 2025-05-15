@@ -303,7 +303,7 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   text-align: center;
   line-height: 1.1;
   margin-top: 3%;
@@ -315,12 +315,12 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   background-color: #2b2d3c;
   border-radius: 25px;
   vertical-align: middle;
   width: 58%;
-  padding: 5px 15px;
+  padding: 4px 13px;
   text-align: center;
   transition: all 0.4s ease-in-out;
 }
@@ -346,7 +346,7 @@ main {
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 #settings-card h5 span {
   float: right;
@@ -376,9 +376,9 @@ main {
   margin-top: 5%;
 }
 #whats_new_banner a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   width: 53%;
-  padding: 5px 15px;
+  padding: 4px 13px;
   text-align: center;
   background-color: #eae4dd;
   color: var(--main-color);
@@ -401,7 +401,7 @@ main {
   font-family: var(--text-font);
   color: var(--nav-links-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 #delete_account_card h2 span {
   color: var(--main-color);
@@ -414,12 +414,12 @@ main {
   font-family: var(--text-font);
   color: var(--nav-links-color);
   letter-spacing: 1px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 4%;
 }
 #delete_account_card h2 a {
   color: #951c2f;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   cursor: pointer !important;
 }
 
@@ -448,7 +448,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.9vh;
+  font-size: 1.7vh;
   text-align: center;
   padding: 3%;
 }
@@ -456,7 +456,7 @@ main {
   color: var(--text-color);
   font-family: var(--header-font);
   letter-spacing: 1px;
-  font-size: 2.1vh;
+  font-size: 1.8vh;
   margin-bottom: 6%;
   text-align: center;
   line-height: 1.1;
@@ -465,7 +465,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.8vh;
+  font-size: 1.7vh;
   text-align: center;
 }
 #delete-account-modal h6 span {
@@ -476,7 +476,7 @@ main {
   background: #951c2f;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 2vh;
+  font-size: 1.7vh;
   transition: all 0.5s ease-in-out;
   margin-left: 10px;
 }
@@ -516,7 +516,7 @@ main {
   color: var(--text-color);
   font-family: var(--text-font);
   letter-spacing: 1px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   text-align: center;
   margin-bottom: 2%;
 }
@@ -531,7 +531,7 @@ main {
   background: #ff5924;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 2vh;
+  font-size: 1.7vh;
   transition: all 0.5s ease-in-out;
   margin-left: 10px;
 }
@@ -544,7 +544,7 @@ main {
   margin-bottom: -2%;
 }
 #profile_settings label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
@@ -553,7 +553,7 @@ main {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.1rem;
+  font-size: 1rem;
   border: 1px solid #707070;
   background: transparent;
 }
@@ -579,7 +579,7 @@ main {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.8vh;
+  font-size: 1.5vh;
   border: none !important;
   background: transparent;
   max-width: 70%;
@@ -615,6 +615,9 @@ main {
   header,
   #volunteer_img {
     display: none;
+  }
+  #profile_settings h6 span {
+    font-size: 1.1rem;
   }
 }
 /********** Medium devices (landscape phones, some tablets, 768px and up) ***********/

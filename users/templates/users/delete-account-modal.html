@@ -1,15 +1,7 @@
 {% load static %}
 <!--=========================================== delete-account-Modal--layout ===============================-->
 <div id="delete-account-modal">
-  <div
-    class="modal fade"
-    id="deleteAccountModal"
-    data-bs-backdrop="static"
-    data-bs-keyboard="false"
-    tabindex="-1"
-    aria-labelledby="staticBackdropLabel"
-    aria-hidden="true"
-  >
+  <div class="modal fade" id="deleteAccountModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-body">
@@ -19,23 +11,13 @@
             </div>
             <!-- end warning -->
 
-            <h4>
-              This action cannot be undone. This will permanently delete this
-              Account with all its vaults.
-            </h4>
+            <h4>This action cannot be undone. This will permanently delete this Account with all its vaults.</h4>
 
             <!--  -->
-            <img
-              src="{% static 'images/delete.png' %}"
-              class="img-fluid d-flex mx-auto"
-              id="delete_img"
-              alt="delete_img"
-            />
+            <img src="{% static 'images/delete.png' %}" class="img-fluid d-flex mx-auto" id="delete_img" alt="delete_img" />
             <!--  -->
 
-            <h6>
-              Please click on the Delete Button to confirm, or click Cancel
-            </h6>
+            <h6>Please click on the Delete Button to confirm, or click Cancel</h6>
             <form action="" method="POST">
               {% csrf_token %}
               <div class="modal-footer">
@@ -44,13 +26,7 @@
                     <span>Cancel, keep this account</span>
                   </h6>
                 </a>
-                <input
-                  type="submit"
-                  class="btn"
-                  name="delete_account"
-                  id="delete_account"
-                  value="delete account"
-                />
+                <input type="submit" class="btn" name="delete_account" id="delete_account" value="delete account" />
               </div>
               <!-- End modal-footer-->
             </form>
