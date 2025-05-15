@@ -140,7 +140,7 @@ a:hover {
 
 /****************************************** hero-section ************************************/
 #hero {
-  margin-top: 10%;
+  margin-top: 12%;
 }
 .hero-intro {
   margin: 3%;
@@ -169,7 +169,7 @@ a:hover {
 .hero-intro h1 {
   color: var(--text-color);
   font-family: var(--header-font);
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   text-align: center;
   letter-spacing: 1px;
   font-weight: bold;
@@ -178,7 +178,7 @@ a:hover {
 .hero-intro p {
   color: var(--nav-links-color);
   font-family: var(--text-font);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: center;
   letter-spacing: 1px;
   margin-top: 1px;
@@ -194,7 +194,7 @@ a:hover {
   margin-right: 1%;
 }
 #hero label {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: var(--text-font);
   color: var(--text-color);
   letter-spacing: 1px;
@@ -218,10 +218,10 @@ a:hover {
   color: var(--nav-links-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 #hero h6 {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-family: var(--text-font);
   color: #5486bc;
   letter-spacing: 1px;
@@ -234,13 +234,13 @@ a:hover {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   background-color: #2b2d3c;
   border-radius: 25px;
-  margin-bottom: 3%;
-  padding: 5px 17px;
-  margin-top: 12%;
-  margin-bottom: 4%;
+  margin-bottom: 2%;
+  padding: 4px 15px;
+  margin-top: 2%;
+  margin-bottom: 2%;
   transition: all 0.4s ease-in-out;
 }
 #login_account:hover {
