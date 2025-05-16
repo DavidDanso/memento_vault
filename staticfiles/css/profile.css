@@ -594,6 +594,25 @@ main {
   color: var(--nav-links-color) !important;
 }
 
+/* mob_logout */
+#mob_logout {
+  margin-top: 3%;
+}
+#mob_logout #logout_img {
+  width: 22px;
+}
+#mob_logout a {
+  color: var(--text-color);
+  text-decoration: none;
+  letter-spacing: 1px;
+  font-family: var(--text-font);
+  font-size: 1.1rem;
+  margin-left: 67%;
+  margin-bottom: -5px;
+}
+#logout_line {
+  color: var(--nav-links-color);
+}
 /********************** Mobile Devices Portrait and less ****************************/
 @media (max-width: 380px) {
   /* CSS rules here */
@@ -857,6 +876,11 @@ main {
     height: auto;
     margin-top: 10%;
     margin-bottom: 10%;
+  }
+
+  /* mob_logout */
+  #mob_logout {
+    display: none;
   }
 
   /* settings */
