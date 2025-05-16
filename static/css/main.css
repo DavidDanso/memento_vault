@@ -89,7 +89,7 @@ a:hover {
   border-bottom: 1px solid #707070;
 }
 #logo {
-  width: 50px;
+  width: 48px;
 }
 .navbar-toggler {
   position: absolute;
@@ -170,7 +170,7 @@ a:hover {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--header-font);
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   font-weight: bold;
   margin-top: 5%;
   line-height: 1.1;
@@ -179,7 +179,7 @@ a:hover {
   color: #9b9b9b;
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.2;
   margin-top: 3%;
 }
@@ -217,7 +217,7 @@ a:hover {
   color: var(--nav-links-color);
   letter-spacing: 1px;
   font-family: var(--header-font);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .intro-intro #icon_ {
   width: 45px;
@@ -226,13 +226,13 @@ a:hover {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .intro-intro p {
   color: var(--nav-links-color);
   letter-spacing: 1px;
   font-family: var(--text-font);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   line-height: 1.2;
 }
 .intro-intro .col-md-3 {
@@ -262,7 +262,7 @@ a:hover {
   color: var(--text-color);
   letter-spacing: 1px;
   font-family: var(--header-font);
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   text-align: center;
   margin-top: 6%;
   margin-bottom: 2%;
