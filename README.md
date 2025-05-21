@@ -5,7 +5,8 @@ Memento Vault is a platform designed to securely store photos and videos from sp
 
 ## Usage
 
-- Access the app via https://vault-memento.onrender.com
+- Access the app via [Memento Vault](https://vault-memento.onrender.com)
+
 - Sign up to create your first vault, generate QR codes, and start uploading media.
 
   
