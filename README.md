@@ -3,6 +3,13 @@
 ## Overview
 Memento Vault is a platform designed to securely store photos and videos from special events, enhanced with AI-driven features for seamless organization and content management.
 
+## Usage
+
+- Access the app via [Memento Vault](https://vault-memento.onrender.com)
+
+- Sign up to create your first vault, generate QR codes, and start uploading media.
+
+  
 ## Features
 
 ### Core Functionality
@@ -166,12 +173,6 @@ Memento Vault is a platform designed to securely store photos and videos from sp
 5. Start the development server:
    ```bash
    python manage.py runserver
-
-
-## Usage
-
-- Access the app via http://localhost:8000
-- Sign up to create your first vault, generate QR codes, and start uploading media.
 
 
 Note: I am actively developing new features, so expect frequent updates as the platform continues to improve.
