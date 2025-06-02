@@ -18,7 +18,7 @@ DEFAULT_OPERATION_TIMEOUT = 60
 class MediaProcessor:
     def __init__(self, api_key: str, max_workers: int = 10):
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
+        self.model = genai.GenerativeModel('gemini-2.0-flash')
         self._executor = concurrent.futures.ThreadPoolExecutor(max_workers=max_workers)
         self._cache = {}
         logging.info("MediaProcessor initializing (model: %s, max_workers: %d)...", self.model.model_name, max_workers)
