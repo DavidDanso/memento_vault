@@ -482,7 +482,7 @@ main {
   border-image-repeat: stretch;
 }
 #modal_img {
-  width: 50%;
+  width: 70%;
   margin-bottom: 4%;
   border-radius: 5px;
 }
@@ -877,7 +877,7 @@ main {
 
   /*  masonry-container */
   #masonry-container {
-    column-count: 5;
+    column-count: 6;
     column-gap: 14px;
     margin-top: 2%;
   }
@@ -895,28 +895,29 @@ main {
     max-width: 900px;
   }
   #modal_img {
-    width: 90%;
+    width: 36%;
     margin-bottom: 0%;
   }
   #div_header {
-    padding: 3%;
+    padding: 1%;
+    margin-top: 1%;
   }
   #viewImageModal h1 {
-    font-size: 1.1rem;
+    font-size: 1.9vh;
     margin-bottom: 1px;
   }
   #viewImageModal small {
     letter-spacing: 1px;
-    font-size: 0.9rem;
+    font-size: 1.7vh;
   }
   #close_svg {
-    width: 8%;
-    height: 8%;
+    width: 5%;
+    height: 5%;
   }
 
   /*  */
   #div_body {
-    padding: 5%;
+    padding: 3%;
   }
   #image_description {
     border-width: 20px;
@@ -933,9 +934,9 @@ main {
     margin-top: 4%;
     margin-bottom: 1%;
   }
-  #div_body #modal_icon {
-    width: 7%;
-  }
+  /* #div_body #modal_icon { */
+  /* width: 7%; */
+  /* } */
   #div_body .badge-pill {
     letter-spacing: 1px;
     font-size: 0.9rem;
@@ -947,9 +948,10 @@ main {
   }
   #div_body .download_btn,
   .delete_btn {
-    width: 6% !important;
-    margin: 3%;
-    margin-bottom: -5px;
+    width: 3.5% !important;
+    margin: 1px;
+    margin-bottom: -20px;
+    margin-top: -2%;
   }
 
   /*  */

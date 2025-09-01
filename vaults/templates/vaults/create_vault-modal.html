@@ -12,7 +12,7 @@
           {% if vault_count < user_vault_cap %}
           <img src="{% static 'images/marker.png' %}" class="img-fluid d-flex mx-auto" id="marker_img" alt="marker_img" />
           <h1>Create new Vault</h1>
-          <p>Store your memories securely—upload photos and videos or invite others with a QR code. Each vault holds up to 20 items, and its QR code expires 4 days after creation.</p>
+          <p>Securely preserve your moments—create a vault, upload photos and videos, or let guests contribute with a simple QR code. Each vault can safely store up to {{vault_limit}} items.</p>
 
           <!--  -->
           <form action="" method="POST">

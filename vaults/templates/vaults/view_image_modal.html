@@ -10,7 +10,7 @@
       <div class="modal-content">
         <div class="modal-body">
           <div class="row">
-            <div class="col-md-5 align-self-center">
+            <div class="col-md-12">
               {% if media.type == 'image' %}
               <img src="{{ media.media.file.url }}" class="img-fluid d-flex mx-auto" id="modal_img" alt="upload-img" />
               {% elif media.type == 'video' %}
@@ -24,10 +24,9 @@
               {% else %}
               <p>Unsupported file format</p>
               {% endif %}
-            </div>
-            <!-- end col -->
 
-            <div class="col-md-7">
+              <!--  -->
+
               <div id="div_header">
                 <h1 class="modal-title">
                   {{ media.media.file.name|truncate_filename:10 }}
@@ -38,28 +37,13 @@
               <!-- end div_header -->
 
               <div id="div_body">
-                {% if media.media.caption and media.media.caption != "Video file uploaded" %}
+                {% if media.media.caption and media.media.caption != "Video processing not implemented" %}
                 <div id="image_description">
                   <p>{{ media.media.caption }}</p>
                 </div>
                 <!-- end image_description -->
                 {% endif %}
 
-                <!--  -->
-                <h3>
-                  MoodLens
-                  <img src="{% static 'images/smile.png' %}" class="img-fluid" id="modal_icon" alt="modal_icon" />
-                </h3>
-                {% if media.media.tags.exists %}
-                <div class="tags mt-2">
-                  {% for tag in media.media.tags.all|slice:"1:" %}
-                  <span class="badge badge-pill me-1 mb-1">{{ tag }}</span>
-                  {% endfor %}
-                </div>
-                {% endif %}
-                <!--  -->
-
-                <hr id="line_divider" />
                 <center>
                   <a href="{{ media.media.file.url }}" download="{{ media.media.file.name }}" title="Download {{ media.media.file.name }}">
                     <img src="{% static 'images/image-.png' %}" class="img-fluid download_btn" id="modal_icon" alt="Download {{ media.media.file.name }}" />

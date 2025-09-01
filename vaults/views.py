@@ -139,6 +139,7 @@ def vault_view(request):
         'form': form,
         'now': timezone.now(),
         'user_vault_cap': USER_VAULT_CAP,
+        'vault_limit': VAULT_LIMIT,
     }
     return render(request, 'vaults/vaults.html', context)
 
