@@ -13,7 +13,7 @@ import threading
 # Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
-DEFAULT_OPERATION_TIMEOUT = 45  # reduced for better UX feedback
+DEFAULT_OPERATION_TIMEOUT = 45
 
 class MediaProcessor:
     def __init__(self, api_key: str, max_workers: int = 8):
