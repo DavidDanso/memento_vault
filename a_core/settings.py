@@ -239,4 +239,13 @@ CORS_ALLOWED_ORIGINS = ['https://vault-memento.onrender.com']
 CSRF_TRUSTED_ORIGINS = ['https://vault-memento.onrender.com']
 
 
+# Celery Configuration
+CELERY_BROKER_URL = config('CELERY_BROKER_URL', default='redis://localhost:6379/0')
+CELERY_RESULT_BACKEND = config('CELERY_RESULT_BACKEND', default='redis://localhost:6379/0')
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE
+
+
 

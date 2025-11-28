@@ -10,7 +10,7 @@ from operator import or_
 from users.models import Profile
 from .forms import *
 from django.http import HttpResponse
-from .utils import MediaProcessor
+from .tasks import process_media_ai
 from django.db.models import F
 from django.core.cache import cache
 from django.utils import timezone 
@@ -19,7 +19,7 @@ import os
 
 
 GEMINI_API_KEY = settings.GEMINI_API_KEY
-media_processor = MediaProcessor(GEMINI_API_KEY)
+# MediaProcessor moved to tasks.py to avoid synchronous blocking
 VAULT_LIMIT = 15
 USER_VAULT_CAP = settings.USER_VAULT_CAP
 
@@ -204,12 +204,9 @@ def vault_details_view(request, pk, title):
                 for f in files:
                     media_vault = VaultMedia(file=f, vault=vault)
                     try:
-                        caption, tags = media_processor.get_caption_and_tags(f)
-                        if caption:
-                            media_vault.caption = caption
                         media_vault.save()
-                        if tags:
-                            media_vault.tags.add(*tags)
+                        # Trigger background AI processing
+                        process_media_ai.delay(media_vault.id)
                     except Exception as e:
                         messages.error(request, f"Processing error: {str(e)}")
                     media_objects.append(media_vault)
@@ -496,6 +493,8 @@ def uploads_view(request, vault_id):
                     )
                     try:
                         media_instance.save()
+                        # Trigger background AI processing
+                        process_media_ai.delay(media_instance.id)
                         saved_count += 1
                     except Exception as e:
                         error_occurred = True

@@ -133,6 +133,62 @@ class MediaProcessor:
             logging.error("Caption API call failed: %s", e, exc_info=True)
             return "Caption/Tags unavailable", []
 
+    def get_caption_and_tags_sync(self, file: Any) -> Tuple[Optional[str], List[str]]:
+        """
+        Synchronous version of get_caption_and_tags for use in Celery tasks.
+        """
+        try:
+            # 1. Read file content
+            if hasattr(file, 'seek'):
+                file.seek(0)
+            file_content = file.read()
+            
+            if not file_content:
+                return "Error reading file (empty)", []
+
+            # 2. Check cache
+            file_hash = self._get_file_hash(file_content)
+            with self._cache_lock:
+                if file_hash in self._cache:
+                    return self._cache[file_hash]
+
+            # 3. Preprocess image
+            img_data = self._preprocess_image_sync(file_content)
+            if not img_data:
+                return "Image preprocessing failed", []
+
+            # 4. Call Gemini API
+            prompt = """Analyze the image and return ONLY JSON:
+{"caption": "...", "tags": ["...", "...", "...", "...", "..."]}"""
+            
+            content_parts = [prompt, {"mime_type": "image/jpeg", "data": img_data}]
+            generation_config = {"temperature": 0.2, "max_output_tokens": 180, "response_mime_type": "application/json"}
+            
+            api_response = self.model.generate_content(content_parts, generation_config=generation_config)
+
+            if not getattr(api_response, "parts", None):
+                return "Caption/Tags unavailable", []
+
+            # 5. Parse Response
+            try:
+                result_json = json.loads(api_response.text)
+                caption = str(result_json.get("caption", "")).strip()
+                tags = [str(tag).lower().strip() for tag in result_json.get("tags", [])][:5]
+                
+                result = (caption or "Caption unavailable", tags)
+                
+                if caption and not caption.lower().startswith("error"):
+                    with self._cache_lock:
+                        self._cache[file_hash] = result
+                
+                return result
+            except Exception:
+                return "Failed to parse JSON response", []
+
+        except Exception as e:
+            logging.error("Sync AI processing failed: %s", e, exc_info=True)
+            return "AI processing error", []
+
     def clear_cache(self):
         with self._cache_lock:
             self._cache.clear()
